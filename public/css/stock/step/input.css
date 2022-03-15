@@ -1,0 +1,91 @@
+.stock-input .card-header .form-contena {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 10px;
+}
+.stock-input .card-header .form-contena .form-box {
+  display: flex;
+  align-items: center;
+}
+.stock-input .card-header .form-contena .form-box input[type=radio] {
+  display: none;
+}
+.stock-input .card-header .form-contena .form-box label {
+  position: relative;
+  color: #007bff;
+  box-sizing: border-box;
+  border: 1px solid #007bff;
+  padding: 6px 12px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+}
+.stock-input .card-header .form-contena .form-box label::before {
+  content: "";
+  height: 16px;
+  width: 16px;
+  box-sizing: border-box;
+  border: 1px solid #007bff;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.stock-input .card-header .form-contena .form-box input[type=radio]:checked + label {
+  background-color: #007bff;
+  color: #fff;
+}
+.stock-input .card-header .form-contena .form-box input[type=radio]:checked + label::before {
+  height: 16px;
+  width: 16px;
+  box-sizing: border-box;
+  border: 4px solid #fff;
+  background-color: #007bff;
+}
+.stock-input .card-header .form-contena .form-box label:hover {
+  cursor: pointer;
+}
+.stock-input .card-header .form-contena .form-box:first-of-type label {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.stock-input .card-header .form-contena .form-box:last-of-type label {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.stock-input .card-main table thead tr th.favorite {
+  padding: 0;
+}
+.stock-input .card-main table thead tr th.stocks, .stock-input .card-main table thead tr th.price {
+  width: 55px;
+}
+.stock-input .card-main table thead tr th.favorite, .stock-input .card-main table thead tr th.amount {
+  width: 65px;
+}
+.stock-input .card-main table tbody tr td.favorite {
+  text-align: center;
+}
+.stock-input .card-main table tbody tr td.favorite a {
+  cursor: default;
+  pointer-events: none;
+}
+.stock-input .card-main table tbody tr td.favorite a .star-icon {
+  color: #aaa;
+}
+.stock-input .card-main table tbody tr td.favorite a .star-icon.check {
+  color: #007bff;
+}
+.stock-input .card-main table tbody tr td.favorite a:hover {
+  opacity: 1;
+}
+.stock-input .card-main table tbody tr td.amount input {
+  width: 45px;
+  text-align: center;
+  font-size: 16px;
+  border: 1px solid #bbb;
+  border-radius: 2px;
+}
+.stock-input .card-main table tbody tr td.amount input::-webkit-inner-spin-button,
+.stock-input .card-main table tbody tr td.amount input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  -moz-appearance: textfield;
+}

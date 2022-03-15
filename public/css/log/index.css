@@ -1,0 +1,53 @@
+main.log-index .card .card-header {
+  display: flex;
+  justify-content: space-between;
+  height: 35px;
+}
+main.log-index .card .card-header .right-box ul {
+  height: 100%;
+  display: flex;
+  position: relative;
+}
+main.log-index .card .card-header .right-box ul li a {
+  display: block;
+  width: 90px;
+  height: 100%;
+  border-radius: 2px;
+  font-size: 12px;
+  text-align: center;
+}
+main.log-index .card .card-header .right-box ul li a .trash-icon {
+  margin-right: 3px;
+}
+main.log-index .card .card-header .right-box ul li a.first {
+  background-color: #007bff;
+  color: #fff;
+  line-height: 35px;
+}
+main.log-index .card .card-main table thead tr th.type {
+  width: 45px;
+}
+main.log-index .card .card-main table thead tr th.created_at {
+  width: 170px;
+}
+main.log-index .card .card-main table thead tr th.action {
+  width: 40px;
+}
+main.log-index .card .card-main table tbody tr td.action {
+  display: flex;
+  height: 35px;
+  align-items: center;
+}
+main.log-index .card .card-main table tbody tr td.action a {
+  display: block;
+  width: 30px;
+  height: 25px;
+  background-color: #0089f9;
+  line-height: 25px;
+  text-align: center;
+  border-radius: 2px;
+}
+main.log-index .card .card-main table tbody tr td.action a .glass-icon {
+  font-size: 11px;
+  color: #fff;
+}

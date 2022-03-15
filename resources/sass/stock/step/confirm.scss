@@ -1,0 +1,33 @@
+.stock-confirm {
+  .card-main {
+    margin-bottom: 20px;
+    h1 {
+      font-size: 25px;
+      text-align: center;
+      color: #333;
+      width: 150px;
+      margin: 50px auto;
+      border-bottom: 1px solid #666;
+    }
+    .date {
+      color: #333;
+      border-bottom: 1px solid #666;
+      margin-bottom: 10px;
+      width: 160px;
+      font-size: 15px;
+      text-align: center;
+    }
+    table {
+      th, td {
+        border: 1px solid #444;
+        color: #333;
+        padding: 0 15px;
+      }
+      thead {
+        tr {
+          background-color: #ddd;
+        }
+      }
+    }
+  }
+}

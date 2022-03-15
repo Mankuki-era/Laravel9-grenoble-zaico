@@ -1,0 +1,18 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/js/router.js": "/js/router.js",
+    "/css/app.css": "/css/app.css",
+    "/css/item/index.css": "/css/item/index.css",
+    "/css/auth/login.css": "/css/auth/login.css",
+    "/css/share.css": "/css/share.css",
+    "/css/modal/login.css": "/css/modal/login.css",
+    "/css/modal/log.css": "/css/modal/log.css",
+    "/css/modal/alert.css": "/css/modal/alert.css",
+    "/css/modal/import.css": "/css/modal/import.css",
+    "/css/modal/item.css": "/css/modal/item.css",
+    "/css/stock/step/result.css": "/css/stock/step/result.css",
+    "/css/stock/step/confirm.css": "/css/stock/step/confirm.css",
+    "/css/stock/step/input.css": "/css/stock/step/input.css",
+    "/css/stock/index.css": "/css/stock/index.css",
+    "/css/log/index.css": "/css/log/index.css"
+}

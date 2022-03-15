@@ -1,0 +1,78 @@
+.modal-import {
+  position: relative;
+}
+.modal-import .sample-area {
+  position: absolute;
+  top: 1px;
+  right: 0;
+}
+.modal-import .sample-area .sample-download {
+  width: 180px;
+  height: 30px;
+  border: 1px solid gray;
+  border-radius: 2px;
+  margin: 0 0 0 auto;
+}
+.modal-import .sample-area .sample-download a {
+  display: block;
+  text-align: center;
+  line-height: 29px;
+  font-size: 9px;
+  font-weight: bold;
+  color: #5d646b;
+}
+.modal-import .sample-area .sample-download a img {
+  height: 23px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.modal-import form .file-area {
+  margin-top: 20px;
+}
+.modal-import form .file-area .msg, .modal-import form .file-area .file-name {
+  height: 20px;
+  line-height: 20px;
+  font-weight: bold;
+  font-size: 13px;
+  text-align: center;
+  color: #666;
+}
+.modal-import form .file-area .msg.err {
+  color: #dc3545;
+}
+.modal-import form .file-area .msg.success {
+  color: #28a745;
+}
+.modal-import form .file-area label {
+  display: block;
+  text-align: center;
+  width: 160px;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  font-size: 13px;
+  background-color: #28a745;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 10px auto 10px;
+}
+.modal-import form .file-area label input[type=file] {
+  display: none;
+}
+.modal-import form .file-area label:hover {
+  opacity: 0.8;
+}
+.modal-import form ul.button-box {
+  margin-top: 20px;
+}
+.modal-import form ul.button-box li a {
+  display: block;
+  width: 80px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 2px;
+  font-size: 13px;
+  text-align: center;
+  padding: 7px 0;
+  margin: 0 0 0 auto;
+}

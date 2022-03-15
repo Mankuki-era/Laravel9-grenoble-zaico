@@ -1,0 +1,47 @@
+.modal-item form .form-group {
+  height: 40px;
+  margin-top: 20px;
+  display: flex;
+}
+.modal-item form .form-group label {
+  color: #666;
+  font-weight: bold;
+  font-size: 17px;
+  width: 120px;
+  line-height: 40px;
+}
+.modal-item form .form-group label span {
+  font-size: 12px;
+  background: red;
+  color: #fff;
+  padding: 5px 8px;
+  border-radius: 3px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.modal-item form .form-group input {
+  padding: 0 20px;
+  font-size: 16px;
+  color: #666;
+  outline: none;
+  border: 2px solid #ccc;
+  border-radius: 2px;
+  flex: 1;
+}
+.modal-item form .form-group input:focus {
+  border: 2px solid #007bff;
+}
+.modal-item form ul {
+  margin-top: 20px;
+}
+.modal-item form ul li a {
+  display: block;
+  width: 80px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 2px;
+  font-size: 13px;
+  text-align: center;
+  padding: 7px 0;
+  margin: 0 0 0 auto;
+}

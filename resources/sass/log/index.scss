@@ -1,0 +1,73 @@
+main.log-index {
+  .card {
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      height: 35px;
+      .right-box {
+        ul {
+          height: 100%;
+          display: flex;
+          position: relative;
+          li {
+            a {
+              display: block;
+              width: 90px;
+              height: 100%;
+              border-radius: 2px;
+              font-size: 12px;
+              text-align: center;
+              .trash-icon {
+                margin-right: 3px;
+              }
+            }
+            a.first {
+              background-color: #007bff;
+              color: #fff;
+              line-height: 35px;
+            }
+          }
+        }
+      }
+    }
+    .card-main {
+      table {
+        thead {
+          tr {
+            th.type {
+              width: 45px;
+            }
+            th.created_at {
+              width: 170px;
+            }
+            th.action {
+              width: 40px;
+            }
+          }
+        }
+        tbody {
+          tr {
+            td.action {
+              display: flex;
+              height: 35px;
+              align-items: center;
+              a {
+                display: block;
+                width: 30px;
+                height: 25px;
+                background-color: #0089f9;
+                line-height: 25px;
+                text-align: center;
+                border-radius: 2px;
+                .glass-icon {
+                  font-size: 11px;
+                  color: #fff;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

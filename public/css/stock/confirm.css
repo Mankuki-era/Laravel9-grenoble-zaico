@@ -1,0 +1,28 @@
+main.stock-confirm .card .card-main {
+  padding: 30px 40px;
+  margin-bottom: 20px;
+}
+main.stock-confirm .card .card-main h1 {
+  font-size: 25px;
+  text-align: center;
+  color: #333;
+  width: 150px;
+  margin: 50px auto;
+  border-bottom: 1px solid #666;
+}
+main.stock-confirm .card .card-main .date {
+  color: #333;
+  border-bottom: 1px solid #666;
+  margin-bottom: 10px;
+  width: 160px;
+  font-size: 15px;
+  text-align: center;
+}
+main.stock-confirm .card .card-main table th, main.stock-confirm .card .card-main table td {
+  border: 1px solid #444;
+  color: #333;
+  padding: 0 15px;
+}
+main.stock-confirm .card .card-main table thead tr {
+  background-color: #ddd;
+}

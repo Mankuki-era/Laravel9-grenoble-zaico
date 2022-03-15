@@ -1,0 +1,33 @@
+<template>
+  <div class="wrapper">
+    <message-component ref="messageChild"></message-component>
+    <modal-component ref="modalChild" @data-reload="dataReload" @message-event="messageEvent" @header-event="headerEvent"></modal-component>
+
+    <header-component ref="headerChild" @message-event="messageEvent"></header-component>
+    <router-view ref="mainChild" @open-modal="openModal" @message-event="messageEvent" @header-event="headerEvent"></router-view>
+    <footer-component></footer-component>
+
+  </div>
+</template>
+
+<script>
+  export default {
+    methods: {
+      openModal: function(func, id, index){
+        this.$refs.modalChild.openModal(func, id, index);
+      },
+      indexTypeClick: function(){
+        this.$refs.mainChild.indexTypeClick();
+      },
+      dataReload: function(func, index, data){ // モーダルでの変更, 削除をindexに反映
+        this.$refs.mainChild.dataReload(func, index, data);
+      },
+      messageEvent: function(message, bool){
+        this.$refs.messageChild.messageEvent(message, bool);
+      },
+      headerEvent: function(){
+        this.$refs.headerChild.checkAuth();
+      }
+    }
+  }
+</script>

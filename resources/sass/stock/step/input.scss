@@ -1,0 +1,114 @@
+.stock-input {
+  .card-header {
+    .form-contena {
+      display: flex;
+      justify-content: end;
+      margin-bottom: 10px;
+      .form-box {
+        display: flex;
+        align-items: center;
+        input[type="radio"] {
+          display: none;
+        }
+        label {
+          position: relative;
+          color: #007bff;
+          box-sizing: border-box;
+          border: 1px solid #007bff;
+          // border-radius: 3px;
+          padding: 6px 12px;
+          font-size: 13px;
+          display: flex;
+          align-items: center;
+        }
+        label::before {
+          content: "";
+          height: 16px;
+          width: 16px;
+          box-sizing: border-box;
+          border: 1px solid #007bff;
+          border-radius: 50%;
+          margin-right: 10px;
+        }
+        input[type="radio"]:checked + label {
+          background-color: #007bff;
+          color: #fff;
+        }
+        input[type="radio"]:checked + label::before {
+          height: 16px;
+          width: 16px;
+          box-sizing: border-box;
+          border: 4px solid #fff;
+          background-color: #007bff;
+        }
+        label:hover {
+          cursor: pointer;
+        }
+      }
+      .form-box:first-of-type {
+        label {
+          border-top-left-radius: 3px;
+          border-bottom-left-radius: 3px;
+        }
+      }
+      .form-box:last-of-type {
+        label {
+          border-top-right-radius: 3px;
+          border-bottom-right-radius: 3px;
+        }
+      }
+    }
+  }
+  .card-main {
+    table {
+      thead {
+        tr {
+          th.favorite {
+            padding: 0;
+          }
+          th.stocks, th.price {
+            width: 55px;
+          }
+          th.favorite, th.amount {
+            width: 65px;
+          }
+        }
+      }
+      tbody {
+        tr {
+          td.favorite {
+            text-align: center;
+            a {
+              cursor: default;
+              pointer-events: none;
+              .star-icon {
+                color: #aaa;
+              }
+              .star-icon.check {
+                color: #007bff;
+              }
+            }
+            a:hover {
+              opacity: 1;
+            }
+          }
+          td.amount {
+            input {
+              width: 45px;
+              text-align: center;
+              font-size: 16px;
+              border: 1px solid #bbb;
+              border-radius: 2px;
+            }
+            input::-webkit-inner-spin-button,
+            input::-webkit-outer-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+              -moz-appearance:textfield;
+            }
+          }
+        }
+      }
+    }
+  }
+}

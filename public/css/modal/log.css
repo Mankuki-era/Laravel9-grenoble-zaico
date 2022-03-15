@@ -1,0 +1,54 @@
+.log {
+  margin-bottom: 20px;
+}
+.log h1 {
+  font-size: 25px;
+  text-align: center;
+  color: #333;
+  width: 150px;
+  margin: 50px auto;
+  border-bottom: 1px solid #666;
+}
+.log .date {
+  color: #333;
+  border-bottom: 1px solid #666;
+  margin-bottom: 10px;
+  width: 160px;
+  font-size: 15px;
+  text-align: center;
+}
+.log table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.log table tr {
+  height: 40px;
+  text-align: left;
+}
+.log table th, .log table td {
+  padding-left: 15px;
+}
+.log table td {
+  padding-right: 15px;
+  color: #555;
+}
+.log table th, .log table td {
+  border: 1px solid #444;
+  color: #333;
+}
+.log table thead tr {
+  font-size: 13px;
+  background-color: #ddd;
+}
+.log table thead tr th {
+  font-weight: normal;
+}
+.log table tbody tr {
+  font-size: 12px;
+}
+.log table tbody tr td.price, .log table tbody tr td.stocks, .log table tbody tr td.action, .log table tbody tr td.amount {
+  width: 65px;
+}
+.log table tbody tr:not(:first-of-type) {
+  border-top: 1px solid #dee2e6;
+}

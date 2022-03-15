@@ -1,0 +1,25 @@
+form.alert {
+  p {
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    color: #666;
+    margin-top: 25px;
+  }
+  ul.button-box {
+    margin-top: 20px;
+    li {
+      a {
+        display: block;
+        width: 80px;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 2px;
+        font-size: 13px;
+        text-align: center;
+        padding: 7px 0;
+        margin: 0 0 0 auto;
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+main.login {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+main.login .card {
+  width: 210px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.13), 0 1px 3px rgba(0, 0, 0, 0.2);
+  position: relative;
+  padding: 40px 35px 20px;
+  transition: 0.3s;
+}
+main.login .card h1 {
+  font-size: 20px;
+  color: #333;
+  text-align: center;
+}
+main.login .card .icon {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  background-color: #28a745;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 80px;
+  color: #fff;
+  font-size: 27px;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid #777;
+}
+main.login .card p {
+  margin: 16px 0 10px;
+  text-align: center;
+  font-size: 13px;
+  color: #333;
+  flex: 1;
+}
+main.login .card ul li a {
+  display: block;
+  background-color: #28a745;
+  color: #fff;
+  width: 50%;
+  height: 40px;
+  text-align: center;
+  margin: 0 auto;
+  line-height: 40px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+main.login .card:hover {
+  transform: scale(1.1);
+}
+main.login .card:not(:first-of-type) {
+  margin-left: 50px;
+}
+main.login .card:not(:first-of-type) .icon {
+  background-color: #007bff;
+}
+main.login .card:not(:first-of-type) ul li a {
+  background-color: #007bff;
+}
