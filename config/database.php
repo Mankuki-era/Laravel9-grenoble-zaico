@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Str;
 
-// $db = parse_url(env('DATABASE_URL'));
-
 return [
 
     /*
@@ -45,25 +43,6 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
-        // 'mysql' => [
-        //     'driver' => 'mysql',
-        //     'url' => env('DATABASE_URL'),
-        //     'host' => $db['host'],
-        //     'port' => env('DB_PORT', '3306'),
-        //     'database' => ltrim($db['path'], '/'),
-        //     'username' => $db['user'],
-        //     'password' => $db['pass'],
-        //     'unix_socket' => env('DB_SOCKET', ''),
-        //     'charset' => 'utf8mb4',
-        //     'collation' => 'utf8mb4_unicode_ci',
-        //     'prefix' => '',
-        //     'prefix_indexes' => true,
-        //     'strict' => true,
-        //     'engine' => null,
-        //     'options' => extension_loaded('pdo_mysql') ? array_filter([
-        //         PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-        //     ]) : [],
-        // ],
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
