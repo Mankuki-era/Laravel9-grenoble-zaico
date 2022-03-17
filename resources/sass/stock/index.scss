@@ -68,11 +68,11 @@ main.stock {
         }
         div.animation-bar.go {
           opacity: 1;
-          animation: linear barGo 1s forwards;
+          animation: barGo 1s forwards;
         }
         div.animation-bar.back {
           opacity: 1;
-          animation: linear barBack 1s forwards;
+          animation: barBack 1s forwards;
         }
         @keyframes barGo{
           0% {

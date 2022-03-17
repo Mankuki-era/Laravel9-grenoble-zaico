@@ -51,3 +51,6 @@ main.log-index .card .card-main table tbody tr td.action a .glass-icon {
   font-size: 11px;
   color: #fff;
 }
+main.log-index .card .card-main table tbody tr td.no-data {
+  text-align: center;
+}

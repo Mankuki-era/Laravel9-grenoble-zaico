@@ -3,7 +3,7 @@
     <message-component ref="messageChild"></message-component>
     <modal-component ref="modalChild" @data-reload="dataReload" @message-event="messageEvent" @header-event="headerEvent"></modal-component>
 
-    <header-component ref="headerChild" @message-event="messageEvent"></header-component>
+    <header-component ref="headerChild" @message-event="messageEvent" @open-modal="openModal"></header-component>
     <router-view ref="mainChild" @open-modal="openModal" @message-event="messageEvent" @header-event="headerEvent"></router-view>
     <footer-component></footer-component>
 

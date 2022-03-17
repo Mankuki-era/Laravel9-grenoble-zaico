@@ -29,6 +29,9 @@
                 <a href="" @click.prevent.stop="openModal('log-show', log.id, null)"><i class="fa-solid fa-magnifying-glass glass-icon"></i></a>
               </td>
             </tr>
+            <tr v-show="logs.length === 0">
+              <td colspan="4" class="no-data">データはありません</td>
+            </tr>
           </tbody>
         </table>
       </div>

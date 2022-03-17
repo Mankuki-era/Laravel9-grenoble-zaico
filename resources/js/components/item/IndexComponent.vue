@@ -46,6 +46,9 @@
                 <a href="" class="destroy" @click.prevent.stop="openModal('item-destroy', item.id, index)"><i class="fa-solid fa-trash-can trash-icon"></i></a>
               </td>
             </tr>
+            <tr v-show="items.length === 0">
+              <td class="no-data">データはありません</td>
+            </tr>
           </tbody>
         </table>
       </div>

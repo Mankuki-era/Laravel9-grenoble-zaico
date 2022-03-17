@@ -1,10 +1,10 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/router.js": "/js/router.js",
+    "/css/share.css": "/css/share.css",
     "/css/app.css": "/css/app.css",
     "/css/item/index.css": "/css/item/index.css",
     "/css/auth/login.css": "/css/auth/login.css",
-    "/css/share.css": "/css/share.css",
     "/css/modal/login.css": "/css/modal/login.css",
     "/css/modal/log.css": "/css/modal/log.css",
     "/css/modal/alert.css": "/css/modal/alert.css",

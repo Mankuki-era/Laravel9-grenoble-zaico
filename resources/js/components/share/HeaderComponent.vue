@@ -8,12 +8,16 @@
       </div>
     </div>
     <div class="right-box">
-      <ul v-show="this.$route.path !== '/login'">
+      <ul class="link-box" v-show="this.$route.path !== '/login'">
         <template v-for="(link, index) in linkArray">
-          <li :class="{ selected: link.selected }" :key="link.name" v-show="!(link.to === '/stock' && !adminFlag)">
+          <li class="router-link" :class="{ selected: link.selected }" :key="link.name" v-show="!(link.to === '/stock' && !adminFlag)">
             <a href="" @click.prevent.stop="linkClick(index)"><span v-html="link.icon"></span>{{ link.name }}</a>
           </li>
         </template>
+        <li class="user-link"><a href=""><i class="fa-solid fa-circle-user user-icon"></i></a></li>
+        <ul class="user-menu">
+          <li><a href="">ログアウト</a></li>
+        </ul>
       </ul>
     </div>
   </header>
@@ -27,7 +31,9 @@
           { name: '教材', to: '/' , icon: '<i class="fa-solid fa-book icon"></i>', selected: false},
           { name: '入庫/出庫', to: '/stock', icon: '<i class="fas fa-retweet icon"></i>', selected: false },
           { name: '履歴', to: '/log', icon: '<i class="fa-solid fa-database icon"></i>', selected: false },
-          { name: 'ログアウト', to: '/login', icon: '<i class="fa-solid fa-right-from-bracket icon"></i>', selected: false },
+        ],
+        subLinkArray: [
+          { name: 'ログアウト', to: '/login', icon: '<i class="fa-solid fa-right-from-bracket icon"></i>'}
         ],
         adminFlag: false
       };
@@ -43,15 +49,16 @@
         Object.assign(this.$data, this.$options.initData());
       },
       linkClick: function(index) {
-        this.linkArray.forEach((link, index1) => {
-          link.selected = index === index1 ? true : false;
-        });
         if(this.linkArray[index].to === '/login'){
-          this.$emit('message-event', 'ログアウトしました', true);
+          this.$emit('open-modal', 'logout', null, null);
+        }else{
+          this.linkArray.forEach((link, index1) => {
+            link.selected = index === index1 ? true : false;
+          });
+          this.$router.push({
+            path: this.linkArray[index].to
+          });
         }
-        this.$router.push({
-          path: this.linkArray[index].to
-        });
       },
       checkAuth: function(){
         if(this.$cookies.get('auth') === 'admin'){

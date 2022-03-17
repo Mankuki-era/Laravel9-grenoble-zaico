@@ -17,7 +17,7 @@ return new class extends Migration
             Schema::create('infos', function (Blueprint $table) {
                 $table->id();
                 $table->integer('funding')->default(0);
-                $table->string('password');
+                $table->string('password')->default('admin1234');
                 $table->timestamps();
             });
         };

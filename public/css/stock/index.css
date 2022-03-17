@@ -70,13 +70,13 @@ main.stock .card .step-box .bar-box div.animation-bar {
 }
 main.stock .card .step-box .bar-box div.animation-bar.go {
   opacity: 1;
-  -webkit-animation: linear barGo 1s forwards;
-          animation: linear barGo 1s forwards;
+  -webkit-animation: barGo 1s forwards;
+          animation: barGo 1s forwards;
 }
 main.stock .card .step-box .bar-box div.animation-bar.back {
   opacity: 1;
-  -webkit-animation: linear barBack 1s forwards;
-          animation: linear barBack 1s forwards;
+  -webkit-animation: barBack 1s forwards;
+          animation: barBack 1s forwards;
 }
 @-webkit-keyframes barGo {
   0% {

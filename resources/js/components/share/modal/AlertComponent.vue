@@ -25,6 +25,8 @@ module.exports = {
       this.message = '本当に教材データを全て削除しますか？';
     }else if(this.func === 'log-delete'){
       this.message = '本当に履歴データを全て削除しますか？';
+    }else if(this.func === 'logout'){
+      this.message = 'ログアウトしますか？';
     }
   },
   methods: {
@@ -54,6 +56,12 @@ module.exports = {
           this.$emit('data-reload', this.func, null, null);
           this.$emit('close-modal');
         });
+      }else if(this.func === 'logout'){
+        this.$router.push({
+          path: '/login'
+        });
+        this.$emit('close-modal');
+        this.$emit('message-event', 'ログアウトしました', true);
       }
     }
   }

@@ -10,8 +10,6 @@ body {
   font-family: "Noto Sans JP";
 }
 body .wrapper {
-  background-image: url("/img/auth_background.jpg");
-  background-size: cover;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -246,16 +244,16 @@ body .wrapper header .left-box .logo-name-box .main-name {
 body .wrapper header .right-box {
   height: 100%;
 }
-body .wrapper header .right-box ul {
+body .wrapper header .right-box ul.link-box {
   height: 100%;
   display: flex;
   align-items: center;
 }
-body .wrapper header .right-box ul li {
+body .wrapper header .right-box ul.link-box li {
   pointer-events: none;
   position: relative;
 }
-body .wrapper header .right-box ul li a {
+body .wrapper header .right-box ul.link-box li a {
   display: block;
   padding: 0 20px;
   flex-direction: column;
@@ -267,21 +265,30 @@ body .wrapper header .right-box ul li a {
   font-size: 14px;
   pointer-events: auto;
 }
-body .wrapper header .right-box ul li a .icon {
+body .wrapper header .right-box ul.link-box li a .icon {
   margin-right: 5px;
 }
-body .wrapper header .right-box ul li a:hover {
+body .wrapper header .right-box ul.link-box li a:hover {
   opacity: 1;
 }
-body .wrapper header .right-box ul li.selected a {
+body .wrapper header .right-box ul.link-box li.user-link a {
+  width: 32px;
+  padding: 0 10px;
+  line-height: 46px;
+}
+body .wrapper header .right-box ul.link-box li.user-link a .user-icon {
+  width: 90%;
+  height: 90%;
+}
+body .wrapper header .right-box ul.link-box li.router-link.selected a {
   pointer-events: none;
   color: #007bff;
   background-color: #fff;
 }
-body .wrapper header .right-box ul li.selected a:hover {
+body .wrapper header .right-box ul.link-box li.router-link.selected a:hover {
   cursor: default;
 }
-body .wrapper header .right-box ul li:not(.selected):hover:after {
+body .wrapper header .right-box ul.link-box li.router-link:not(.selected):hover:after {
   content: "";
   width: 0;
   height: 4px;
@@ -311,9 +318,7 @@ body .wrapper header .right-box ul li:not(.selected):hover:after {
   }
 }
 body .wrapper main {
-  background-color: rgba(244, 246, 249, 0.9);
-}
-body .wrapper main:not(.login) {
+  background-color: #f4f6f9;
   flex: 1;
   margin-top: 50px;
 }

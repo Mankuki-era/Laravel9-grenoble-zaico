@@ -9,8 +9,6 @@ body {
   font-family: 'Noto Sans JP';
   // font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   .wrapper {
-    background-image: url('/img/auth_background.jpg');
-    background-size: cover;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -210,7 +208,7 @@ body {
       }
       .right-box {
         height: 100%;
-        ul {
+        ul.link-box {
           height: 100%;
           display: flex;
           align-items: center;
@@ -236,15 +234,26 @@ body {
               opacity: 1;
             }
           }
-          li.selected a {
+          li.user-link {
+            a {
+              width: 32px;
+              padding: 0 10px;
+              line-height: 46px;
+              .user-icon {
+                width: 90%;
+                height: 90%;
+              }
+            }
+          }
+          li.router-link.selected a {
             pointer-events: none;
             color: #007bff;
             background-color: #fff;
           }
-          li.selected a:hover {
+          li.router-link.selected a:hover {
             cursor: default;
           }
-          li:not(.selected):hover:after {
+          li.router-link:not(.selected):hover:after {
             content: '';
             width: 0;
             height: 4px;
@@ -270,11 +279,11 @@ body {
 
     // メイン
     main {
-      background-color: rgba(244, 246, 249, 0.9);
-    }
-    main:not(.login) {
+      background-color: #f4f6f9;
       flex: 1;
       margin-top: 50px;
+    }
+    main:not(.login) {
       .card {
         width: 800px;
         margin: 50px auto 50px;

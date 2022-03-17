@@ -53,6 +53,8 @@ module.exports = {
         this.fields.type = 'alert'
       }else if(func === 'login'){
         this.fields.type = 'login'
+      }else if(func === 'logout'){
+        this.fields.type = 'alert';
       }
     },
     closeModal: function(){

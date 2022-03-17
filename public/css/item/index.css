@@ -122,3 +122,6 @@ main.item-index .card .card-main table tbody tr td.action a.destroy {
   border-bottom-right-radius: 2px;
   background-color: #dc3545;
 }
+main.item-index .card .card-main table tbody tr td.no-data {
+  text-align: center;
+}

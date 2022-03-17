@@ -6,7 +6,7 @@
 .modal-login form .form-group label {
   color: #666;
   font-weight: bold;
-  font-size: 17px;
+  font-size: 14px;
   width: 120px;
   line-height: 40px;
 }
@@ -20,7 +20,7 @@
   vertical-align: middle;
 }
 .modal-login form .form-group input {
-  padding: 0 20px;
+  padding: 3px 20px 0;
   font-size: 16px;
   color: #666;
   outline: none;
