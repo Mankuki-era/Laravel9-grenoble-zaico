@@ -6,7 +6,7 @@
       <p>詳細は履歴に登録されているためご確認ください。</p>
     </div>
     <ul class="page-button">
-      <li><router-link class="first" to="/">TOPに戻る</router-link></li>
+      <li><a href="" class="first" @click.prevent.stop="topPage">教材一覧へ</a></li>
     </ul>
   </div>
 </template>
@@ -24,6 +24,12 @@
     methods: {
       resetData: function(){
         Object.assign(this.$data, this.$options.initData());
+      },
+      topPage: function(){
+        this.$router.push({
+          path: '/'
+        });
+        this.$emit('header-event');
       },
     }
   }

@@ -50,7 +50,7 @@
       <p class="total">{{ currentPage }} / {{ totalPage }}</p>
     </div>
     <ul class="page-button">
-      <li><a href="" class="second" @click.prevent.stop="backPage">教材作成へ</a></li>
+      <li><a href="" class="second" @click.prevent.stop="backPage">教材一覧へ</a></li>
       <li v-show="items.length > 0"><a href="" class="first" @click.prevent.stop="forwardPage">確認画面に進む</a></li>
     </ul>
   </div>
@@ -91,6 +91,7 @@
         Object.assign(this.$data, this.$options.initData());
       },
       getItems: function(){
+        this.$emit('loading-event', true);
         axios.get('/api/item').then((res) => {
           if(res.data.length > 0){
             res.data.forEach(val => {
@@ -100,6 +101,7 @@
             this.originItems = JSON.parse(JSON.stringify(res.data));
             this.totalPage = Math.ceil(this.items.length / this.perPage);
           };
+          this.$emit('loading-event', false);
         });
       },
       onPrev: function() {

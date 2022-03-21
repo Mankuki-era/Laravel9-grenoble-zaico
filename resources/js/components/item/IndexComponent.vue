@@ -102,12 +102,14 @@
         Object.assign(this.$data, this.$options.initData());
       },
       getItems: function(){
+        this.$emit('loading-event', true);
         axios.get('/api/item').then((res) => {
           if(res.data.length > 0){
             this.items = res.data;
             this.totalPage = Math.ceil(this.items.length / this.perPage);
             if(this.totalPage < this.currentPage) this.currentPage = this.totalPage;
           };
+          this.$emit('loading-event', false);
         });
       },
       favoriteEvent: function(id, favorite, index){

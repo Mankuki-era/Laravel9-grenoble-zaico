@@ -77,9 +77,9 @@
       },
       stockString(index){
         if(this.type === '入庫'){
-          return `${ this.formatNum(this.data[index].stocks - this.data[index].amount) } → ${ this.formatNum(this.data[index].stocks) }`;
+          return `${ this.formatNum(this.data[index].stocks - Number(this.data[index].amount)) } → ${ this.formatNum(this.data[index].stocks) }`;
         }else if(this.type === '出庫'){
-          return `${ this.formatNum(this.data[index].stocks + this.data[index].amount) } → ${ this.formatNum(this.data[index].stocks) }`;
+          return `${ this.formatNum(this.data[index].stocks + Number(this.data[index].amount)) } → ${ this.formatNum(this.data[index].stocks) }`;
         }
       },
     }

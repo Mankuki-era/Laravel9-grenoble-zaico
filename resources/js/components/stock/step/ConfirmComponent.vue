@@ -24,6 +24,9 @@
         </tbody>
       </table>
     </div>
+    <div class="sub-loader" v-bind:class="{none: noneFlag}">
+      <div class="loading"></div>
+    </div>
     <ul class="page-button">
       <li><a href="" class="second" @click.prevent.stop="backPage">入力画面に戻る</a></li>
       <li><a href="" class="first" @click.prevent.stop="forwardPage">確定する</a></li>
@@ -36,7 +39,8 @@
     props: ['type', 'data'],
     initData: function(){
       return {
-        itemData: []
+        itemData: [],
+        noneFlag: true
       };
     },
     data: function(){
@@ -77,15 +81,16 @@
       },
       stockString(index){
         if(this.type === '入庫'){
-          return `${ this.formatNum(this.itemData[index].stocks - this.itemData[index].amount) } → ${ this.formatNum(this.itemData[index].stocks) }`;
+          return `${ this.formatNum(this.itemData[index].stocks - Number(this.itemData[index].amount)) } → ${ this.formatNum(this.itemData[index].stocks) }`;
         }else if(this.type === '出庫'){
-          return `${ this.formatNum(this.itemData[index].stocks + this.itemData[index].amount) } → ${ this.formatNum(this.itemData[index].stocks) }`;
+          return `${ this.formatNum(this.itemData[index].stocks + Number(this.itemData[index].amount)) } → ${ this.formatNum(this.itemData[index].stocks) }`;
         }
       },
       backPage: function(){
         this.$emit('back-page');
       },
       forwardPage: function(){
+        this.noneFlag = false;
         axios.post('/api/item/stock',{
           data: this.itemData
         }).then((res) => {
@@ -93,6 +98,7 @@
             type: this.type,
             data: this.itemData
           }).then((res) => {
+            this.noneFlag = true;
             this.$emit('forward-page');
           });
         });

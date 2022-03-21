@@ -105,12 +105,14 @@ module.exports = {
       });
     },
     createData: function(){
+      this.$emit('loading-event', true);
       axios.post('/api/import',{
         data: this.data
       }).then(e => {
         this.resetData();
         this.$emit('data-reload', this.func, null, null);
         this.$emit('close-modal');
+        this.$emit('loading-event', false);
       });
     },
   }

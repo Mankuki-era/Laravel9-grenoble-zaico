@@ -31,6 +31,7 @@ Vue.component('root-component', require('./components/RootComponent.vue').defaul
 Vue.component('header-component', require('./components/share/HeaderComponent.vue').default);
 Vue.component('footer-component', require('./components/share/FooterComponent.vue').default);
 Vue.component('message-component', require('./components/share/MessageComponent.vue').default);
+Vue.component('loading-component', require('./components/share/LoadingComponent.vue').default);
 Vue.component('modal-component', require('./components/share/ModalComponent.vue').default);
 Vue.component('modal-item-component', require('./components/share/modal/ItemComponent.vue').default);
 Vue.component('modal-import-component', require('./components/share/modal/ImportComponent.vue').default);
@@ -52,7 +53,7 @@ const app = new Vue({
     router: router,
     data: function(){
         return {
-            session_time: 60 * 30
+            session_time: 3600
         }
     }
 });

@@ -1,10 +1,11 @@
 <template>
   <div class="wrapper">
     <message-component ref="messageChild"></message-component>
-    <modal-component ref="modalChild" @data-reload="dataReload" @message-event="messageEvent" @header-event="headerEvent"></modal-component>
+    <loading-component ref="loadingChild"></loading-component>
+    <modal-component ref="modalChild" @data-reload="dataReload" @message-event="messageEvent" @header-event="headerEvent" @loading-event="loadingEvent"></modal-component>
 
     <header-component ref="headerChild" @message-event="messageEvent" @open-modal="openModal"></header-component>
-    <router-view ref="mainChild" @open-modal="openModal" @message-event="messageEvent" @header-event="headerEvent"></router-view>
+    <router-view ref="mainChild" @open-modal="openModal" @message-event="messageEvent" @header-event="headerEvent" @loading-event="loadingEvent"></router-view>
     <footer-component></footer-component>
 
   </div>
@@ -27,6 +28,9 @@
       },
       headerEvent: function(){
         this.$refs.headerChild.checkAuth();
+      },
+      loadingEvent: function(bool){
+        this.$refs.loadingChild.loadingEvent(bool);
       }
     }
   }

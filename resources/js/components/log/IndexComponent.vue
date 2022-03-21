@@ -72,11 +72,13 @@
         Object.assign(this.$data, this.$options.initData());
       },
       getLogs: function(){
+        this.$emit('loading-event', true);
         axios.get('/api/log').then((res) => {
           if(res.data.length > 0){
             this.logs = res.data;
             this.totalPage = Math.ceil(this.logs.length / this.perPage);
           };
+          this.$emit('loading-event', false);
         });
       },
       openModal: function(func, id, index){

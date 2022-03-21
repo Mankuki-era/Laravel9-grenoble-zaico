@@ -1,7 +1,11 @@
 .log {
   margin-bottom: 20px;
 }
-.log h1 {
+.log .card .card-main {
+  height: 480px;
+  overflow-y: auto;
+}
+.log .card .card-main h1 {
   font-size: 25px;
   text-align: center;
   color: #333;
@@ -9,7 +13,7 @@
   margin: 50px auto;
   border-bottom: 1px solid #666;
 }
-.log .date {
+.log .card .card-main .date {
   color: #333;
   border-bottom: 1px solid #666;
   margin-bottom: 10px;
@@ -17,38 +21,38 @@
   font-size: 15px;
   text-align: center;
 }
-.log table {
+.log .card .card-main table {
   border-collapse: collapse;
   width: 100%;
 }
-.log table tr {
+.log .card .card-main table tr {
   height: 40px;
   text-align: left;
 }
-.log table th, .log table td {
+.log .card .card-main table th, .log .card .card-main table td {
   padding-left: 15px;
 }
-.log table td {
+.log .card .card-main table td {
   padding-right: 15px;
   color: #555;
 }
-.log table th, .log table td {
+.log .card .card-main table th, .log .card .card-main table td {
   border: 1px solid #444;
   color: #333;
 }
-.log table thead tr {
+.log .card .card-main table thead tr {
   font-size: 13px;
   background-color: #ddd;
 }
-.log table thead tr th {
+.log .card .card-main table thead tr th {
   font-weight: normal;
 }
-.log table tbody tr {
+.log .card .card-main table tbody tr {
   font-size: 12px;
 }
-.log table tbody tr td.price, .log table tbody tr td.stocks, .log table tbody tr td.action, .log table tbody tr td.amount {
+.log .card .card-main table tbody tr td.price, .log .card .card-main table tbody tr td.stocks, .log .card .card-main table tbody tr td.action, .log .card .card-main table tbody tr td.amount {
   width: 65px;
 }
-.log table tbody tr:not(:first-of-type) {
+.log .card .card-main table tbody tr:not(:first-of-type) {
   border-top: 1px solid #dee2e6;
 }

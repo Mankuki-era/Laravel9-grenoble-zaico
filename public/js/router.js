@@ -183,6 +183,7 @@ __webpack_require__.r(__webpack_exports__);
     getItems: function getItems() {
       var _this = this;
 
+      this.$emit('loading-event', true);
       axios.get('/api/item').then(function (res) {
         if (res.data.length > 0) {
           _this.items = res.data;
@@ -191,6 +192,8 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         ;
+
+        _this.$emit('loading-event', false);
       });
     },
     favoriteEvent: function favoriteEvent(id, favorite, index) {
@@ -360,6 +363,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getLogs: function getLogs() {
       var _this = this;
 
+      this.$emit('loading-event', true);
       axios.get('/api/log').then(function (res) {
         if (res.data.length > 0) {
           _this.logs = res.data;
@@ -367,6 +371,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
 
         ;
+
+        _this.$emit('loading-event', false);
       });
     },
     openModal: function openModal(func, id, index) {
@@ -571,6 +577,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     headerEvent: function headerEvent() {
       this.$emit('header-event');
+    },
+    loadingEvent: function loadingEvent(bool) {
+      this.$emit('loading-event', bool);
     }
   }
 });
@@ -1916,10 +1925,13 @@ var render = function () {
               on: {
                 "forward-page": _vm.resultPage,
                 "back-page": _vm.inputPage,
+                "loading-event": _vm.loadingEvent,
               },
             })
           : _vm.step.result === "current"
-          ? _c("stock-result-component")
+          ? _c("stock-result-component", {
+              on: { "header-event": _vm.headerEvent },
+            })
           : _vm._e(),
       ],
       1

@@ -25,8 +25,8 @@
         </div>
       </div>
       <stock-input-component v-if="step.input === 'current'" :type="type" :data="items" @forward-page="confirmPage" @message-event="messageEvent" @header-event="headerEvent"></stock-input-component>
-      <stock-confirm-component v-else-if="step.confirm === 'current'" :type="type" :data="data"   @forward-page="resultPage" @back-page="inputPage"></stock-confirm-component>
-      <stock-result-component v-else-if="step.result === 'current'"></stock-result-component>
+      <stock-confirm-component v-else-if="step.confirm === 'current'" :type="type" :data="data"   @forward-page="resultPage" @back-page="inputPage" @loading-event="loadingEvent"></stock-confirm-component>
+      <stock-result-component v-else-if="step.result === 'current'" @header-event="headerEvent"></stock-result-component>
     </div>
   </main>
 </template>
@@ -143,6 +143,9 @@
       },
       headerEvent: function(){
         this.$emit('header-event');
+      },
+      loadingEvent: function(bool){
+        this.$emit('loading-event', bool);
       }
     }
   }
