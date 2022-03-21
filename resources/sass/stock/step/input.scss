@@ -20,6 +20,7 @@
           font-size: 13px;
           display: flex;
           align-items: center;
+          border-radius: 3px;
         }
         label::before {
           content: "";
@@ -43,19 +44,12 @@
         }
         label:hover {
           cursor: pointer;
+          transform: scale(1.1);
+          transition: .2s;
         }
       }
       .form-box:first-of-type {
-        label {
-          border-top-left-radius: 3px;
-          border-bottom-left-radius: 3px;
-        }
-      }
-      .form-box:last-of-type {
-        label {
-          border-top-right-radius: 3px;
-          border-bottom-right-radius: 3px;
-        }
+        margin-right: 5px;
       }
     }
   }
@@ -96,9 +90,10 @@
             input {
               width: 45px;
               text-align: center;
-              font-size: 16px;
+              font-size: 13px;
               border: 1px solid #bbb;
               border-radius: 2px;
+              padding: 4px 2px 3px;
             }
             input::-webkit-inner-spin-button,
             input::-webkit-outer-spin-button {

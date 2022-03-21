@@ -25,6 +25,7 @@ main.item-index {
             border: 1px solid #888;
             position: absolute;
             top: 37px;
+            left: 100px;
             z-index: 1;
             display: none;
             li {
@@ -64,6 +65,9 @@ main.item-index {
               border: 1px solid #888;
               color: #666;
               line-height: 33px;
+              .reload-icon {
+                margin-right: 5px;
+              }
             }
           }
           > li:not(:first-of-type){
@@ -141,9 +145,6 @@ main.item-index {
                 border-bottom-right-radius: 2px;
                 background-color: #dc3545;
               }
-            }
-            td.no-data {
-              text-align: center;
             }
           }
         }

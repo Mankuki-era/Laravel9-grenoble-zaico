@@ -17,11 +17,9 @@
           <tr v-for="(item, index) in itemData" :key="item.id">
             <td>{{ index + 1 }}</td>
             <td class="name">{{ item.name }}</td>
-            <td class="price" v-show="item.price">¥ {{ formatNum(item.price) }}</td>
-            <td class="price" v-show="!item.price">ー</td>
+            <td class="price">¥ {{ formatNum(item.price) }}</td>
             <td class="amount">{{ item.amount }}</td>
-            <td class="stocks" v-show="item.stocks">{{ formatNum(item.stocks) }}</td>
-            <td class="stocks" v-show="!item.stocks">ー</td>
+            <td class="stocks">{{ stockString(index) }}</td>
           </tr>
         </tbody>
       </table>
@@ -47,11 +45,11 @@
     mounted: function(){
       this.itemData = JSON.parse(JSON.stringify(this.data));
       this.itemData.forEach((val, index) => {
-        if(val.stocks){
+        if(val.stocks !== null){
           if(this.type === '入庫'){
-            this.itemData[index].stocks = val.stocks + val.amount;
+            this.itemData[index].stocks = val.stocks + Number(val.amount);
           }else if(this.type === '出庫'){
-            this.itemData[index].stocks = val.stocks - val.amount;
+            this.itemData[index].stocks = val.stocks - Number(val.amount);
           }
         }
       });
@@ -75,7 +73,14 @@
         return `${y}年${m}月${d}日`;
       },
       formatNum: function(num){
-        if(num) return num.toLocaleString();
+        return num.toLocaleString();
+      },
+      stockString(index){
+        if(this.type === '入庫'){
+          return `${ this.formatNum(this.itemData[index].stocks - this.itemData[index].amount) } → ${ this.formatNum(this.itemData[index].stocks) }`;
+        }else if(this.type === '出庫'){
+          return `${ this.formatNum(this.itemData[index].stocks + this.itemData[index].amount) } → ${ this.formatNum(this.itemData[index].stocks) }`;
+        }
       },
       backPage: function(){
         this.$emit('back-page');

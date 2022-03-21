@@ -24,7 +24,7 @@
           <p :class="{ check: step.result === 'current' }">完了</p>
         </div>
       </div>
-      <stock-input-component v-if="step.input === 'current'" :type="type" :data="items" @forward-page="confirmPage" @message-event="messageEvent"></stock-input-component>
+      <stock-input-component v-if="step.input === 'current'" :type="type" :data="items" @forward-page="confirmPage" @message-event="messageEvent" @header-event="headerEvent"></stock-input-component>
       <stock-confirm-component v-else-if="step.confirm === 'current'" :type="type" :data="data"   @forward-page="resultPage" @back-page="inputPage"></stock-confirm-component>
       <stock-result-component v-else-if="step.result === 'current'"></stock-result-component>
     </div>
@@ -140,6 +140,9 @@
       },
       messageEvent: function(message, bool){
         this.$emit('message-event', message, bool);
+      },
+      headerEvent: function(){
+        this.$emit('header-event');
       }
     }
   }

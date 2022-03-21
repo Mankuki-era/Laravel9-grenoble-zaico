@@ -68,7 +68,7 @@ body .wrapper .message p .cross-icon {
   margin-right: 0.5rem;
 }
 body .wrapper .message p span {
-  color: #555;
+  color: #666;
 }
 body .wrapper .message.success {
   border: 1px solid #3db93d;
@@ -147,9 +147,9 @@ body .wrapper .modal-area .modal-contena .modal-header {
 }
 body .wrapper .modal-area .modal-contena .close-modal {
   position: absolute;
-  top: 0.3rem;
-  right: 1.5rem;
-  font-size: 1.5rem;
+  top: 15px;
+  right: 20px;
+  font-size: 20px;
   cursor: pointer;
 }
 body .wrapper .modal-area .modal-contena .modal-box {
@@ -245,6 +245,7 @@ body .wrapper header .right-box {
   height: 100%;
 }
 body .wrapper header .right-box ul.link-box {
+  position: relative;
   height: 100%;
   display: flex;
   align-items: center;
@@ -273,12 +274,15 @@ body .wrapper header .right-box ul.link-box li a:hover {
 }
 body .wrapper header .right-box ul.link-box li.user-link a {
   width: 32px;
-  padding: 0 10px;
   line-height: 46px;
 }
 body .wrapper header .right-box ul.link-box li.user-link a .user-icon {
   width: 90%;
   height: 90%;
+}
+body .wrapper header .right-box ul.link-box li.user-link a:hover .user-icon {
+  transition: 0.2s;
+  transform: scale(1.2);
 }
 body .wrapper header .right-box ul.link-box li.router-link.selected a {
   pointer-events: none;
@@ -317,6 +321,29 @@ body .wrapper header .right-box ul.link-box li.router-link:not(.selected):hover:
     width: 70%;
   }
 }
+body .wrapper header .right-box ul.link-box ul.user-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #fff;
+  top: 100%;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+}
+body .wrapper header .right-box ul.link-box ul.user-menu li a {
+  color: #666;
+  font-size: 14px;
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  border-radius: 0;
+}
+body .wrapper header .right-box ul.link-box ul.user-menu li a .power-icon {
+  margin-right: 4px;
+}
+body .wrapper header .right-box ul.link-box ul.user-menu li a:hover {
+  background-color: #eee;
+}
 body .wrapper main {
   background-color: #f4f6f9;
   flex: 1;
@@ -353,6 +380,9 @@ body .wrapper main:not(.login) .card .card-main table th, body .wrapper main:not
   padding: 0 15px;
   color: #555;
   font-size: 12px;
+}
+body .wrapper main:not(.login) .card .card-main table td.no-data {
+  text-align: center;
 }
 body .wrapper main:not(.login) .card .card-main table thead tr {
   background-color: #dee2e6;

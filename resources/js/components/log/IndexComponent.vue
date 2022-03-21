@@ -6,7 +6,7 @@
         <div class="left-box"></div>
         <div class="right-box">
           <ul class="link-box" v-show="adminFlag">
-            <li><a href="" class="first" @click.prevent.stop="openModal('log-delete', null, null)"><i class="fa-solid fa-trash-can trash-icon"></i>一括削除</a></li>
+            <li v-show="logs.length > 0"><a href="" class="second" @click.prevent.stop="openModal('log-delete', null, null)"><i class="fa-solid fa-trash-can trash-icon"></i>一括削除</a></li>
           </ul>
         </div>
       </div>
@@ -111,6 +111,7 @@
       dataReload: function(func, index, data){ 
         if(func === 'log-delete'){
           this.resetData();
+          this.$emit('message-event', '履歴データを削除しました', true);
         }
       },
     }

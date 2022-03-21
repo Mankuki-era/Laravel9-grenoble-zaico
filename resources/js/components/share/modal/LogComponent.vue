@@ -18,11 +18,9 @@
             <tr v-for="(item, index) in data" :key="index">
               <td>{{ index + 1 }}</td>
               <td class="name">{{ item.name }}</td>
-              <td class="price" v-show="item.price">¥ {{ item.price }}</td>
-              <td class="price" v-show="!item.price">ー</td>
+              <td class="price">¥ {{ formatNum(item.price) }}</td>
               <td class="amount">{{ item.amount }}</td>
-              <td class="stocks" v-show="item.stocks">{{ item.stocks }}</td>
-              <td class="stocks" v-show="!item.stocks">ー</td>
+              <td class="stocks">{{ stockString(index) }}</td>
             </tr>
           </tbody>
         </table>
@@ -73,6 +71,16 @@
         var m = toDoubleDigits(date.getMonth() + 1);
         var d = toDoubleDigits(date.getDate());
         return `${y}年${m}月${d}日`;
+      },
+      formatNum: function(num){
+        return num.toLocaleString();
+      },
+      stockString(index){
+        if(this.type === '入庫'){
+          return `${ this.formatNum(this.data[index].stocks - this.data[index].amount) } → ${ this.formatNum(this.data[index].stocks) }`;
+        }else if(this.type === '出庫'){
+          return `${ this.formatNum(this.data[index].stocks + this.data[index].amount) } → ${ this.formatNum(this.data[index].stocks) }`;
+        }
       },
     }
   }

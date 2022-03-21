@@ -139,6 +139,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   initData: function initData() {
     return {
@@ -167,11 +168,11 @@ __webpack_require__.r(__webpack_exports__);
     $(function () {
       $(document).on('click', function (e) {
         if (!$(e.target).closest('.select-link').length) {
-          $('.select-menu').slideUp(300);
+          $('.select-menu').fadeOut(200);
         }
       });
       $('.select-link').click(function () {
-        $('.select-menu').slideToggle(300);
+        $('.select-menu').fadeToggle(200);
       });
     });
   },
@@ -186,6 +187,7 @@ __webpack_require__.r(__webpack_exports__);
         if (res.data.length > 0) {
           _this.items = res.data;
           _this.totalPage = Math.ceil(_this.items.length / _this.perPage);
+          if (_this.totalPage < _this.currentPage) _this.currentPage = _this.totalPage;
         }
 
         ;
@@ -226,7 +228,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     formatNum: function formatNum(num) {
-      if (num) return Number(num).toLocaleString();
+      if (num !== null) return Number(num).toLocaleString();
     },
     onPrev: function onPrev() {
       this.currentPage = Math.max(this.currentPage - 1, 1);
@@ -240,20 +242,24 @@ __webpack_require__.r(__webpack_exports__);
     dataReload: function dataReload(func, index, data) {
       // modalでの変更、削除を反映   配列は$set, $delete使わないと反映されない
       if (func === 'item-create') {
-        this.items.push(data);
+        this.getItems();
         this.$emit('message-event', '教材情報を登録しました', true);
       } else if (func === 'item-update') {
-        this.$set(this.items, (this.currentPage - 1) * this.perPage + index, data);
+        this.getItems();
         this.$emit('message-event', '教材情報を更新しました', true);
       } else if (func === 'item-destroy') {
-        this.$delete(this.items, (this.currentPage - 1) * this.perPage + index);
+        this.getItems();
         this.$emit('message-event', '教材情報を削除しました', true);
       } else if (func === 'item-delete') {
         this.resetData();
+        this.adminFlag = this.$cookies.get('auth') === 'admin';
         this.$emit('message-event', '教材情報を全て削除しました', true);
       } else if (func === 'item-import') {
         this.getItems();
         this.$emit('message-event', '教材情報を一括登録しました', true);
+      } else if (func === 'item-reload') {
+        this.getItems();
+        this.$emit('message-event', '教材情報を再読込しました', true);
       }
     }
   }
@@ -397,6 +403,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }), _defineProperty(_methods, "dataReload", function dataReload(func, index, data) {
     if (func === 'log-delete') {
       this.resetData();
+      this.$emit('message-event', '履歴データを削除しました', true);
     }
   }), _methods)
 });
@@ -561,6 +568,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     messageEvent: function messageEvent(message, bool) {
       this.$emit('message-event', message, bool);
+    },
+    headerEvent: function headerEvent() {
+      this.$emit('header-event');
     }
   }
 });
@@ -1153,6 +1163,29 @@ var render = function () {
               staticClass: "link-box",
             },
             [
+              _c("li", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "second",
+                    attrs: { href: "" },
+                    on: {
+                      click: function ($event) {
+                        $event.preventDefault()
+                        $event.stopPropagation()
+                        return _vm.dataReload("item-reload", null, null)
+                      },
+                    },
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fa-solid fa-arrow-rotate-right reload-icon",
+                    }),
+                    _vm._v("再読込"),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
               _vm._m(0),
               _vm._v(" "),
               _c(
@@ -1179,27 +1212,40 @@ var render = function () {
                     ),
                   ]),
                   _vm._v(" "),
-                  _c("li", [
-                    _c(
-                      "a",
-                      {
-                        attrs: { href: "" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            $event.stopPropagation()
-                            return _vm.openModal("item-delete", null, null)
+                  _c(
+                    "li",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.items.length > 0,
+                          expression: "items.length > 0",
+                        },
+                      ],
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "" },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              $event.stopPropagation()
+                              return _vm.openModal("item-delete", null, null)
+                            },
                           },
                         },
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "fa-solid fa-trash-can trash-icon",
-                        }),
-                        _vm._v("一括削除"),
-                      ]
-                    ),
-                  ]),
+                        [
+                          _c("i", {
+                            staticClass: "fa-solid fa-trash-can trash-icon",
+                          }),
+                          _vm._v("一括削除"),
+                        ]
+                      ),
+                    ]
+                  ),
                 ]
               ),
               _vm._v(" "),
@@ -1330,8 +1376,8 @@ var render = function () {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: item.stocks,
-                          expression: "item.stocks",
+                          value: item.stocks !== null,
+                          expression: "item.stocks !== null",
                         },
                       ],
                       staticClass: "stocks",
@@ -1346,8 +1392,8 @@ var render = function () {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: !item.stocks,
-                          expression: "!item.stocks",
+                          value: item.stocks === null,
+                          expression: "item.stocks === null",
                         },
                       ],
                       staticClass: "stocks",
@@ -1362,8 +1408,8 @@ var render = function () {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: item.price,
-                          expression: "item.price",
+                          value: item.price !== null,
+                          expression: "item.price !== null",
                         },
                       ],
                       staticClass: "price",
@@ -1378,8 +1424,8 @@ var render = function () {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: !item.price,
-                          expression: "!item.price",
+                          value: item.price === null,
+                          expression: "item.price === null",
                         },
                       ],
                       staticClass: "price",
@@ -1466,9 +1512,11 @@ var render = function () {
                   ],
                 },
                 [
-                  _c("td", { staticClass: "no-data" }, [
-                    _vm._v("データはありません"),
-                  ]),
+                  _c(
+                    "td",
+                    { staticClass: "no-data", attrs: { colspan: "6" } },
+                    [_vm._v("データはありません")]
+                  ),
                 ]
               ),
             ],
@@ -1578,28 +1626,41 @@ var render = function () {
               staticClass: "link-box",
             },
             [
-              _c("li", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "first",
-                    attrs: { href: "" },
-                    on: {
-                      click: function ($event) {
-                        $event.preventDefault()
-                        $event.stopPropagation()
-                        return _vm.openModal("log-delete", null, null)
+              _c(
+                "li",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.logs.length > 0,
+                      expression: "logs.length > 0",
+                    },
+                  ],
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "second",
+                      attrs: { href: "" },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          $event.stopPropagation()
+                          return _vm.openModal("log-delete", null, null)
+                        },
                       },
                     },
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fa-solid fa-trash-can trash-icon",
-                    }),
-                    _vm._v("一括削除"),
-                  ]
-                ),
-              ]),
+                    [
+                      _c("i", {
+                        staticClass: "fa-solid fa-trash-can trash-icon",
+                      }),
+                      _vm._v("一括削除"),
+                    ]
+                  ),
+                ]
+              ),
             ]
           ),
         ]),
@@ -1846,6 +1907,7 @@ var render = function () {
               on: {
                 "forward-page": _vm.confirmPage,
                 "message-event": _vm.messageEvent,
+                "header-event": _vm.headerEvent,
               },
             })
           : _vm.step.confirm === "current"

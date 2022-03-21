@@ -31,7 +31,13 @@ module.exports = {
       fields: {
         changeFlag: false,
       },
-      form: {},
+      form: {
+        favorite: '0',
+        name: null,
+        stocks: null,
+        price: null,
+        updated_at: null
+      },
       originForm: {}
     };
   },
@@ -80,7 +86,7 @@ module.exports = {
       axios.post(`/api/item`,{
         data: this.form
       }).then((res) => {
-        this.form.favorite = '0';
+        // var data = JSON.parse(JSON.stringify(this.form));
         this.form.updated_at = this.getUpdatedAt();
         this.$emit('data-reload', this.func, null, this.form);
         this.$emit('close-modal');

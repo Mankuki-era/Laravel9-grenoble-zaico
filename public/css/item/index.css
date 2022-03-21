@@ -22,6 +22,7 @@ main.item-index .card .card-header .right-box ul.link-box ul.select-menu {
   border: 1px solid #888;
   position: absolute;
   top: 37px;
+  left: 100px;
   z-index: 1;
   display: none;
 }
@@ -58,6 +59,9 @@ main.item-index .card .card-header .right-box ul.link-box > li a.second {
   border: 1px solid #888;
   color: #666;
   line-height: 33px;
+}
+main.item-index .card .card-header .right-box ul.link-box > li a.second .reload-icon {
+  margin-right: 5px;
 }
 main.item-index .card .card-header .right-box ul.link-box > li:not(:first-of-type) {
   margin-left: 10px;
@@ -121,7 +125,4 @@ main.item-index .card .card-main table tbody tr td.action a.destroy {
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
   background-color: #dc3545;
-}
-main.item-index .card .card-main table tbody tr td.no-data {
-  text-align: center;
 }

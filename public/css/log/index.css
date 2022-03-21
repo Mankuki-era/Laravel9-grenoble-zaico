@@ -24,6 +24,15 @@ main.log-index .card .card-header .right-box ul li a.first {
   color: #fff;
   line-height: 35px;
 }
+main.log-index .card .card-header .right-box ul li a.second {
+  box-sizing: border-box;
+  border: 1px solid #888;
+  color: #666;
+  line-height: 33px;
+}
+main.log-index .card .card-header .right-box ul li a.second .reload-icon {
+  margin-right: 5px;
+}
 main.log-index .card .card-main table thead tr th.type {
   width: 45px;
 }
@@ -50,7 +59,4 @@ main.log-index .card .card-main table tbody tr td.action a {
 main.log-index .card .card-main table tbody tr td.action a .glass-icon {
   font-size: 11px;
   color: #fff;
-}
-main.log-index .card .card-main table tbody tr td.no-data {
-  text-align: center;
 }

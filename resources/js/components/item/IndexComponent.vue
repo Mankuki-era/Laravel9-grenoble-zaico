@@ -8,10 +8,11 @@
         </div>
         <div class="right-box">
           <ul class="link-box" v-show="adminFlag">
+            <li><a href="" @click.prevent.stop="dataReload('item-reload',null,null)" class="second"><i class="fa-solid fa-arrow-rotate-right reload-icon"></i>再読込</a></li>
             <li><a href="javascript:void(0)" class="select-link second">その他</a></li>
             <ul class="select-menu" id="select_menu">
               <li><a href="" @click.prevent.stop="openModal('item-import', null, null)"><i class="fa-solid fa-plus plus-icon"></i>一括追加</a></li>
-              <li><a href="" @click.prevent.stop="openModal('item-delete', null, null)"><i class="fa-solid fa-trash-can trash-icon"></i>一括削除</a></li>
+              <li v-show="items.length > 0"><a href="" @click.prevent.stop="openModal('item-delete', null, null)"><i class="fa-solid fa-trash-can trash-icon"></i>一括削除</a></li>
             </ul>
             <li><a href="" class="first" @click.prevent.stop="openModal('item-create', null, null)"><i class="fa-solid fa-plus plus-icon"></i>新規追加</a></li>
           </ul>
@@ -36,10 +37,10 @@
                 <a href="" v-show="item.favorite === '1'" @click.prevent.stop="favoriteEvent(item.id, '0', index)" :class="{ auth: !adminFlag }"><i class="fas fa-star fa-lg star-icon check"></i></a>
               </td>
               <td class="name">{{ item.name }}</td>
-              <td class="stocks" v-show="item.stocks">{{ formatNum(item.stocks) }}</td>
-              <td class="stocks" v-show="!item.stocks">ー</td>
-              <td class="price" v-show="item.price">¥ {{ formatNum(item.price) }}</td>
-              <td class="price" v-show="!item.price">ー</td>
+              <td class="stocks" v-show="item.stocks !== null">{{ formatNum(item.stocks) }}</td>
+              <td class="stocks" v-show="item.stocks === null">ー</td>
+              <td class="price" v-show="item.price !== null">¥ {{ formatNum(item.price) }}</td>
+              <td class="price" v-show="item.price === null">ー</td>
               <td class="updated_at">{{ formatDate(item.updated_at) }}</td>
               <td class="action" v-show="adminFlag">
                 <a href="" class="edit" @click.prevent.stop="openModal('item-update', item.id, index)"><i class="fa-solid fa-pen pen-icon"></i></a>
@@ -47,7 +48,7 @@
               </td>
             </tr>
             <tr v-show="items.length === 0">
-              <td class="no-data">データはありません</td>
+              <td colspan="6" class="no-data">データはありません</td>
             </tr>
           </tbody>
         </table>
@@ -70,7 +71,7 @@
         currentPage: 1, // 現在のページ番号
         perPage: 10, // 1ページ毎の表示件数
         totalPage: 1, // 総ページ数,
-        adminFlag: false
+        adminFlag: false,
       };
     },
     data: function(){
@@ -88,11 +89,11 @@
       $(function(){
         $(document).on('click',function(e) {
           if(!$(e.target).closest('.select-link').length) {
-            $('.select-menu').slideUp(300);
+            $('.select-menu').fadeOut(200);
           }
         });
         $('.select-link').click(function(){
-          $('.select-menu').slideToggle(300);
+          $('.select-menu').fadeToggle(200);
         });
       });
     },
@@ -105,6 +106,7 @@
           if(res.data.length > 0){
             this.items = res.data;
             this.totalPage = Math.ceil(this.items.length / this.perPage);
+            if(this.totalPage < this.currentPage) this.currentPage = this.totalPage;
           };
         });
       },
@@ -137,7 +139,7 @@
         }
       },
       formatNum: function(num){
-        if(num) return Number(num).toLocaleString();
+        if(num !== null) return Number(num).toLocaleString();
       },
       onPrev: function() {
         this.currentPage = Math.max(this.currentPage - 1, 1);
@@ -150,20 +152,24 @@
       },
       dataReload: function(func, index, data){ // modalでの変更、削除を反映   配列は$set, $delete使わないと反映されない
         if(func === 'item-create'){
-          this.items.push(data);
+          this.getItems();
           this.$emit('message-event', '教材情報を登録しました', true);
         }else if(func === 'item-update'){
-          this.$set(this.items, (this.currentPage - 1) * this.perPage + index, data);
+          this.getItems();
           this.$emit('message-event', '教材情報を更新しました', true);
         }else if(func === 'item-destroy'){
-          this.$delete(this.items, (this.currentPage - 1) * this.perPage + index);
+          this.getItems();
           this.$emit('message-event', '教材情報を削除しました', true);
         }else if(func === 'item-delete'){
           this.resetData();
+          this.adminFlag = this.$cookies.get('auth') === 'admin';
           this.$emit('message-event', '教材情報を全て削除しました', true);
         }else if(func === 'item-import'){
           this.getItems();
           this.$emit('message-event', '教材情報を一括登録しました', true);
+        }else if(func === 'item-reload'){
+          this.getItems();
+          this.$emit('message-event', '教材情報を再読込しました', true);
         }
       },
     }

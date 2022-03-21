@@ -1,7 +1,7 @@
 <template>
   <div class="stock-input">
     <div class="card-header">
-      <div class="form-contena">
+      <div class="form-contena" v-show="items.length > 0">
         <div class="form-box">
           <input type="radio" id="in" value="入庫" v-model="mode">
           <label for="in">入庫</label>
@@ -30,13 +30,16 @@
               <a href="" v-show="item.favorite === '1'"><i class="fas fa-star fa-lg star-icon check"></i></a>
             </td>
             <td class="name">{{ item.name }}</td>
-            <td class="stocks" v-show="item.stocks">{{ formatNum(item.stocks) }}</td>
-            <td class="stocks" v-show="!item.stocks">ー</td>
-            <td class="price" v-show="item.price">¥ {{ formatNum(item.price) }}</td>
-            <td class="price" v-show="!item.price">ー</td>
+            <td class="stocks" v-show="item.stocks !== null">{{ formatNum(item.stocks) }}</td>
+            <td class="stocks" v-show="item.stocks === null">ー</td>
+            <td class="price" v-show="item.price !== null">¥ {{ formatNum(item.price) }}</td>
+            <td class="price" v-show="item.price === null">ー</td>
             <td class="amount">
               <input type="number" v-model="item.amount">
             </td>
+          </tr>
+          <tr v-show="items.length === 0">
+            <td colspan="5" class="no-data">データはありません</td>
           </tr>
         </tbody>
       </table>
@@ -47,7 +50,8 @@
       <p class="total">{{ currentPage }} / {{ totalPage }}</p>
     </div>
     <ul class="page-button">
-      <li><a href="" class="first" @click.prevent.stop="forwardPage">確認画面に進む</a></li>
+      <li><a href="" class="second" @click.prevent.stop="backPage">教材作成へ</a></li>
+      <li v-show="items.length > 0"><a href="" class="first" @click.prevent.stop="forwardPage">確認画面に進む</a></li>
     </ul>
   </div>
 </template>
@@ -105,7 +109,7 @@
         this.currentPage = Math.min(this.currentPage + 1, this.totalPage);
       },
       formatNum: function(num){
-        if(num) return num.toLocaleString();
+        if(num !== null) return num.toLocaleString();
       },
       selectItems: function(){
         var data = [];
@@ -137,6 +141,12 @@
         }else{
           this.$emit('message-event', '数量を入力してください', false);
         }
+      },
+      backPage: function(){
+        this.$router.push({
+          path: '/'
+        });
+        this.$emit('header-event');
       },
     }
   }

@@ -26,6 +26,15 @@ main.log-index {
               color: #fff;
               line-height: 35px;
             }
+            a.second {
+              box-sizing: border-box;
+              border: 1px solid #888;
+              color: #666;
+              line-height: 33px;
+              .reload-icon {
+                margin-right: 5px;
+              }
+            }
           }
         }
       }
@@ -64,9 +73,6 @@ main.log-index {
                   color: #fff;
                 }
               }
-            }
-            td.no-data {
-              text-align: center;
             }
           }
         }

@@ -19,6 +19,7 @@
   font-size: 13px;
   display: flex;
   align-items: center;
+  border-radius: 3px;
 }
 .stock-input .card-header .form-contena .form-box label::before {
   content: "";
@@ -42,14 +43,11 @@
 }
 .stock-input .card-header .form-contena .form-box label:hover {
   cursor: pointer;
+  transform: scale(1.1);
+  transition: 0.2s;
 }
-.stock-input .card-header .form-contena .form-box:first-of-type label {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-.stock-input .card-header .form-contena .form-box:last-of-type label {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
+.stock-input .card-header .form-contena .form-box:first-of-type {
+  margin-right: 5px;
 }
 .stock-input .card-main table thead tr th.favorite {
   padding: 0;
@@ -79,9 +77,10 @@
 .stock-input .card-main table tbody tr td.amount input {
   width: 45px;
   text-align: center;
-  font-size: 16px;
+  font-size: 13px;
   border: 1px solid #bbb;
   border-radius: 2px;
+  padding: 4px 2px 3px;
 }
 .stock-input .card-main table tbody tr td.amount input::-webkit-inner-spin-button,
 .stock-input .card-main table tbody tr td.amount input::-webkit-outer-spin-button {

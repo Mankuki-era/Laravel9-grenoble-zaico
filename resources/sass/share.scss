@@ -63,7 +63,7 @@ body {
           margin-right: .5rem;
         }
         span {
-          color: #555;
+          color: #666;
         }
       }
     }
@@ -127,9 +127,9 @@ body {
         }
         .close-modal {
           position: absolute;
-          top: .3rem;
-          right: 1.5rem;
-          font-size: 1.5rem;
+          top: 15px;
+          right: 20px;
+          font-size: 20px;
           cursor: pointer;
         }
         .modal-box {
@@ -209,6 +209,7 @@ body {
       .right-box {
         height: 100%;
         ul.link-box {
+          position: relative;
           height: 100%;
           display: flex;
           align-items: center;
@@ -237,11 +238,17 @@ body {
           li.user-link {
             a {
               width: 32px;
-              padding: 0 10px;
+              // padding: 0 10px;
               line-height: 46px;
               .user-icon {
                 width: 90%;
                 height: 90%;
+              }
+            }
+            a:hover {
+              .user-icon {
+                transition: .2s;
+                transform: scale(1.2);
               }
             }
           }
@@ -271,6 +278,31 @@ body {
             }
             100% {
               width: 70%;
+            }
+          }
+          ul.user-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #fff;
+            top: 100%;
+            border: 1px solid #bbb;
+            border-radius: 3px;
+            li {
+              a {
+                color: #666;
+                font-size: 14px;
+                height: 40px;
+                line-height: 40px;
+                cursor: pointer;
+                border-radius: 0;
+                .power-icon {
+                  margin-right: 4px;
+                }
+              }
+              a:hover {
+                background-color: #eee;
+              }
             }
           }
         }
@@ -312,6 +344,9 @@ body {
               padding: 0 15px;
               color: #555;
               font-size: 12px;
+            }
+            td.no-data {
+              text-align: center;
             }
             thead {
               tr {

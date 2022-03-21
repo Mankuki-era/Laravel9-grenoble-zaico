@@ -4,17 +4,20 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Info;
 
-class DatabaseSeeder extends Seeder
+class InfoSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        $this->call(InfoSeeder::class);
+        Info::create([
+            'funding' => 0,
+            'password' => 'admin1234'
+        ]);
     }
 }

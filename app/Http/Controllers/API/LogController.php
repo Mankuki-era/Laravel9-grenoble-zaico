@@ -16,7 +16,7 @@ class LogController extends Controller
      */
     public function index()
     {
-        return Log::all();
+        return Log::orderBy('created_at', 'desc')->get();
     }
 
     /**
