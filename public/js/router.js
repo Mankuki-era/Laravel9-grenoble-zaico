@@ -1917,6 +1917,7 @@ var render = function () {
                 "forward-page": _vm.confirmPage,
                 "message-event": _vm.messageEvent,
                 "header-event": _vm.headerEvent,
+                "loading-event": _vm.loadingEvent,
               },
             })
           : _vm.step.confirm === "current"
@@ -1925,7 +1926,6 @@ var render = function () {
               on: {
                 "forward-page": _vm.resultPage,
                 "back-page": _vm.inputPage,
-                "loading-event": _vm.loadingEvent,
               },
             })
           : _vm.step.result === "current"
