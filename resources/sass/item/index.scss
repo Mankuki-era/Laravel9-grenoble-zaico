@@ -3,16 +3,18 @@ main.item-index {
     .card-header {
       display: flex;
       justify-content: space-between;
-      height: 35px;
+      height: 40px;
+      background-color: #dee2e6;
       .left-box {
         .amount {
-          line-height: 35px;
+          line-height: 40px;
           color: #666;
           font-weight: bold;
           padding-left: 15px;
         }
       }
       .right-box {
+        display: none;
         ul.link-box {
           height: 100%;
           display: flex;
@@ -81,6 +83,7 @@ main.item-index {
     }
     .card-main {
       table {
+        display: none;
         thead {
           tr {
             th.favorite {
@@ -149,6 +152,126 @@ main.item-index {
           }
         }
       }
+      div.table {
+        display: block;
+        div.tbody {
+          div.tr {
+            display: flex;
+            height: 40px;
+            border-top: 1px solid #ccc;
+            position: relative;
+            div.favorite {
+              width: 50px;
+              text-align: center;
+              line-height: 40px;
+              border-right: 1px solid #ccc;
+              a {
+                font-size: 16px;
+                .star-icon {
+                  color: #aaa;
+                }
+                .star-icon.check {
+                  color: #007bff;
+                }
+              }
+              a.auth {
+                pointer-events: none;
+                cursor: default;
+              }
+              a.auth:hover {
+                opacity: 1;
+              }
+            }
+            div.item-info {
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+              padding-left: 15px;
+              div.first-row {
+                flex: 0.6;
+                p {
+                  height: 100%;
+                  line-height: 24px;
+                  color: #555;
+                  font-size: 14px;
+                  font-weight: bold;
+                }
+              }
+              div.second-row {
+                flex: 0.4;
+                display: flex;
+                p {
+                  color: #555;
+                  line-height: 16px;
+                  font-size: 12px;
+                }
+                p:not(:first-of-type){
+                  margin-left: 15px;
+                }
+              }
+            }
+            div.item-stocks {
+              width: 50px;
+              border-right: 1px solid #ccc;
+              p {
+                line-height: 40px;
+                color: #555;
+                font-size: 20px;
+                text-align: center;
+              }
+            }
+            div.action {
+              position: absolute;
+              min-height: 40px;
+              min-width: calc(100vw - 90px);
+              right: 40px;
+            }
+            div.item-destroy {
+              width: 40px;
+              li {
+                list-style: none;
+                a {
+                  display: block;
+                  color: #555;
+                  font-size: 16px;
+                  line-height: 40px;
+                  text-align: center;
+                }
+              }
+            }
+          }
+          div.tr:last-of-type {
+            border-bottom: 1px solid #ccc;
+          }
+        }
+      }
     }
   }
+}
+
+@media screen and (min-width: 481px) {
+main.item-index {
+  .card {
+    .card-header {
+      height: 35px;
+      background-color: transparent;
+      .left-box {
+        .amount {
+          line-height: 35px;
+        }
+      }
+      .right-box {
+        display: block;
+      }
+    }
+    .card-main {
+      table {
+        display: table;
+      }
+      div.table {
+        display: none;
+      }
+    }
+  }
+}
 }

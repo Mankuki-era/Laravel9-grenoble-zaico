@@ -7733,6 +7733,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   initData: function initData() {
     return {
@@ -7855,7 +7888,7 @@ __webpack_require__.r(__webpack_exports__);
         this.$emit('message-event', '教材情報を一括登録しました', true);
       } else if (func === 'item-reload') {
         this.getItems();
-        this.$emit('message-event', '教材情報を再読込しました', true);
+        this.$emit('message-event', '教材情報を再読込みしました', true);
       }
     }
   }
@@ -7878,6 +7911,36 @@ var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8003,6 +8066,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     if (func === 'log-delete') {
       this.resetData();
       this.$emit('message-event', '履歴データを削除しました', true);
+    } else if (func === 'log-reload') {
+      this.getLogs();
+      this.$emit('message-event', '履歴情報を再読込みしました', true);
     }
   }), _methods)
 });
@@ -8064,12 +8130,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   initData: function initData() {
     return {
@@ -8079,7 +8139,7 @@ __webpack_require__.r(__webpack_exports__);
         icon: '<i class="fa-solid fa-book icon"></i>',
         selected: false
       }, {
-        name: '入庫/出庫',
+        name: '入出庫',
         to: '/stock',
         icon: '<i class="fas fa-retweet icon"></i>',
         selected: false
@@ -8097,16 +8157,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.checkAuth();
-    $(function () {
-      $(document).on('click', function (e) {
-        if (!$(e.target).closest('.user-link').length) {
-          $('.user-menu').fadeOut(200);
-        }
-      });
-      $('.user-link').click(function () {
-        $('.user-menu').fadeToggle(200);
-      });
-    });
   },
   methods: {
     resetData: function resetData() {
@@ -8121,7 +8171,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     logoutEvent: function logoutEvent() {
-      $('.user-menu').hide();
       this.$emit('open-modal', 'logout', null, null);
     },
     checkAuth: function checkAuth() {
@@ -9343,6 +9392,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['type', 'data'],
   initData: function initData() {
@@ -9405,6 +9485,31 @@ __webpack_require__.r(__webpack_exports__);
     },
     onNext: function onNext() {
       this.currentPage = Math.min(this.currentPage + 1, this.totalPage);
+    },
+    formatDate: function formatDate(dd) {
+      // 2021-02-07 10:20:00
+      if (dd.split(' ')[1] === undefined) {
+        var toDoubleDigits = function toDoubleDigits(num) {
+          num += "";
+
+          if (num.length === 1) {
+            num = "0" + num;
+          }
+
+          return num;
+        };
+
+        var date = new Date(dd);
+        var y = date.getFullYear();
+        var m = toDoubleDigits(date.getMonth() + 1);
+        var d = toDoubleDigits(date.getDate());
+        var h = toDoubleDigits(date.getHours());
+        var mi = toDoubleDigits(date.getMinutes());
+        var s = toDoubleDigits(date.getSeconds());
+        return "".concat(y, "\u5E74").concat(m, "\u6708").concat(d, "\u65E5 ").concat(h, ":").concat(mi);
+      } else {
+        return dd;
+      }
     },
     formatNum: function formatNum(num) {
       if (num !== null) return num.toLocaleString();
@@ -12547,6 +12652,122 @@ var render = function () {
             2
           ),
         ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "table" }, [
+          _c(
+            "div",
+            { staticClass: "tbody" },
+            _vm._l(_vm.filterItems, function (item, index) {
+              return _c("div", { key: item.id, staticClass: "tr" }, [
+                _c("div", { staticClass: "favorite" }, [
+                  _c(
+                    "a",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: item.favorite === "0",
+                          expression: "item.favorite === '0'",
+                        },
+                      ],
+                      class: { auth: !_vm.adminFlag },
+                      attrs: { href: "" },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          $event.stopPropagation()
+                          return _vm.favoriteEvent(item.id, "1", index)
+                        },
+                      },
+                    },
+                    [_c("i", { staticClass: "far fa-star fa-lg star-icon" })]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: item.favorite === "1",
+                          expression: "item.favorite === '1'",
+                        },
+                      ],
+                      class: { auth: !_vm.adminFlag },
+                      attrs: { href: "" },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          $event.stopPropagation()
+                          return _vm.favoriteEvent(item.id, "0", index)
+                        },
+                      },
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fas fa-star fa-lg star-icon check",
+                      }),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "item-info" }, [
+                  _c("div", { staticClass: "first-row" }, [
+                    _c("p", [_vm._v(_vm._s(item.name))]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "second-row" }, [
+                    _c("p", [_vm._v("¥ " + _vm._s(_vm.formatNum(item.price)))]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v(_vm._s(_vm.formatDate(item.updated_at)))]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "item-stocks" }, [
+                  _c("p", [_vm._v(_vm._s(_vm.formatNum(item.stocks)))]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "item-destroy" }, [
+                  _c("li", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "destroy",
+                        attrs: { href: "" },
+                        on: {
+                          click: function ($event) {
+                            $event.preventDefault()
+                            $event.stopPropagation()
+                            return _vm.openModal("item-destroy", item.id, index)
+                          },
+                        },
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa-solid fa-trash-can trash-icon",
+                        }),
+                      ]
+                    ),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", {
+                  staticClass: "action",
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      $event.stopPropagation()
+                      return _vm.openModal("item-update", item.id, index)
+                    },
+                  },
+                }),
+              ])
+            }),
+            0
+          ),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "pagination" }, [
@@ -12587,6 +12808,90 @@ var render = function () {
         ]),
       ]),
     ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "bottom-header" }, [
+      _c(
+        "ul",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: this.$route.path !== "/login",
+              expression: "this.$route.path !== '/login'",
+            },
+          ],
+          staticClass: "link-box",
+        },
+        [
+          _c("li", [
+            _c(
+              "a",
+              {
+                staticClass: "second",
+                attrs: { href: "" },
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    $event.stopPropagation()
+                    return _vm.dataReload("item-reload", null, null)
+                  },
+                },
+              },
+              [_vm._m(1), _c("span", [_vm._v("再読込み")])]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c(
+              "a",
+              {
+                staticClass: "first",
+                attrs: { href: "" },
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    $event.stopPropagation()
+                    return _vm.openModal("item-create", null, null)
+                  },
+                },
+              },
+              [_vm._m(2), _c("span", [_vm._v("新規追加")])]
+            ),
+          ]),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.items.length > 0,
+                  expression: "items.length > 0",
+                },
+              ],
+            },
+            [
+              _c(
+                "a",
+                {
+                  attrs: { href: "" },
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      $event.stopPropagation()
+                      return _vm.openModal("item-delete", null, null)
+                    },
+                  },
+                },
+                [_vm._m(3), _c("span", [_vm._v("一括削除")])]
+              ),
+            ]
+          ),
+        ]
+      ),
+    ]),
   ])
 }
 var staticRenderFns = [
@@ -12603,6 +12908,28 @@ var staticRenderFns = [
         },
         [_vm._v("その他")]
       ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", { staticClass: "fa-solid fa-arrow-rotate-right reload-icon" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("i", { staticClass: "fa-solid fa-plus plus-icon" })])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", { staticClass: "fa-solid fa-trash-can trash-icon" }),
     ])
   },
 ]
@@ -12633,7 +12960,11 @@ var render = function () {
       _c("h1", { staticClass: "page-name" }, [_vm._v("履歴")]),
       _vm._v(" "),
       _c("div", { staticClass: "card-header" }, [
-        _c("div", { staticClass: "left-box" }),
+        _c("div", { staticClass: "left-box" }, [
+          _c("p", { staticClass: "amount" }, [
+            _vm._v(_vm._s(_vm.logs.length) + "件"),
+          ]),
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "right-box" }, [
           _c(
@@ -12757,6 +13088,42 @@ var render = function () {
             2
           ),
         ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "table" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "tbody" },
+            _vm._l(_vm.filterLogs, function (log) {
+              return _c("div", { key: log.id, staticClass: "tr" }, [
+                _c("div", { staticClass: "type" }, [
+                  _c("p", [_vm._v(_vm._s(log.type))]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "created_at" }, [
+                  _c("p", [_vm._v(_vm._s(_vm.formatDate(log.created_at)))]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "user_name" }, [
+                  _c("p", [_vm._v(_vm._s(log.user_name))]),
+                ]),
+                _vm._v(" "),
+                _c("div", {
+                  staticClass: "action",
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      $event.stopPropagation()
+                      return _vm.openModal("log-show", log.id, null)
+                    },
+                  },
+                }),
+              ])
+            }),
+            0
+          ),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "pagination" }, [
@@ -12797,6 +13164,73 @@ var render = function () {
         ]),
       ]),
     ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "bottom-header" }, [
+      _c(
+        "ul",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: this.$route.path !== "/login",
+              expression: "this.$route.path !== '/login'",
+            },
+          ],
+          staticClass: "link-box",
+        },
+        [
+          _c("li", [
+            _c(
+              "a",
+              {
+                staticClass: "second",
+                attrs: { href: "" },
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    $event.stopPropagation()
+                    return _vm.dataReload("log-reload", null, null)
+                  },
+                },
+              },
+              [_vm._m(2), _c("span", [_vm._v("再読込み")])]
+            ),
+          ]),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.logs.length > 0,
+                  expression: "logs.length > 0",
+                },
+              ],
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "second",
+                  attrs: { href: "" },
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      $event.stopPropagation()
+                      return _vm.openModal("log-delete", null, null)
+                    },
+                  },
+                },
+                [_vm._m(3), _c("span", [_vm._v("一括削除")])]
+              ),
+            ]
+          ),
+        ]
+      ),
+    ]),
   ])
 }
 var staticRenderFns = [
@@ -12814,6 +13248,36 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "action" }, [_vm._v("操作")]),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "thead" }, [
+      _c("div", { staticClass: "tr" }, [
+        _c("div", { staticClass: "type" }, [_c("p", [_vm._v("種別")])]),
+        _vm._v(" "),
+        _c("div", { staticClass: "created_at" }, [_c("p", [_vm._v("日時")])]),
+        _vm._v(" "),
+        _c("div", { staticClass: "user_name" }, [_c("p", [_vm._v("対応者")])]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", { staticClass: "fa-solid fa-arrow-rotate-right reload-icon" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", { staticClass: "fa-solid fa-trash-can trash-icon" }),
     ])
   },
 ]
@@ -12925,7 +13389,7 @@ var render = function () {
                       _c("span", {
                         domProps: { innerHTML: _vm._s(link.icon) },
                       }),
-                      _vm._v(_vm._s(link.name)),
+                      _c("span", [_vm._v(_vm._s(link.name))]),
                     ]
                   ),
                 ]
@@ -12933,27 +13397,20 @@ var render = function () {
             ]
           }),
           _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _c("ul", { staticClass: "user-menu" }, [
-            _c("li", [
-              _c(
-                "a",
-                {
-                  on: {
-                    click: function ($event) {
-                      $event.preventDefault()
-                      $event.stopPropagation()
-                      return _vm.logoutEvent.apply(null, arguments)
-                    },
+          _c("li", { staticClass: "router-link" }, [
+            _c(
+              "a",
+              {
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    $event.stopPropagation()
+                    return _vm.logoutEvent.apply(null, arguments)
                   },
                 },
-                [
-                  _c("i", { staticClass: "fa-solid fa-power-off power-icon" }),
-                  _vm._v("ログアウト"),
-                ]
-              ),
-            ]),
+              },
+              [_vm._m(1), _c("span", [_vm._v("ログアウト")])]
+            ),
           ]),
         ],
         2
@@ -12969,21 +13426,15 @@ var staticRenderFns = [
     return _c("div", { staticClass: "left-box" }, [
       _c("img", { attrs: { src: "/img/logo.png", alt: "画像" } }),
       _vm._v(" "),
-      _c("div", { staticClass: "logo-name-box" }, [
-        _c("p", { staticClass: "sub-name" }, [_vm._v("グルノーブル")]),
-        _vm._v(" "),
-        _c("p", { staticClass: "main-name" }, [_vm._v("ZAICO")]),
-      ]),
+      _c("div", { staticClass: "logo-name-box" }, [_c("p", [_vm._v("ZAICO")])]),
     ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "user-link" }, [
-      _c("a", { attrs: { href: "javascript:void(0)" } }, [
-        _c("i", { staticClass: "fa-solid fa-circle-user user-icon" }),
-      ]),
+    return _c("span", [
+      _c("i", { staticClass: "fa-solid fa-power-off power-icon" }),
     ])
   },
 ]
@@ -14202,6 +14653,94 @@ var render = function () {
           2
         ),
       ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "table" }, [
+        _c(
+          "div",
+          { staticClass: "tbody" },
+          _vm._l(_vm.filterItems, function (item) {
+            return _c("div", { key: item.id, staticClass: "tr" }, [
+              _c("div", { staticClass: "favorite" }, [
+                _c(
+                  "a",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: item.favorite === "0",
+                        expression: "item.favorite === '0'",
+                      },
+                    ],
+                    attrs: { href: "" },
+                  },
+                  [_c("i", { staticClass: "far fa-star fa-lg star-icon" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: item.favorite === "1",
+                        expression: "item.favorite === '1'",
+                      },
+                    ],
+                    attrs: { href: "" },
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fas fa-star fa-lg star-icon check",
+                    }),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "item-info" }, [
+                _c("div", { staticClass: "first-row" }, [
+                  _c("p", [_vm._v(_vm._s(item.name))]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "second-row" }, [
+                  _c("p", [_vm._v("¥ " + _vm._s(_vm.formatNum(item.price)))]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(_vm.formatDate(item.updated_at)))]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "item-stocks" }, [
+                _c("p", [_vm._v(_vm._s(_vm.formatNum(item.stocks)))]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "item-stocks-input" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: item.amount,
+                      expression: "item.amount",
+                    },
+                  ],
+                  attrs: { type: "number" },
+                  domProps: { value: item.amount },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(item, "amount", $event.target.value)
+                    },
+                  },
+                }),
+              ]),
+            ])
+          }),
+          0
+        ),
+      ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "pagination" }, [
@@ -14240,6 +14779,71 @@ var render = function () {
       _c("p", { staticClass: "total" }, [
         _vm._v(_vm._s(_vm.currentPage) + " / " + _vm._s(_vm.totalPage)),
       ]),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "bottom-header" }, [
+      _c(
+        "ul",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: this.$route.path !== "/login",
+              expression: "this.$route.path !== '/login'",
+            },
+          ],
+          staticClass: "link-box",
+        },
+        [
+          _c("li", [
+            _c(
+              "a",
+              {
+                attrs: { href: "" },
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    $event.stopPropagation()
+                    return _vm.backPage.apply(null, arguments)
+                  },
+                },
+              },
+              [_vm._m(1), _c("span", [_vm._v("教材一覧へ")])]
+            ),
+          ]),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.items.length > 0,
+                  expression: "items.length > 0",
+                },
+              ],
+            },
+            [
+              _c(
+                "a",
+                {
+                  attrs: { href: "" },
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      $event.stopPropagation()
+                      return _vm.forwardPage.apply(null, arguments)
+                    },
+                  },
+                },
+                [_vm._m(2), _c("span", [_vm._v("確認画面へ")])]
+              ),
+            ]
+          ),
+        ]
+      ),
     ]),
     _vm._v(" "),
     _c("ul", { staticClass: "page-button" }, [
@@ -14311,6 +14915,22 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "amount" }, [_vm._v("数量")]),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", { staticClass: "fa-solid fa-circle-chevron-left" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", { staticClass: "fa-solid fa-circle-chevron-right" }),
     ])
   },
 ]

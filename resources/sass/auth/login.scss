@@ -1,26 +1,23 @@
 main.login {
   .card {
-    width: 620px;
-    margin: 50px auto 50px;
     h1.page-name {
-      margin: 0 0 50px;
+      margin: 20px 0 50px;
       color: #555;
       font-size: 25px;
       text-align: center;
     }
     .card-main {
-      display: flex;
-      justify-content: space-between;
       .card-box {
-        width: 210px;
-        height: 200px;
+        margin: 0 auto;
+        width: 70%;
+        // min-height: 160px;
         display: flex;
         flex-direction: column;
         background-color: #fff;
         border-radius: .25rem;
         box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
         position: relative;
-        padding: 40px 35px 20px;
+        padding: 30px 20px 20px;
         transition: .3s;
         h1 {
           font-size: 20px;
@@ -28,22 +25,22 @@ main.login {
           text-align: center;
         }
         .icon {
-          width: 80px;
-          height: 80px;
+          width: 60px;
+          height: 60px;
           position: absolute;
           background-color: #28a745;
           border-radius: 50%;
           text-align: center;
-          line-height: 80px;
+          line-height: 60px;
           color: #fff;
           font-size: 27px;
-          top: -40px;
+          top: -30px;
           left: 50%;
           transform: translateX(-50%);
           border: 1px solid #777;
         }
         p {
-          margin: 16px 0 10px;
+          margin: 10px 0 15px;
           text-align: center;
           font-size: 13px;
           color: #333;
@@ -54,7 +51,6 @@ main.login {
             a {
               display: block;
               background-color: #28a745;
-              // background-color: #e95884;
               color: #fff;
               width: 50%;
               height: 40px;
@@ -71,6 +67,7 @@ main.login {
         transform: scale(1.1);
       }
       .card-box:not(:first-of-type){
+        margin-top: 50px;
         .icon {
           background-color: #007bff;
         }
@@ -80,6 +77,48 @@ main.login {
               background-color: #007bff;
             }
           }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 481px) {
+  main.login {
+    .card {
+      width: 620px;
+      margin: 50px auto 50px;
+      h1.page-name {
+        margin: 0 0 50px;
+      }
+      .card-main {
+        display: flex;
+        justify-content: space-between;
+        .card-box {
+          margin: 0;
+          width: 210px;
+          height: 200px;
+          position: relative;
+          padding: 40px 35px 20px;
+          h1 {
+            font-size: 20px;
+          }
+          .icon {
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            font-size: 27px;
+            top: -40px;
+          }
+          p {
+            margin: 16px 0 10px;
+          }
+        }
+        .card-box:hover {
+          transform: scale(1.1);
+        }
+        .card-box:not(:first-of-type){
+          margin: 0;
         }
       }
     }

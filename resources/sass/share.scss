@@ -2,12 +2,13 @@
 @import url(https://fonts.googleapis.com/earlyaccess/sawarabigothic.css);
 @import url(https://fonts.googleapis.com/earlyaccess/notosansjp.css);
 /* フォントを指定したいところで */
+
 body {
+  overscroll-behavior: none;
   margin: 0;
   font-family: 'Rounded Mplus 1c';
   font-family: 'Sawarabi Gothic';
   font-family: 'Noto Sans JP';
-  // font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   .wrapper {
     min-height: 100vh;
     display: flex;
@@ -126,7 +127,7 @@ body {
       height: 3rem;
       border-radius: 0.25rem;
       z-index: 7;
-      top: 3rem;
+      top: 40px;
       left: 50%;
       transform: translateX(-50%);
       p {
@@ -197,10 +198,8 @@ body {
         top: 50%;
         left: 50%;
         transform:translate(-50%,-50%);
-        width: 70%;
-        max-width: 600px;
+        width: 95%;
         background-color: #fff;
-        border-radius: .3rem;
         overflow: hidden;
         .modal-header {
           background-color: #007bff;
@@ -214,10 +213,10 @@ body {
           cursor: pointer;
         }
         .modal-box {
-          padding: 20px 45px;
+          padding: 10px 20px;
           h1.modal-name {
             color: #555;
-            font-size: 25px;
+            font-size: 20px;
             margin-bottom: 40px;
           }
         }
@@ -261,7 +260,7 @@ body {
       width: 100vw;
       box-sizing: border-box;
       height: 50px;
-      padding: 0 40px;
+      padding: 0 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -271,18 +270,15 @@ body {
       .left-box {
         display: flex;
         img {
-          height: 40px;
+          height: 30px;
         }
         .logo-name-box {
-          height: 40px;
-          margin-left: 10px;
-          .sub-name {
-            color: #eee;
-            font-size: 10px;
-          }
-          .main-name {
+          height: 30px;
+          margin-left: 7px;
+          p {
+            line-height: 30px;
             color: #fff;
-            font-size: 19px;
+            font-size: 15px;
             font-weight: 600;
           }
         }
@@ -299,38 +295,30 @@ body {
             position: relative;
             a {
               display: block;
-              padding: 0 20px;
               flex-direction: column;
-              height: 32px;
-              line-height: 32px;
-              border-radius: 16px;
+              height: 50px;
+              width: 50px;
+              border-radius: none;
               text-align: center;
               color: #fff;
               font-size: 14px;
               pointer-events: auto;
-              .icon {
-                margin-right: 5px;
+              span {
+                display: block;
+                text-align: center;
+              }
+              span:first-of-type {
+                line-height: 35px;
+                font-size: 19px;
+              }
+              span:last-of-type {
+                font-size: 10px;
+                transform: scale(.85);
+                line-height: 2px;
               }
             }
             a:hover {
               opacity: 1;
-            }
-          }
-          li.user-link {
-            a {
-              width: 32px;
-              // padding: 0 10px;
-              line-height: 46px;
-              .user-icon {
-                width: 90%;
-                height: 90%;
-              }
-            }
-            a:hover {
-              .user-icon {
-                transition: .2s;
-                transform: scale(1.2);
-              }
             }
           }
           li.router-link.selected a {
@@ -361,31 +349,6 @@ body {
               width: 70%;
             }
           }
-          ul.user-menu {
-            display: none;
-            position: absolute;
-            right: 0;
-            background-color: #fff;
-            top: 100%;
-            border: 1px solid #bbb;
-            border-radius: 3px;
-            li {
-              a {
-                color: #666;
-                font-size: 14px;
-                height: 40px;
-                line-height: 40px;
-                cursor: pointer;
-                border-radius: 0;
-                .power-icon {
-                  margin-right: 4px;
-                }
-              }
-              a:hover {
-                background-color: #eee;
-              }
-            }
-          }
         }
       }
     }
@@ -395,24 +358,22 @@ body {
       background-color: #f4f6f9;
       flex: 1;
       margin-top: 50px;
+      width: 100vw;
     }
     main:not(.login) {
       .card {
-        width: 800px;
-        margin: 50px auto 50px;
-        padding: 40px 50px;
-        box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+        height: calc(100vh - 100px);
         background-color: #fff;
-        border: 0 solid rgba(0,0,0,.125);
-        border-radius: 0.25rem;
         overflow: hidden;
         h1.page-name {
+          display: none;
           margin: 0 0 35px;
+          padding: 0 20px;
           color: #555;
-          font-size: 25px;
+          font-size: 20px;
         }
         .card-main {
-          margin-top: 10px;
+          margin: 0;
           table {
             border-collapse: collapse;
             width: 100%;
@@ -469,39 +430,46 @@ body {
             margin-left: 13px;
           }
         }
-        ul.page-button {
+      }
+      .bottom-header {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background: #333;
+        width: 100vw;
+        height: 50px;
+        ul {
           display: flex;
-          justify-content: center;
+          justify-content: space-around;
           li {
             a {
               display: block;
-              width: 150px;
               height: 50px;
-              color: #fff;
-              border-radius: 25px;
-              font-size: 15px;
-              text-align: center;
               line-height: 50px;
+              color: #ccc;
+              span {
+                display: block;
+                text-align: center;
+              }
+              span:first-of-type {
+                line-height: 35px;
+                font-size: 19px;
+              }
+              span:last-of-type {
+                font-size: 10px;
+                line-height: 2px;
+                transform: scale(.85);
+              }
             }
-            a.first {
-              background-color: #007bff;
-            }
-            a.second {
-              background-color: #aaa;
-            }
-          }
-          li:not(:first-of-type){
-            margin-left: 10px;
           }
         }
-      }
-      .card.narrow {
-        width: 500px;
       }
     }
 
     // フッター
     footer {
+      display: none;
       height: 60px;
       line-height: 60px;
       font-size: 12px;
@@ -510,4 +478,105 @@ body {
       background: #1e1e26;
     }
   }
+}
+
+@media screen and (min-width: 481px) {
+  body {
+    .wrapper {
+
+      // モーダルウィンドウ
+      .modal-area {
+        .modal-contena {
+          width: 70%;
+          max-width: 600px;
+          .modal-box {
+            padding: 20px 45px;
+            h1.modal-name {
+              font-size: 25px;
+            }
+          }
+        }
+      }
+  
+      // ヘッダー
+      header {
+        padding: 0 40px;
+        .left-box {
+          img {
+            height: 40px;
+          }
+          .logo-name-box {
+            height: 40px;
+            margin-left: 10px;
+            p {
+              line-height: 40px;
+              font-size: 18px;
+            }
+          }
+        }
+        .right-box {
+          ul.link-box {
+            li {
+              a {
+                padding: 0 20px;
+                height: 32px;
+                width: auto;
+                line-height: 32px;
+                border-radius: 16px;
+                span {
+                  display: inline;
+                  text-align: left;
+                }
+                span:first-of-type {
+                  margin-right: 5px;
+                  line-height: 32px;
+                  font-size: 14px;
+                }
+                span:last-of-type {
+                  line-height: 32px;
+                  font-size: 14px;
+                }
+              }
+            }
+          }
+        }
+      }
+  
+      // メイン
+      main {
+        background-color: #f4f6f9;
+        flex: 1;
+        margin-top: 50px;
+      }
+      main:not(.login) {
+        .card {
+          width: 800px;
+          height: auto;
+          margin: 50px auto 50px;
+          padding: 40px 50px;
+          box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+          border: 0 solid rgba(0,0,0,.125);
+          border-radius: 0.25rem;
+          h1.page-name {
+            display: block;
+          }
+          .card-main {
+            margin-top: 10px;
+          }
+        }
+        .card.narrow {
+          width: 500px;
+        }
+        .bottom-header {
+          display: none;
+        }
+      }
+  
+      // フッター
+      footer {
+        display: block;
+      }
+    }
+  }
+  
 }

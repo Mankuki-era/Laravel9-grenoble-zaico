@@ -140,6 +140,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   initData: function initData() {
     return {
@@ -262,7 +295,7 @@ __webpack_require__.r(__webpack_exports__);
         this.$emit('message-event', '教材情報を一括登録しました', true);
       } else if (func === 'item-reload') {
         this.getItems();
-        this.$emit('message-event', '教材情報を再読込しました', true);
+        this.$emit('message-event', '教材情報を再読込みしました', true);
       }
     }
   }
@@ -285,6 +318,36 @@ var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -410,6 +473,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     if (func === 'log-delete') {
       this.resetData();
       this.$emit('message-event', '履歴データを削除しました', true);
+    } else if (func === 'log-reload') {
+      this.getLogs();
+      this.$emit('message-event', '履歴情報を再読込みしました', true);
     }
   }), _methods)
 });
@@ -1532,6 +1598,122 @@ var render = function () {
             2
           ),
         ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "table" }, [
+          _c(
+            "div",
+            { staticClass: "tbody" },
+            _vm._l(_vm.filterItems, function (item, index) {
+              return _c("div", { key: item.id, staticClass: "tr" }, [
+                _c("div", { staticClass: "favorite" }, [
+                  _c(
+                    "a",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: item.favorite === "0",
+                          expression: "item.favorite === '0'",
+                        },
+                      ],
+                      class: { auth: !_vm.adminFlag },
+                      attrs: { href: "" },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          $event.stopPropagation()
+                          return _vm.favoriteEvent(item.id, "1", index)
+                        },
+                      },
+                    },
+                    [_c("i", { staticClass: "far fa-star fa-lg star-icon" })]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: item.favorite === "1",
+                          expression: "item.favorite === '1'",
+                        },
+                      ],
+                      class: { auth: !_vm.adminFlag },
+                      attrs: { href: "" },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          $event.stopPropagation()
+                          return _vm.favoriteEvent(item.id, "0", index)
+                        },
+                      },
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fas fa-star fa-lg star-icon check",
+                      }),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "item-info" }, [
+                  _c("div", { staticClass: "first-row" }, [
+                    _c("p", [_vm._v(_vm._s(item.name))]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "second-row" }, [
+                    _c("p", [_vm._v("¥ " + _vm._s(_vm.formatNum(item.price)))]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v(_vm._s(_vm.formatDate(item.updated_at)))]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "item-stocks" }, [
+                  _c("p", [_vm._v(_vm._s(_vm.formatNum(item.stocks)))]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "item-destroy" }, [
+                  _c("li", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "destroy",
+                        attrs: { href: "" },
+                        on: {
+                          click: function ($event) {
+                            $event.preventDefault()
+                            $event.stopPropagation()
+                            return _vm.openModal("item-destroy", item.id, index)
+                          },
+                        },
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa-solid fa-trash-can trash-icon",
+                        }),
+                      ]
+                    ),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", {
+                  staticClass: "action",
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      $event.stopPropagation()
+                      return _vm.openModal("item-update", item.id, index)
+                    },
+                  },
+                }),
+              ])
+            }),
+            0
+          ),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "pagination" }, [
@@ -1572,6 +1754,90 @@ var render = function () {
         ]),
       ]),
     ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "bottom-header" }, [
+      _c(
+        "ul",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: this.$route.path !== "/login",
+              expression: "this.$route.path !== '/login'",
+            },
+          ],
+          staticClass: "link-box",
+        },
+        [
+          _c("li", [
+            _c(
+              "a",
+              {
+                staticClass: "second",
+                attrs: { href: "" },
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    $event.stopPropagation()
+                    return _vm.dataReload("item-reload", null, null)
+                  },
+                },
+              },
+              [_vm._m(1), _c("span", [_vm._v("再読込み")])]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c(
+              "a",
+              {
+                staticClass: "first",
+                attrs: { href: "" },
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    $event.stopPropagation()
+                    return _vm.openModal("item-create", null, null)
+                  },
+                },
+              },
+              [_vm._m(2), _c("span", [_vm._v("新規追加")])]
+            ),
+          ]),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.items.length > 0,
+                  expression: "items.length > 0",
+                },
+              ],
+            },
+            [
+              _c(
+                "a",
+                {
+                  attrs: { href: "" },
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      $event.stopPropagation()
+                      return _vm.openModal("item-delete", null, null)
+                    },
+                  },
+                },
+                [_vm._m(3), _c("span", [_vm._v("一括削除")])]
+              ),
+            ]
+          ),
+        ]
+      ),
+    ]),
   ])
 }
 var staticRenderFns = [
@@ -1588,6 +1854,28 @@ var staticRenderFns = [
         },
         [_vm._v("その他")]
       ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", { staticClass: "fa-solid fa-arrow-rotate-right reload-icon" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("i", { staticClass: "fa-solid fa-plus plus-icon" })])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", { staticClass: "fa-solid fa-trash-can trash-icon" }),
     ])
   },
 ]
@@ -1618,7 +1906,11 @@ var render = function () {
       _c("h1", { staticClass: "page-name" }, [_vm._v("履歴")]),
       _vm._v(" "),
       _c("div", { staticClass: "card-header" }, [
-        _c("div", { staticClass: "left-box" }),
+        _c("div", { staticClass: "left-box" }, [
+          _c("p", { staticClass: "amount" }, [
+            _vm._v(_vm._s(_vm.logs.length) + "件"),
+          ]),
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "right-box" }, [
           _c(
@@ -1742,6 +2034,42 @@ var render = function () {
             2
           ),
         ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "table" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "tbody" },
+            _vm._l(_vm.filterLogs, function (log) {
+              return _c("div", { key: log.id, staticClass: "tr" }, [
+                _c("div", { staticClass: "type" }, [
+                  _c("p", [_vm._v(_vm._s(log.type))]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "created_at" }, [
+                  _c("p", [_vm._v(_vm._s(_vm.formatDate(log.created_at)))]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "user_name" }, [
+                  _c("p", [_vm._v(_vm._s(log.user_name))]),
+                ]),
+                _vm._v(" "),
+                _c("div", {
+                  staticClass: "action",
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      $event.stopPropagation()
+                      return _vm.openModal("log-show", log.id, null)
+                    },
+                  },
+                }),
+              ])
+            }),
+            0
+          ),
+        ]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "pagination" }, [
@@ -1782,6 +2110,73 @@ var render = function () {
         ]),
       ]),
     ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "bottom-header" }, [
+      _c(
+        "ul",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: this.$route.path !== "/login",
+              expression: "this.$route.path !== '/login'",
+            },
+          ],
+          staticClass: "link-box",
+        },
+        [
+          _c("li", [
+            _c(
+              "a",
+              {
+                staticClass: "second",
+                attrs: { href: "" },
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    $event.stopPropagation()
+                    return _vm.dataReload("log-reload", null, null)
+                  },
+                },
+              },
+              [_vm._m(2), _c("span", [_vm._v("再読込み")])]
+            ),
+          ]),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.logs.length > 0,
+                  expression: "logs.length > 0",
+                },
+              ],
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "second",
+                  attrs: { href: "" },
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      $event.stopPropagation()
+                      return _vm.openModal("log-delete", null, null)
+                    },
+                  },
+                },
+                [_vm._m(3), _c("span", [_vm._v("一括削除")])]
+              ),
+            ]
+          ),
+        ]
+      ),
+    ]),
   ])
 }
 var staticRenderFns = [
@@ -1799,6 +2194,36 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "action" }, [_vm._v("操作")]),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "thead" }, [
+      _c("div", { staticClass: "tr" }, [
+        _c("div", { staticClass: "type" }, [_c("p", [_vm._v("種別")])]),
+        _vm._v(" "),
+        _c("div", { staticClass: "created_at" }, [_c("p", [_vm._v("日時")])]),
+        _vm._v(" "),
+        _c("div", { staticClass: "user_name" }, [_c("p", [_vm._v("対応者")])]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", { staticClass: "fa-solid fa-arrow-rotate-right reload-icon" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", { staticClass: "fa-solid fa-trash-can trash-icon" }),
     ])
   },
 ]

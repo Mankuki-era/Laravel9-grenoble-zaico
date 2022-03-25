@@ -43,11 +43,42 @@
           </tr>
         </tbody>
       </table>
+      <div class="table">
+        <div class="tbody">
+          <div class="tr" v-for="item in filterItems" :key="item.id">
+            <div class="favorite">
+              <a href="" v-show="item.favorite === '0'"><i class="far fa-star fa-lg star-icon"></i></a>
+              <a href="" v-show="item.favorite === '1'"><i class="fas fa-star fa-lg star-icon check"></i></a>
+            </div>
+            <div class="item-info">
+              <div class="first-row">
+                <p>{{ item.name }}</p>
+              </div>
+              <div class="second-row">
+                <p>¥ {{ formatNum(item.price) }}</p>
+                <p>{{ formatDate(item.updated_at) }}</p>
+              </div>
+            </div>
+            <div class="item-stocks">
+              <p>{{ formatNum(item.stocks) }}</p>
+            </div>
+            <div class="item-stocks-input">
+              <input type="number" v-model="item.amount">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="pagination">
       <a href="#" class="prev" @click.prevent.stop="onPrev"><i class="fas fa-chevron-left"></i></a>
       <a href="#" class="next" @click.prevent.stop="onNext"><i class="fas fa-chevron-right"></i></a>
       <p class="total">{{ currentPage }} / {{ totalPage }}</p>
+    </div>
+    <div class="bottom-header">
+      <ul class="link-box" v-show="this.$route.path !== '/login'">
+        <li><a href="" @click.prevent.stop="backPage"><span><i class="fa-solid fa-circle-chevron-left"></i></span><span>教材一覧へ</span></a></li>
+        <li v-show="items.length > 0"><a href="" @click.prevent.stop="forwardPage"><span><i class="fa-solid fa-circle-chevron-right"></i></span><span>確認画面へ</span></a></li>
+      </ul>
     </div>
     <ul class="page-button">
       <li><a href="" class="second" @click.prevent.stop="backPage">教材一覧へ</a></li>
@@ -109,6 +140,27 @@
       },
       onNext: function() {
         this.currentPage = Math.min(this.currentPage + 1, this.totalPage);
+      },
+      formatDate: function(dd){ // 2021-02-07 10:20:00
+        if(dd.split(' ')[1] === undefined){
+          var toDoubleDigits = function(num) {
+            num += "";
+            if (num.length === 1){
+              num = "0" + num;
+            }
+            return num;     
+          };
+          var date = new Date(dd);
+          var y = date.getFullYear();
+          var m = toDoubleDigits(date.getMonth() + 1);
+          var d = toDoubleDigits(date.getDate());
+          var h = toDoubleDigits(date.getHours());
+          var mi = toDoubleDigits(date.getMinutes());
+          var s = toDoubleDigits(date.getSeconds());
+          return `${y}年${m}月${d}日 ${h}:${mi}`;
+        }else{
+          return dd;
+        }
       },
       formatNum: function(num){
         if(num !== null) return num.toLocaleString();

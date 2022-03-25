@@ -52,12 +52,45 @@
             </tr>
           </tbody>
         </table>
+        <div class="table">
+          <div class="tbody">
+            <div class="tr" v-for="(item, index) in filterItems" :key="item.id">
+              <div class="favorite">
+                <a href="" v-show="item.favorite === '0'" @click.prevent.stop="favoriteEvent(item.id, '1', index)" :class="{ auth: !adminFlag }"><i class="far fa-star fa-lg star-icon"></i></a>
+                <a href="" v-show="item.favorite === '1'" @click.prevent.stop="favoriteEvent(item.id, '0', index)" :class="{ auth: !adminFlag }"><i class="fas fa-star fa-lg star-icon check"></i></a>
+              </div>
+              <div class="item-info">
+                <div class="first-row">
+                  <p>{{ item.name }}</p>
+                </div>
+                <div class="second-row">
+                  <p>¥ {{ formatNum(item.price) }}</p>
+                  <p>{{ formatDate(item.updated_at) }}</p>
+                </div>
+              </div>
+              <div class="item-stocks">
+                <p>{{ formatNum(item.stocks) }}</p>
+              </div>
+              <div class="item-destroy">
+                <li><a href="" class="destroy" @click.prevent.stop="openModal('item-destroy', item.id, index)"><i class="fa-solid fa-trash-can trash-icon"></i></a></li>
+              </div>
+              <div class="action" @click.prevent.stop="openModal('item-update', item.id, index)"></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="pagination">
         <a href="#" class="prev" @click.prevent.stop="onPrev"><i class="fas fa-chevron-left"></i></a>
         <a href="#" class="next" @click.prevent.stop="onNext"><i class="fas fa-chevron-right"></i></a>
         <p class="total">{{ currentPage }} / {{ totalPage }}</p>
       </div>
+    </div>
+    <div class="bottom-header">
+      <ul class="link-box" v-show="this.$route.path !== '/login'">
+        <li><a href="" @click.prevent.stop="dataReload('item-reload',null,null)" class="second"><span><i class="fa-solid fa-arrow-rotate-right reload-icon"></i></span><span>再読込み</span></a></li>
+        <li><a href="" class="first" @click.prevent.stop="openModal('item-create', null, null)"><span><i class="fa-solid fa-plus plus-icon"></i></span><span>新規追加</span></a></li>
+        <li v-show="items.length > 0"><a href="" @click.prevent.stop="openModal('item-delete', null, null)"><span><i class="fa-solid fa-trash-can trash-icon"></i></span><span>一括削除</span></a></li>
+      </ul>
     </div>
   </main>
 </template>
@@ -171,7 +204,7 @@
           this.$emit('message-event', '教材情報を一括登録しました', true);
         }else if(func === 'item-reload'){
           this.getItems();
-          this.$emit('message-event', '教材情報を再読込しました', true);
+          this.$emit('message-event', '教材情報を再読込みしました', true);
         }
       },
     }

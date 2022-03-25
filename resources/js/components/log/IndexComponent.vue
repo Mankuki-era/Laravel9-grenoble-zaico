@@ -3,7 +3,9 @@
     <div class="card narrow">
       <h1 class="page-name">履歴</h1>
       <div class="card-header">
-        <div class="left-box"></div>
+        <div class="left-box">
+          <p class="amount">{{ logs.length }}件</p>
+        </div>
         <div class="right-box">
           <ul class="link-box" v-show="adminFlag">
             <li v-show="logs.length > 0"><a href="" class="second" @click.prevent.stop="openModal('log-delete', null, null)"><i class="fa-solid fa-trash-can trash-icon"></i>一括削除</a></li>
@@ -34,12 +36,40 @@
             </tr>
           </tbody>
         </table>
+        <div class="table">
+          <div class="thead">
+            <div class="tr">
+              <div class="type"><p>種別</p></div>
+              <div class="created_at"><p>日時</p></div>
+              <div class="user_name"><p>対応者</p></div>
+            </div>
+          </div>
+          <div class="tbody">
+            <div class="tr" v-for="log in filterLogs" :key="log.id">
+              <div class="type">
+                <p>{{ log.type }}</p></div>
+              <div class="created_at">
+                <p>{{ formatDate(log.created_at) }}</p>
+              </div>
+              <div class="user_name">
+                <p>{{ log.user_name }}</p>
+              </div>
+              <div class="action" @click.prevent.stop="openModal('log-show', log.id, null)"></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="pagination">
         <a href="#" class="prev" @click.prevent.stop="onPrev"><i class="fas fa-chevron-left"></i></a>
         <a href="#" class="next" @click.prevent.stop="onNext"><i class="fas fa-chevron-right"></i></a>
         <p class="total">{{ currentPage }} / {{ totalPage }}</p>
       </div>
+    </div>
+    <div class="bottom-header">
+      <ul class="link-box" v-show="this.$route.path !== '/login'">
+        <li><a href="" @click.prevent.stop="dataReload('log-reload',null,null)" class="second"><span><i class="fa-solid fa-arrow-rotate-right reload-icon"></i></span><span>再読込み</span></a></li>
+        <li v-show="logs.length > 0"><a href="" class="second" @click.prevent.stop="openModal('log-delete', null, null)"><span><i class="fa-solid fa-trash-can trash-icon"></i></span><span>一括削除</span></a></li>
+      </ul>
     </div>
   </main>
 </template>
@@ -114,6 +144,9 @@
         if(func === 'log-delete'){
           this.resetData();
           this.$emit('message-event', '履歴データを削除しました', true);
+        }else if(func === 'log-reload'){
+          this.getLogs();
+          this.$emit('message-event', '履歴情報を再読込みしました', true);
         }
       },
     }

@@ -3,8 +3,18 @@ main.log-index {
     .card-header {
       display: flex;
       justify-content: space-between;
-      height: 35px;
+      height: 40px;
+      background-color: #dee2e6;
+      .left-box {
+        .amount {
+          line-height: 40px;
+          color: #666;
+          font-weight: bold;
+          padding-left: 15px;
+        }
+      }
       .right-box {
+        display: none;
         ul {
           height: 100%;
           display: flex;
@@ -41,6 +51,7 @@ main.log-index {
     }
     .card-main {
       table {
+        display: none;
         thead {
           tr {
             th.type {
@@ -75,6 +86,86 @@ main.log-index {
               }
             }
           }
+        }
+      }
+      div.table {
+        display: block;
+        div.thead, div.tbody {
+          div.tr {
+            display: flex;
+            height: 40px;
+            div.type, div.created_at, div.user_name {
+              p {
+                line-height: 40px;
+                color: #555;
+                font-size: 14px;
+                padding: 0 10px;
+              }
+            }
+            div.type{
+              width: 60px;
+            }
+            div.user_name {
+              width: 70px;
+            }
+            div.created_at {
+              flex: 1;
+            }
+          }
+        }
+        div.thead {
+          div.tr {
+            background-color: #ccc;
+            font-weight: bold;
+            div.type, div.created_at {
+              border-right: 1px solid #aaa;
+            }
+          }
+        }
+        div.tbody {
+          div.tr {
+            border-top: 1px solid #ccc;
+            position: relative;
+            div.type, div.created_at {
+              border-right: 1px solid #bbb;
+            }
+            div.action {
+              position: absolute;
+              min-height: 40px;
+              min-width: 100vw;
+              left: 0;
+            }
+          }
+          div.tr:last-of-type {
+            border-bottom: 1px solid #ccc;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 481px) {
+  main.log-index {
+    .card {
+      .card-header {
+        height: 35px;
+        background-color: transparent;
+        .left-box {
+          .amount {
+            line-height: 35px;
+          }
+        }
+        .right-box {
+          display: block;
+        }
+      }
+      .card-main {
+        table {
+          display: table;
+        }
+        div.table {
+          display: none;
         }
       }
     }

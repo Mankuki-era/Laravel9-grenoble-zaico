@@ -3,7 +3,7 @@ form.alert p {
   font-size: 16px;
   text-align: center;
   color: #666;
-  margin-top: 25px;
+  margin: 55px 0 40px;
 }
 form.alert ul.button-box {
   margin-top: 20px;

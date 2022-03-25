@@ -1,33 +1,33 @@
 .modal-item {
   form {
     .form-group {
-      height: 40px;
-      margin-top: 20px;
-      display: flex;
+      margin-top: 10px;
       label {
         color: #666;
         font-weight: bold;
-        font-size: 17px;
+        font-size: 15px;
         width: 120px;
         line-height: 40px;
         span {
-          font-size: 12px;
+          font-size: 10px;
           background: red;
           color: #fff;
-          padding: 5px 8px;
+          padding: 3px 8px;
           border-radius: 3px;
           margin-left: 6px;
           vertical-align: middle;
         }
       }
       input {
-        padding: 0 20px;
+        display: block;
+        padding: 8px 20px 7px 20px;
         font-size: 16px;
         color: #666;
         outline: none;
         border: 2px solid #ccc;
         border-radius: 2px;
-        flex: 1;
+        width: 100%;
+        box-sizing: border-box;
       }
       input:focus {
         border: 2px solid #007bff;
@@ -50,4 +50,28 @@
       }
     }
   }
+}
+
+@media screen and (min-width: 481px) {
+.modal-item {
+  form {
+    .form-group {
+      height: 40px;
+      display: flex;
+      margin-top: 20px;
+      label {
+        font-size: 17px;
+        line-height: 40px;
+        span {
+          font-size: 12px;
+          padding: 5px 8px;
+        }
+      }
+      input {
+        padding: 0 20px;
+        flex: 1;
+      }
+    }
+  }
+}
 }

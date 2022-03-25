@@ -1,13 +1,17 @@
 main.item-index .card .card-header {
   display: flex;
   justify-content: space-between;
-  height: 35px;
+  height: 40px;
+  background-color: #dee2e6;
 }
 main.item-index .card .card-header .left-box .amount {
-  line-height: 35px;
+  line-height: 40px;
   color: #666;
   font-weight: bold;
   padding-left: 15px;
+}
+main.item-index .card .card-header .right-box {
+  display: none;
 }
 main.item-index .card .card-header .right-box ul.link-box {
   height: 100%;
@@ -69,6 +73,9 @@ main.item-index .card .card-header .right-box ul.link-box > li:not(:first-of-typ
 main.item-index .card .card-header .right-box ul.link-box .plus-icon, main.item-index .card .card-header .right-box ul.link-box .trash-icon {
   margin-right: 3px;
 }
+main.item-index .card .card-main table {
+  display: none;
+}
 main.item-index .card .card-main table thead tr th.favorite {
   padding: 0;
 }
@@ -125,4 +132,114 @@ main.item-index .card .card-main table tbody tr td.action a.destroy {
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
   background-color: #dc3545;
+}
+main.item-index .card .card-main div.table {
+  display: block;
+}
+main.item-index .card .card-main div.table div.tbody div.tr {
+  display: flex;
+  height: 40px;
+  border-top: 1px solid #ccc;
+  position: relative;
+}
+main.item-index .card .card-main div.table div.tbody div.tr div.favorite {
+  width: 50px;
+  text-align: center;
+  line-height: 40px;
+  border-right: 1px solid #ccc;
+}
+main.item-index .card .card-main div.table div.tbody div.tr div.favorite a {
+  font-size: 16px;
+}
+main.item-index .card .card-main div.table div.tbody div.tr div.favorite a .star-icon {
+  color: #aaa;
+}
+main.item-index .card .card-main div.table div.tbody div.tr div.favorite a .star-icon.check {
+  color: #007bff;
+}
+main.item-index .card .card-main div.table div.tbody div.tr div.favorite a.auth {
+  pointer-events: none;
+  cursor: default;
+}
+main.item-index .card .card-main div.table div.tbody div.tr div.favorite a.auth:hover {
+  opacity: 1;
+}
+main.item-index .card .card-main div.table div.tbody div.tr div.item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+}
+main.item-index .card .card-main div.table div.tbody div.tr div.item-info div.first-row {
+  flex: 0.6;
+}
+main.item-index .card .card-main div.table div.tbody div.tr div.item-info div.first-row p {
+  height: 100%;
+  line-height: 24px;
+  color: #555;
+  font-size: 14px;
+  font-weight: bold;
+}
+main.item-index .card .card-main div.table div.tbody div.tr div.item-info div.second-row {
+  flex: 0.4;
+  display: flex;
+}
+main.item-index .card .card-main div.table div.tbody div.tr div.item-info div.second-row p {
+  color: #555;
+  line-height: 16px;
+  font-size: 12px;
+}
+main.item-index .card .card-main div.table div.tbody div.tr div.item-info div.second-row p:not(:first-of-type) {
+  margin-left: 15px;
+}
+main.item-index .card .card-main div.table div.tbody div.tr div.item-stocks {
+  width: 50px;
+  border-right: 1px solid #ccc;
+}
+main.item-index .card .card-main div.table div.tbody div.tr div.item-stocks p {
+  line-height: 40px;
+  color: #555;
+  font-size: 20px;
+  text-align: center;
+}
+main.item-index .card .card-main div.table div.tbody div.tr div.action {
+  position: absolute;
+  min-height: 40px;
+  min-width: calc(100vw - 90px);
+  right: 40px;
+}
+main.item-index .card .card-main div.table div.tbody div.tr div.item-destroy {
+  width: 40px;
+}
+main.item-index .card .card-main div.table div.tbody div.tr div.item-destroy li {
+  list-style: none;
+}
+main.item-index .card .card-main div.table div.tbody div.tr div.item-destroy li a {
+  display: block;
+  color: #555;
+  font-size: 16px;
+  line-height: 40px;
+  text-align: center;
+}
+main.item-index .card .card-main div.table div.tbody div.tr:last-of-type {
+  border-bottom: 1px solid #ccc;
+}
+
+@media screen and (min-width: 481px) {
+  main.item-index .card .card-header {
+    height: 35px;
+    background-color: transparent;
+  }
+  main.item-index .card .card-header .left-box .amount {
+    line-height: 35px;
+  }
+  main.item-index .card .card-header .right-box {
+    display: block;
+  }
+  main.item-index .card .card-main table {
+    display: table;
+  }
+  main.item-index .card .card-main div.table {
+    display: none;
+  }
 }
