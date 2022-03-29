@@ -362,7 +362,9 @@ body {
     }
     main:not(.login) {
       .card {
-        height: calc(100vh - 100px);
+        // height: calc(100vh - 100px);
+        min-height: calc(100vh - 50px);
+        padding-bottom: 50px;
         background-color: #fff;
         overflow: hidden;
         h1.page-name {
@@ -403,8 +405,15 @@ body {
           }
         }
         .pagination {
+          position: fixed;
+          bottom: 50px;
+          height: 40px;
+          background-color: #007bff;
+          width: 100%;
+          justify-content: center;
+          align-items: center;
           display: flex;
-          margin: 15px 0;
+          // margin: 15px 0;
           a {
             width: 30px;
             height: 30px;

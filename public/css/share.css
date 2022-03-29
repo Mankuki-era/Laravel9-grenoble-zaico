@@ -410,7 +410,8 @@ body .wrapper main {
   width: 100vw;
 }
 body .wrapper main:not(.login) .card {
-  height: calc(100vh - 100px);
+  min-height: calc(100vh - 50px);
+  padding-bottom: 50px;
   background-color: #fff;
   overflow: hidden;
 }
@@ -448,8 +449,14 @@ body .wrapper main:not(.login) .card .card-main table tbody tr:not(:first-of-typ
   border-top: 1px solid #dee2e6;
 }
 body .wrapper main:not(.login) .card .pagination {
+  position: fixed;
+  bottom: 50px;
+  height: 40px;
+  background-color: #007bff;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
   display: flex;
-  margin: 15px 0;
 }
 body .wrapper main:not(.login) .card .pagination a {
   width: 30px;

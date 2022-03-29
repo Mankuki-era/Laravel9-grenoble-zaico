@@ -138,14 +138,14 @@ main.item-index .card .card-main div.table {
 }
 main.item-index .card .card-main div.table div.tbody div.tr {
   display: flex;
-  height: 40px;
+  height: 50px;
   border-top: 1px solid #ccc;
   position: relative;
 }
 main.item-index .card .card-main div.table div.tbody div.tr div.favorite {
-  width: 50px;
+  width: 40px;
   text-align: center;
-  line-height: 40px;
+  line-height: 50px;
   border-right: 1px solid #ccc;
 }
 main.item-index .card .card-main div.table div.tbody div.tr div.favorite a {
@@ -170,41 +170,37 @@ main.item-index .card .card-main div.table div.tbody div.tr div.item-info {
   flex-direction: column;
   padding-left: 15px;
 }
-main.item-index .card .card-main div.table div.tbody div.tr div.item-info div.first-row {
-  flex: 0.6;
-}
 main.item-index .card .card-main div.table div.tbody div.tr div.item-info div.first-row p {
   height: 100%;
-  line-height: 24px;
+  line-height: 33px;
   color: #555;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
 }
 main.item-index .card .card-main div.table div.tbody div.tr div.item-info div.second-row {
-  flex: 0.4;
   display: flex;
 }
 main.item-index .card .card-main div.table div.tbody div.tr div.item-info div.second-row p {
   color: #555;
-  line-height: 16px;
+  line-height: 10px;
   font-size: 12px;
 }
 main.item-index .card .card-main div.table div.tbody div.tr div.item-info div.second-row p:not(:first-of-type) {
   margin-left: 15px;
 }
 main.item-index .card .card-main div.table div.tbody div.tr div.item-stocks {
-  width: 50px;
+  width: 40px;
   border-right: 1px solid #ccc;
 }
 main.item-index .card .card-main div.table div.tbody div.tr div.item-stocks p {
-  line-height: 40px;
+  line-height: 50px;
   color: #555;
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
 }
 main.item-index .card .card-main div.table div.tbody div.tr div.action {
   position: absolute;
-  min-height: 40px;
+  min-height: 50px;
   min-width: calc(100vw - 90px);
   right: 40px;
 }
@@ -218,7 +214,7 @@ main.item-index .card .card-main div.table div.tbody div.tr div.item-destroy li 
   display: block;
   color: #555;
   font-size: 16px;
-  line-height: 40px;
+  line-height: 50px;
   text-align: center;
 }
 main.item-index .card .card-main div.table div.tbody div.tr:last-of-type {

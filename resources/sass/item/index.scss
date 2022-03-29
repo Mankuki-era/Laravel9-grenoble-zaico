@@ -157,13 +157,13 @@ main.item-index {
         div.tbody {
           div.tr {
             display: flex;
-            height: 40px;
+            height: 50px;
             border-top: 1px solid #ccc;
             position: relative;
             div.favorite {
-              width: 50px;
+              width: 40px;
               text-align: center;
-              line-height: 40px;
+              line-height: 50px;
               border-right: 1px solid #ccc;
               a {
                 font-size: 16px;
@@ -188,21 +188,19 @@ main.item-index {
               flex-direction: column;
               padding-left: 15px;
               div.first-row {
-                flex: 0.6;
                 p {
                   height: 100%;
-                  line-height: 24px;
+                  line-height: 33px;
                   color: #555;
-                  font-size: 14px;
+                  font-size: 13px;
                   font-weight: bold;
                 }
               }
               div.second-row {
-                flex: 0.4;
                 display: flex;
                 p {
                   color: #555;
-                  line-height: 16px;
+                  line-height: 10px;
                   font-size: 12px;
                 }
                 p:not(:first-of-type){
@@ -211,18 +209,18 @@ main.item-index {
               }
             }
             div.item-stocks {
-              width: 50px;
+              width: 40px;
               border-right: 1px solid #ccc;
               p {
-                line-height: 40px;
+                line-height: 50px;
                 color: #555;
-                font-size: 20px;
+                font-size: 18px;
                 text-align: center;
               }
             }
             div.action {
               position: absolute;
-              min-height: 40px;
+              min-height: 50px;
               min-width: calc(100vw - 90px);
               right: 40px;
             }
@@ -234,7 +232,7 @@ main.item-index {
                   display: block;
                   color: #555;
                   font-size: 16px;
-                  line-height: 40px;
+                  line-height: 50px;
                   text-align: center;
                 }
               }

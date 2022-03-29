@@ -1,43 +1,35 @@
 .modal-login {
   h1 {
     font-size: 20px !important;
+    margin-bottom: 20px !important;
   }
   form {
     .form-group {
       height: 40px;
-      margin-top: 20px;
-      display: flex;
       label {
         color: #666;
         font-weight: bold;
-        font-size: 14px;
+        font-size: 15px;
         width: 120px;
         line-height: 40px;
-        span {
-          font-size: 12px;
-          background: red;
-          color: #fff;
-          padding: 5px 8px;
-          border-radius: 3px;
-          margin-left: 6px;
-          vertical-align: middle;
-        }
       }
       input {
-        padding: 3px 20px 0;
+        display: block;
+        padding: 8px 20px 7px 20px;
         font-size: 16px;
         color: #666;
         outline: none;
         border: 2px solid #ccc;
         border-radius: 2px;
-        flex: 1;
+        width: 100%;
+        box-sizing: border-box;
       }
       input:focus {
         border: 2px solid #007bff;
       }
     }
     ul {
-      margin-top: 20px;
+      margin-top: 60px;
       li {
         a {
           display: block;
@@ -53,4 +45,28 @@
       }
     }
   }
+}
+
+@media screen and (min-width: 481px) {
+.modal-login {
+  h1 {
+    margin-bottom: 40px !important;
+  }
+  form {
+    .form-group {
+      display: flex;
+      label {
+        font-size: 14px;
+      }
+      input {
+        padding: 3px 20px 0;
+        border-radius: 2px;
+        flex: 1;
+      }
+    }
+    ul {
+      margin-top: 20px;
+    }
+  }
+}
 }
