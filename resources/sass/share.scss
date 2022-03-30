@@ -362,8 +362,8 @@ body {
     }
     main:not(.login) {
       .card {
-        position: fixed;
-        height: 460px;
+        height: 200px;
+        padding-top: 50px;
         background-color: #fff;
         overflow: auto;
         h1.page-name {
