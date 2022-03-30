@@ -1,5 +1,5 @@
 main.item-index .card .card-header {
-  display: flex;
+  display: none;
   justify-content: space-between;
   height: 40px;
   background-color: #dee2e6;
@@ -172,10 +172,14 @@ main.item-index .card .card-main div.table div.tbody div.tr div.item-info {
 }
 main.item-index .card .card-main div.table div.tbody div.tr div.item-info div.first-row p {
   height: 100%;
+  width: calc(100vw - 135px);
   line-height: 33px;
   color: #555;
   font-size: 13px;
   font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 main.item-index .card .card-main div.table div.tbody div.tr div.item-info div.second-row {
   display: flex;
@@ -223,6 +227,7 @@ main.item-index .card .card-main div.table div.tbody div.tr:last-of-type {
 
 @media screen and (min-width: 481px) {
   main.item-index .card .card-header {
+    display: flex;
     height: 35px;
     background-color: transparent;
   }

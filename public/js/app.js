@@ -7766,6 +7766,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   initData: function initData() {
     return {
@@ -7911,6 +7914,9 @@ var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
 //
 //
 //
@@ -12771,41 +12777,47 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "pagination" }, [
-        _c(
-          "a",
-          {
-            staticClass: "prev",
-            attrs: { href: "#" },
-            on: {
-              click: function ($event) {
-                $event.preventDefault()
-                $event.stopPropagation()
-                return _vm.onPrev.apply(null, arguments)
-              },
-            },
-          },
-          [_c("i", { staticClass: "fas fa-chevron-left" })]
-        ),
-        _vm._v(" "),
-        _c("p", { staticClass: "total" }, [
-          _vm._v(_vm._s(_vm.currentPage) + " / " + _vm._s(_vm.totalPage)),
+        _c("div", { staticClass: "amount" }, [
+          _vm._v(_vm._s(_vm.items.length) + "件"),
         ]),
         _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "next",
-            attrs: { href: "#" },
-            on: {
-              click: function ($event) {
-                $event.preventDefault()
-                $event.stopPropagation()
-                return _vm.onNext.apply(null, arguments)
+        _c("div", { staticClass: "page-box" }, [
+          _c(
+            "a",
+            {
+              staticClass: "prev",
+              attrs: { href: "#" },
+              on: {
+                click: function ($event) {
+                  $event.preventDefault()
+                  $event.stopPropagation()
+                  return _vm.onPrev.apply(null, arguments)
+                },
               },
             },
-          },
-          [_c("i", { staticClass: "fas fa-chevron-right" })]
-        ),
+            [_c("i", { staticClass: "fas fa-chevron-left" })]
+          ),
+          _vm._v(" "),
+          _c("p", { staticClass: "total" }, [
+            _vm._v(_vm._s(_vm.currentPage) + " / " + _vm._s(_vm.totalPage)),
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "next",
+              attrs: { href: "#" },
+              on: {
+                click: function ($event) {
+                  $event.preventDefault()
+                  $event.stopPropagation()
+                  return _vm.onNext.apply(null, arguments)
+                },
+              },
+            },
+            [_c("i", { staticClass: "fas fa-chevron-right" })]
+          ),
+        ]),
       ]),
     ]),
     _vm._v(" "),
@@ -13127,40 +13139,46 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "pagination" }, [
-        _c(
-          "a",
-          {
-            staticClass: "prev",
-            attrs: { href: "#" },
-            on: {
-              click: function ($event) {
-                $event.preventDefault()
-                $event.stopPropagation()
-                return _vm.onPrev.apply(null, arguments)
+        _c("div", { staticClass: "amount" }, [
+          _vm._v(_vm._s(_vm.logs.length) + "件"),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "page-box" }, [
+          _c(
+            "a",
+            {
+              staticClass: "prev",
+              attrs: { href: "#" },
+              on: {
+                click: function ($event) {
+                  $event.preventDefault()
+                  $event.stopPropagation()
+                  return _vm.onPrev.apply(null, arguments)
+                },
               },
             },
-          },
-          [_c("i", { staticClass: "fas fa-chevron-left" })]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "next",
-            attrs: { href: "#" },
-            on: {
-              click: function ($event) {
-                $event.preventDefault()
-                $event.stopPropagation()
-                return _vm.onNext.apply(null, arguments)
+            [_c("i", { staticClass: "fas fa-chevron-left" })]
+          ),
+          _vm._v(" "),
+          _c("p", { staticClass: "total" }, [
+            _vm._v(_vm._s(_vm.currentPage) + " / " + _vm._s(_vm.totalPage)),
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "next",
+              attrs: { href: "#" },
+              on: {
+                click: function ($event) {
+                  $event.preventDefault()
+                  $event.stopPropagation()
+                  return _vm.onNext.apply(null, arguments)
+                },
               },
             },
-          },
-          [_c("i", { staticClass: "fas fa-chevron-right" })]
-        ),
-        _vm._v(" "),
-        _c("p", { staticClass: "total" }, [
-          _vm._v(_vm._s(_vm.currentPage) + " / " + _vm._s(_vm.totalPage)),
+            [_c("i", { staticClass: "fas fa-chevron-right" })]
+          ),
         ]),
       ]),
     ]),

@@ -1,7 +1,7 @@
 main.item-index {
   .card {
     .card-header {
-      display: flex;
+      display: none;
       justify-content: space-between;
       height: 40px;
       background-color: #dee2e6;
@@ -190,10 +190,14 @@ main.item-index {
               div.first-row {
                 p {
                   height: 100%;
+                  width: calc(100vw - 135px);
                   line-height: 33px;
                   color: #555;
                   font-size: 13px;
                   font-weight: bold;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
                 }
               }
               div.second-row {
@@ -251,6 +255,7 @@ main.item-index {
 main.item-index {
   .card {
     .card-header {
+      display: flex;
       height: 35px;
       background-color: transparent;
       .left-box {

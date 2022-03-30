@@ -44,9 +44,9 @@ body .wrapper h1, body .wrapper p {
 }
 body .wrapper .loader {
   min-width: 100vw;
-  min-height: calc(100vh - 50px);
-  bottom: 0;
-  background-color: #f4f6f9;
+  min-height: calc(100vh - 100px);
+  top: 50px;
+  background-color: #fff;
   position: fixed;
   z-index: 997;
 }
@@ -410,10 +410,9 @@ body .wrapper main {
   width: 100vw;
 }
 body .wrapper main:not(.login) .card {
-  min-height: calc(100vh - 50px);
-  padding-bottom: 50px;
+  height: calc(100vh - 150px);
   background-color: #fff;
-  overflow: hidden;
+  overflow: auto;
 }
 body .wrapper main:not(.login) .card h1.page-name {
   display: none;
@@ -452,13 +451,22 @@ body .wrapper main:not(.login) .card .pagination {
   position: fixed;
   bottom: 50px;
   height: 50px;
+  padding: 0 20px;
+  box-sizing: border-box;
   background-color: #007bff;
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   display: flex;
 }
-body .wrapper main:not(.login) .card .pagination a {
+body .wrapper main:not(.login) .card .pagination .amount {
+  color: #fff;
+}
+body .wrapper main:not(.login) .card .pagination .page-box {
+  display: flex;
+  align-items: center;
+}
+body .wrapper main:not(.login) .card .pagination .page-box a {
   width: 30px;
   height: 30px;
   text-align: center;
@@ -468,7 +476,7 @@ body .wrapper main:not(.login) .card .pagination a {
   color: #007bff;
   border-radius: 3px;
 }
-body .wrapper main:not(.login) .card .pagination p {
+body .wrapper main:not(.login) .card .pagination .page-box p {
   line-height: 30px;
   font-size: 14px;
   color: #fff;
@@ -517,6 +525,10 @@ body .wrapper footer {
 }
 
 @media screen and (min-width: 481px) {
+  body .wrapper .loader {
+    background-color: #f4f6f9;
+    min-height: calc(100vh - 50px);
+  }
   body .wrapper .modal-area .modal-contena {
     width: 70%;
     max-width: 600px;
@@ -583,13 +595,17 @@ body .wrapper footer {
   }
   body .wrapper main:not(.login) .card .pagination {
     position: initial;
+    justify-content: center;
     background-color: transparent;
     margin: 15px 0;
   }
-  body .wrapper main:not(.login) .card .pagination a {
+  body .wrapper main:not(.login) .card .pagination .amount {
+    display: none;
+  }
+  body .wrapper main:not(.login) .card .pagination .page-box a {
     border: 1px solid #bbb;
   }
-  body .wrapper main:not(.login) .card .pagination p {
+  body .wrapper main:not(.login) .card .pagination .page-box p {
     color: #666;
   }
   body .wrapper main:not(.login) .card.narrow {

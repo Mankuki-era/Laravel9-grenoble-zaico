@@ -40,9 +40,9 @@ body {
     //ローディング
     .loader {
       min-width: 100vw;
-      min-height: calc(100vh - 50px);
-      bottom: 0;
-      background-color: #f4f6f9;
+      min-height: calc(100vh - 100px);
+      top: 50px;
+      background-color: #fff;
       position: fixed;
       z-index: 997;
       .loading,
@@ -362,11 +362,9 @@ body {
     }
     main:not(.login) {
       .card {
-        // height: calc(100vh - 100px);
-        min-height: calc(100vh - 50px);
-        padding-bottom: 50px;
+        height: calc(100vh - 150px);
         background-color: #fff;
-        overflow: hidden;
+        overflow: auto;
         h1.page-name {
           display: none;
           margin: 0 0 35px;
@@ -408,28 +406,37 @@ body {
           position: fixed;
           bottom: 50px;
           height: 50px;
+          padding: 0 20px;
+          box-sizing: border-box;
           background-color: #007bff;
           width: 100%;
-          justify-content: center;
+          justify-content: space-between;
           align-items: center;
           display: flex;
           // margin: 15px 0;
-          a {
-            width: 30px;
-            height: 30px;
-            text-align: center;
-            font-size: 13px;
-            line-height: 30px;
-            // border: 1px solid #fff;
-            background-color: #fff;
-            color: #007bff;
-            border-radius: 3px;
-          }
-          p {
-            line-height: 30px;
-            font-size: 14px;
+          .amount {
             color: #fff;
-            margin: 0 13px;
+          }
+          .page-box {
+            display: flex;
+            align-items: center;
+            a {
+              width: 30px;
+              height: 30px;
+              text-align: center;
+              font-size: 13px;
+              line-height: 30px;
+              // border: 1px solid #fff;
+              background-color: #fff;
+              color: #007bff;
+              border-radius: 3px;
+            }
+            p {
+              line-height: 30px;
+              font-size: 14px;
+              color: #fff;
+              margin: 0 13px;
+            }
           }
         }
       }
@@ -485,6 +492,12 @@ body {
 @media screen and (min-width: 481px) {
   body {
     .wrapper {
+
+      // ローディング
+      .loader {
+        background-color: #f4f6f9;
+        min-height: calc(100vh - 50px);
+      }
 
       // モーダルウィンドウ
       .modal-area {
@@ -567,13 +580,19 @@ body {
           }
           .pagination {
             position: initial;
+            justify-content: center;
             background-color: transparent;
             margin: 15px 0;
-            a {
-              border: 1px solid #bbb;
+            .amount {
+              display: none;
             }
-            p {
-              color: #666;
+            .page-box {
+              a {
+                border: 1px solid #bbb;
+              }
+              p {
+                color: #666;
+              }
             }
           }
         }

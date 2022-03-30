@@ -80,9 +80,12 @@
         </div>
       </div>
       <div class="pagination">
-        <a href="#" class="prev" @click.prevent.stop="onPrev"><i class="fas fa-chevron-left"></i></a>
-        <p class="total">{{ currentPage }} / {{ totalPage }}</p>
-        <a href="#" class="next" @click.prevent.stop="onNext"><i class="fas fa-chevron-right"></i></a>
+        <div class="amount">{{ items.length }}件</div>
+        <div class="page-box">
+          <a href="#" class="prev" @click.prevent.stop="onPrev"><i class="fas fa-chevron-left"></i></a>
+          <p class="total">{{ currentPage }} / {{ totalPage }}</p>
+          <a href="#" class="next" @click.prevent.stop="onNext"><i class="fas fa-chevron-right"></i></a>
+        </div>
       </div>
     </div>
     <div class="bottom-header">

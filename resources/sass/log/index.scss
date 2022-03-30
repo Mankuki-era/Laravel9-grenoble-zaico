@@ -1,7 +1,7 @@
 main.log-index {
   .card {
     .card-header {
-      display: flex;
+      display: none;
       justify-content: space-between;
       height: 40px;
       background-color: #dee2e6;
@@ -93,10 +93,10 @@ main.log-index {
         div.thead, div.tbody {
           div.tr {
             display: flex;
-            height: 40px;
+            height: 50x;
             div.type, div.created_at, div.user_name {
               p {
-                line-height: 40px;
+                line-height: 50px;
                 color: #555;
                 font-size: 14px;
                 padding: 0 10px;
@@ -115,7 +115,7 @@ main.log-index {
         }
         div.thead {
           div.tr {
-            background-color: #ccc;
+            background-color: #eee;
             font-weight: bold;
             div.type, div.created_at {
               border-right: 1px solid #aaa;
@@ -131,7 +131,7 @@ main.log-index {
             }
             div.action {
               position: absolute;
-              min-height: 40px;
+              min-height: 50px;
               min-width: 100vw;
               left: 0;
             }
@@ -149,6 +149,7 @@ main.log-index {
   main.log-index {
     .card {
       .card-header {
+        display: flex;
         height: 35px;
         background-color: transparent;
         .left-box {
