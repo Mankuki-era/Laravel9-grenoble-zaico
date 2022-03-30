@@ -410,8 +410,8 @@ body .wrapper main {
   width: 100vw;
 }
 body .wrapper main:not(.login) .card {
-  position: fixed;
-  height: calc(100vh - 150px);
+  height: 200px;
+  padding-top: 50px;
   background-color: #fff;
   overflow: auto;
 }

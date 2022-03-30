@@ -19,7 +19,7 @@
   <!-- Styles -->
   <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
   <link href="{{ mix('css/share.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/auth/login.css') }}" rel="stylesheet">
+  <link href="{{ mix('css/auth/login.css') }}" rel="stylesheet">
   <link href="{{ asset('css/item/index.css') }}" rel="stylesheet">
   <link href="{{ asset('css/log/index.css') }}" rel="stylesheet">
   <link href="{{ asset('css/stock/index.css') }}" rel="stylesheet">
