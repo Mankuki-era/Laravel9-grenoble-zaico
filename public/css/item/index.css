@@ -73,9 +73,6 @@ main.item-index .card .card-header .right-box ul.link-box > li:not(:first-of-typ
 main.item-index .card .card-header .right-box ul.link-box .plus-icon, main.item-index .card .card-header .right-box ul.link-box .trash-icon {
   margin-right: 3px;
 }
-main.item-index .card .card-main table {
-  display: none;
-}
 main.item-index .card .card-main table thead tr th.favorite {
   padding: 0;
 }
@@ -133,19 +130,10 @@ main.item-index .card .card-main table tbody tr td.action a.destroy {
   border-bottom-right-radius: 2px;
   background-color: #dc3545;
 }
-main.item-index .card .card-main div.table {
-  display: block;
-}
-main.item-index .card .card-main div.table div.tbody div.tr {
-  display: flex;
-  height: 50px;
-  border-top: 1px solid #ccc;
-  position: relative;
-}
 main.item-index .card .card-main div.table div.tbody div.tr div.favorite {
   width: 40px;
   text-align: center;
-  line-height: 50px;
+  line-height: 55px;
   border-right: 1px solid #ccc;
 }
 main.item-index .card .card-main div.table div.tbody div.tr div.favorite a {
@@ -186,7 +174,7 @@ main.item-index .card .card-main div.table div.tbody div.tr div.item-info div.se
 }
 main.item-index .card .card-main div.table div.tbody div.tr div.item-info div.second-row p {
   color: #555;
-  line-height: 10px;
+  line-height: 15px;
   font-size: 12px;
 }
 main.item-index .card .card-main div.table div.tbody div.tr div.item-info div.second-row p:not(:first-of-type) {
@@ -197,14 +185,14 @@ main.item-index .card .card-main div.table div.tbody div.tr div.item-stocks {
   border-right: 1px solid #ccc;
 }
 main.item-index .card .card-main div.table div.tbody div.tr div.item-stocks p {
-  line-height: 50px;
+  line-height: 55px;
   color: #555;
   font-size: 18px;
   text-align: center;
 }
 main.item-index .card .card-main div.table div.tbody div.tr div.action {
   position: absolute;
-  min-height: 50px;
+  min-height: 55px;
   min-width: calc(100vw - 90px);
   right: 40px;
 }
@@ -218,11 +206,8 @@ main.item-index .card .card-main div.table div.tbody div.tr div.item-destroy li 
   display: block;
   color: #555;
   font-size: 16px;
-  line-height: 50px;
+  line-height: 55px;
   text-align: center;
-}
-main.item-index .card .card-main div.table div.tbody div.tr:last-of-type {
-  border-bottom: 1px solid #ccc;
 }
 
 @media screen and (min-width: 481px) {
@@ -236,11 +221,5 @@ main.item-index .card .card-main div.table div.tbody div.tr:last-of-type {
   }
   main.item-index .card .card-header .right-box {
     display: block;
-  }
-  main.item-index .card .card-main table {
-    display: table;
-  }
-  main.item-index .card .card-main div.table {
-    display: none;
   }
 }

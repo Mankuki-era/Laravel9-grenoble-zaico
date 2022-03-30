@@ -51,7 +51,6 @@ main.log-index {
     }
     .card-main {
       table {
-        display: none;
         thead {
           tr {
             th.type {
@@ -89,14 +88,11 @@ main.log-index {
         }
       }
       div.table {
-        display: block;
         div.thead, div.tbody {
           div.tr {
-            display: flex;
-            height: 50x;
             div.type, div.created_at, div.user_name {
               p {
-                line-height: 50px;
+                line-height: 55px;
                 color: #555;
                 font-size: 14px;
                 padding: 0 10px;
@@ -124,20 +120,15 @@ main.log-index {
         }
         div.tbody {
           div.tr {
-            border-top: 1px solid #ccc;
-            position: relative;
             div.type, div.created_at {
               border-right: 1px solid #bbb;
             }
             div.action {
               position: absolute;
-              min-height: 50px;
+              min-height: 55px;
               min-width: 100vw;
               left: 0;
             }
-          }
-          div.tr:last-of-type {
-            border-bottom: 1px solid #ccc;
           }
         }
       }
@@ -159,14 +150,6 @@ main.log-index {
         }
         .right-box {
           display: block;
-        }
-      }
-      .card-main {
-        table {
-          display: table;
-        }
-        div.table {
-          display: none;
         }
       }
     }

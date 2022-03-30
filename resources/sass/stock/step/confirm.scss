@@ -1,21 +1,22 @@
 .stock-confirm {
   position: relative;
   .card-main {
-    margin-bottom: 20px;
+    margin-bottom: 20px !important;
     h1 {
-      font-size: 25px;
+      font-size: 20px;
       text-align: center;
       color: #333;
-      width: 150px;
-      margin: 50px auto;
+      width: 120px;
+      margin: 20px auto;
       border-bottom: 1px solid #666;
     }
     .date {
       color: #333;
       border-bottom: 1px solid #666;
       margin-bottom: 10px;
-      width: 160px;
-      font-size: 15px;
+      margin-left: 15px;
+      width: 125px;
+      font-size: 13px;
       text-align: center;
     }
     table {
@@ -27,6 +28,87 @@
       thead {
         tr {
           background-color: #ddd;
+        }
+      }
+    }
+    div.table {
+      div.thead, div.tbody {
+        div.tr {
+          .no, .item-info, .item-stocks {
+            border-right: 1px solid #ccc;
+          }
+          div.no {
+            width: 40px;
+          }
+          div.item-info {
+            flex: 1;
+          }
+          div.item-stocks {
+            width: 70px;
+          }
+          div.item-amount {
+            width: 40px;
+          }
+        }
+      }
+      div.thead {
+        div.tr {
+          div {
+            font-size: 14px;
+          }
+        }
+      }
+      div.tbody {
+        div.tr {
+          div.no {
+            text-align: center;
+            line-height: 55px;
+          }
+          div.item-info {
+            display: flex;
+            flex-direction: column;
+            padding-left: 15px;
+            div.first-row {
+              p {
+                height: 100%;
+                width: calc(100vw - 135px);
+                line-height: 33px;
+                color: #555;
+                font-size: 13px;
+                font-weight: bold;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+              }
+            }
+            div.second-row {
+              display: flex;
+              p {
+                color: #555;
+                line-height: 15px;
+                font-size: 12px;
+              }
+              p:not(:first-of-type){
+                margin-left: 15px;
+              }
+            }
+          }
+          div.item-stocks {
+            p {
+              line-height: 55px;
+              color: #555;
+              font-size: 14px;
+              text-align: center;
+            }
+          }
+          div.item-amount {
+            p {
+              line-height: 55px;
+              color: #555;
+              font-size: 14px;
+              text-align: center;
+            }
+          }
         }
       }
     }
@@ -103,4 +185,93 @@
   .sub-loader.none {
     display: none;
   }
+}
+
+@media screen and (min-width: 481px) {
+.stock-confirm {
+  .card-main {
+    margin-bottom: 20px !important;
+    h1 {
+      font-size: 25px;
+      width: 150px;
+      margin: 50px auto;
+    }
+    .date {
+      width: 160px;
+      font-size: 15px;
+    }
+  }
+  //ローディング
+  .sub-loader {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background-color: #fff;
+    opacity: .8;
+    z-index: 1;
+    .loading,
+    .loading::before,
+    .loading::after {
+      background: #e95884;
+      -webkit-animation: load1 1s infinite ease-in-out;
+      animation: load1 1s infinite ease-in-out;
+      width: 1em;
+      height: 4em;
+    }
+    .loading {
+      color: #e95884;
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      font-size: 10px;
+      -webkit-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+      transform: translateZ(0);
+      -webkit-animation-delay: -0.16s;
+      animation-delay: -0.16s;
+    }
+    .loading::before,
+    .loading::after {
+      position: fixed;
+      top: 0;
+      content: '';
+    }
+    .loading::before {
+      left: -1.5em;
+      -webkit-animation-delay: -0.32s;
+      animation-delay: -0.32s;
+    }
+    .loading::after {
+      left: 1.5em;
+    }
+    @-webkit-keyframes load1 {
+      0%,
+      80%,
+      100% {
+        box-shadow: 0 0;
+        height: 4em;
+      }
+      40% {
+        box-shadow: 0 -2em;
+        height: 5em;
+      }
+    }
+    @keyframes load1 {
+      0%,
+      80%,
+      100% {
+        box-shadow: 0 0;
+        height: 4em;
+      }
+      40% {
+        box-shadow: 0 -2em;
+        height: 5em;
+      }
+    }
+  }
+  .sub-loader.none {
+    display: none;
+  }
+}
 }

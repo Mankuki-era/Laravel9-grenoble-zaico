@@ -23,6 +23,37 @@
           </tr>
         </tbody>
       </table>
+      <div class="table">
+        <div class="thead">
+          <div class="tr">
+            <div class="no"><p>No.</p></div>
+            <div class="item-info"><p>教材</p></div>
+            <div class="item-stocks"><p>在庫数</p></div>
+            <div class="item-amount"><p>{{ type }}数量</p></div>
+          </div>
+        </div>
+        <div class="tbody">
+          <div class="tr" v-for="(item, index) in itemData" :key="item.id">
+            <div class="no">
+              <p>{{ index + 1 }}</p>
+            </div>
+            <div class="item-info">
+              <div class="first-row">
+                <p>{{ item.name }}</p>
+              </div>
+              <div class="second-row">
+                <p>¥ {{ formatNum(item.price) }}</p>
+              </div>
+            </div>
+            <div class="item-stocks">
+              <p>{{ stockString(index) }}</p>
+            </div>
+            <div class="item-amount">
+              <p>{{ formatNum(item.amount) }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="sub-loader" v-bind:class="{none: noneFlag}">
       <div class="loading"></div>

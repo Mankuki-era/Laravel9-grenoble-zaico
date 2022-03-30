@@ -5,12 +5,14 @@ main.stock {
       margin-bottom: 50px !important;
     }
     .step-box {
-      position: absolute;
-      top: 45px;
+      position: fixed;
+      background-color: #fff;
+      z-index: 6;
+      top: 55px;
       left: 50%;
-      transform: translateX(-50%);
-      -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
+      transform: translateX(-50%) scale(.8);
+      -webkit-transform: translateX(-50%) scale(.8);
+      -ms-transform: translateX(-50%) scale(.8);
       display: flex;
       justify-content: center;
       .icon-box {
@@ -125,99 +127,12 @@ main.stock {
 @media screen and (min-width: 481px) {
 main.stock {
   .card {
-    position: relative;
-    h1.page-name {
-      margin-bottom: 50px !important;
-    }
     .step-box {
       position: absolute;
       top: 45px;
-      left: 50%;
-      transform: translateX(-50%);
-      -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-      display: flex;
-      justify-content: center;
-      .icon-box {
-        width: 25px;
-        div {
-          width: 25px;
-          height: 25px;
-          border-radius: 50%;
-          background-color: #aaa;
-        }
-        div.current {
-          border: 6px solid #007bff;
-          box-sizing: border-box;
-          background-color: #fff;
-        }
-        div.check {
-          border: none;
-          background-color: #007bff;
-          text-align: center;
-          color: #fff;
-          line-height: 25px;
-        }
-        p {
-          font-size: 12px;
-          margin-top: 5px;
-          color: #888;
-          font-weight: bold;
-        }
-        p.check {
-          color: #007bff;
-        }
-      }
-      .bar-box {
-        width: 130px;
-        position: relative;
-        div {
-          position: absolute;
-          height: 3px;
-          top: 12px;
-          width: 130px;
-          background-color: #aaa;
-        }
-        .check {
-          background-color: #007bff;
-        }
-        .check.go {
-          background-color: #aaa;
-        }
-        .check.back {
-          background-color: #aaa;
-        }
-        div.animation-bar {
-          opacity: 0;
-          background-color: #007bff;
-        }
-        div.animation-bar.go {
-          opacity: 1;
-          animation: barGo 1s forwards;
-        }
-        div.animation-bar.back {
-          opacity: 1;
-          animation: barBack 1s forwards;
-        }
-        @keyframes barGo{
-          0% {
-            opacity: 1;
-            width: 0;
-          }
-          100% {
-            opacity: 1;
-            width: 130px;
-          }
-        }
-        @keyframes barBack{
-          0% {
-            width: 130px;
-          }
-          100% {
-            width: 0;
-          }
-        }
-      }
+      transform: translateX(-50%) scale(1);
+      -webkit-transform: translateX(-50%) scale(1);
+      -ms-transform: translateX(-50%) scale(1);
     }
     ul.page-button {
       display: flex;

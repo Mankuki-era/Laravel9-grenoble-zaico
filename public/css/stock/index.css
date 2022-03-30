@@ -5,12 +5,14 @@ main.stock .card h1.page-name {
   margin-bottom: 50px !important;
 }
 main.stock .card .step-box {
-  position: absolute;
-  top: 45px;
+  position: fixed;
+  background-color: #fff;
+  z-index: 6;
+  top: 55px;
   left: 50%;
-  transform: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
+  transform: translateX(-50%) scale(0.8);
+  -webkit-transform: translateX(-50%) scale(0.8);
+  -ms-transform: translateX(-50%) scale(0.8);
   display: flex;
   justify-content: center;
 }
@@ -139,121 +141,12 @@ main.stock .card ul.page-button li:not(:first-of-type) {
 }
 
 @media screen and (min-width: 481px) {
-  main.stock .card {
-    position: relative;
-  }
-  main.stock .card h1.page-name {
-    margin-bottom: 50px !important;
-  }
   main.stock .card .step-box {
     position: absolute;
     top: 45px;
-    left: 50%;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-  }
-  main.stock .card .step-box .icon-box {
-    width: 25px;
-  }
-  main.stock .card .step-box .icon-box div {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background-color: #aaa;
-  }
-  main.stock .card .step-box .icon-box div.current {
-    border: 6px solid #007bff;
-    box-sizing: border-box;
-    background-color: #fff;
-  }
-  main.stock .card .step-box .icon-box div.check {
-    border: none;
-    background-color: #007bff;
-    text-align: center;
-    color: #fff;
-    line-height: 25px;
-  }
-  main.stock .card .step-box .icon-box p {
-    font-size: 12px;
-    margin-top: 5px;
-    color: #888;
-    font-weight: bold;
-  }
-  main.stock .card .step-box .icon-box p.check {
-    color: #007bff;
-  }
-  main.stock .card .step-box .bar-box {
-    width: 130px;
-    position: relative;
-  }
-  main.stock .card .step-box .bar-box div {
-    position: absolute;
-    height: 3px;
-    top: 12px;
-    width: 130px;
-    background-color: #aaa;
-  }
-  main.stock .card .step-box .bar-box .check {
-    background-color: #007bff;
-  }
-  main.stock .card .step-box .bar-box .check.go {
-    background-color: #aaa;
-  }
-  main.stock .card .step-box .bar-box .check.back {
-    background-color: #aaa;
-  }
-  main.stock .card .step-box .bar-box div.animation-bar {
-    opacity: 0;
-    background-color: #007bff;
-  }
-  main.stock .card .step-box .bar-box div.animation-bar.go {
-    opacity: 1;
-    -webkit-animation: barGo 1s forwards;
-            animation: barGo 1s forwards;
-  }
-  main.stock .card .step-box .bar-box div.animation-bar.back {
-    opacity: 1;
-    -webkit-animation: barBack 1s forwards;
-            animation: barBack 1s forwards;
-  }
-  @-webkit-keyframes barGo {
-    0% {
-      opacity: 1;
-      width: 0;
-    }
-    100% {
-      opacity: 1;
-      width: 130px;
-    }
-  }
-  @keyframes barGo {
-    0% {
-      opacity: 1;
-      width: 0;
-    }
-    100% {
-      opacity: 1;
-      width: 130px;
-    }
-  }
-  @-webkit-keyframes barBack {
-    0% {
-      width: 130px;
-    }
-    100% {
-      width: 0;
-    }
-  }
-  @keyframes barBack {
-    0% {
-      width: 130px;
-    }
-    100% {
-      width: 0;
-    }
+    transform: translateX(-50%) scale(1);
+    -webkit-transform: translateX(-50%) scale(1);
+    -ms-transform: translateX(-50%) scale(1);
   }
   main.stock .card ul.page-button {
     display: flex;

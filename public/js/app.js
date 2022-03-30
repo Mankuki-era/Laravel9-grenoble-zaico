@@ -8293,6 +8293,9 @@ module.exports = {
 
         _this.fields.animationFlag = true;
       }, 300);
+      setTimeout(function () {
+        _this.fields.animationFlag = false;
+      }, 2800);
     }
   }
 };
@@ -9254,6 +9257,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['type', 'data'],
   initData: function initData() {
@@ -9346,6 +9380,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -14430,6 +14477,53 @@ var render = function () {
           0
         ),
       ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "table" }, [
+        _c("div", { staticClass: "thead" }, [
+          _c("div", { staticClass: "tr" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _c("div", { staticClass: "item-amount" }, [
+              _c("p", [_vm._v(_vm._s(_vm.type) + "数量")]),
+            ]),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "tbody" },
+          _vm._l(_vm.itemData, function (item, index) {
+            return _c("div", { key: item.id, staticClass: "tr" }, [
+              _c("div", { staticClass: "no" }, [
+                _c("p", [_vm._v(_vm._s(index + 1))]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "item-info" }, [
+                _c("div", { staticClass: "first-row" }, [
+                  _c("p", [_vm._v(_vm._s(item.name))]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "second-row" }, [
+                  _c("p", [_vm._v("¥ " + _vm._s(_vm.formatNum(item.price)))]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "item-stocks" }, [
+                _c("p", [_vm._v(_vm._s(_vm.stockString(index)))]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "item-amount" }, [
+                _c("p", [_vm._v(_vm._s(_vm.formatNum(item.amount)))]),
+              ]),
+            ])
+          }),
+          0
+        ),
+      ]),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "sub-loader", class: { none: _vm.noneFlag } }, [
@@ -14475,7 +14569,28 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "no" }, [_c("p", [_vm._v("No.")])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "item-info" }, [_c("p", [_vm._v("教材")])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "item-stocks" }, [
+      _c("p", [_vm._v("在庫数")]),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -14812,40 +14927,46 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "pagination" }, [
-      _c(
-        "a",
-        {
-          staticClass: "prev",
-          attrs: { href: "#" },
-          on: {
-            click: function ($event) {
-              $event.preventDefault()
-              $event.stopPropagation()
-              return _vm.onPrev.apply(null, arguments)
+      _c("div", { staticClass: "amount" }, [
+        _vm._v(_vm._s(_vm.items.length) + "件"),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "page-box" }, [
+        _c(
+          "a",
+          {
+            staticClass: "prev",
+            attrs: { href: "#" },
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                $event.stopPropagation()
+                return _vm.onPrev.apply(null, arguments)
+              },
             },
           },
-        },
-        [_c("i", { staticClass: "fas fa-chevron-left" })]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "next",
-          attrs: { href: "#" },
-          on: {
-            click: function ($event) {
-              $event.preventDefault()
-              $event.stopPropagation()
-              return _vm.onNext.apply(null, arguments)
+          [_c("i", { staticClass: "fas fa-chevron-left" })]
+        ),
+        _vm._v(" "),
+        _c("p", { staticClass: "total" }, [
+          _vm._v(_vm._s(_vm.currentPage) + " / " + _vm._s(_vm.totalPage)),
+        ]),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "next",
+            attrs: { href: "#" },
+            on: {
+              click: function ($event) {
+                $event.preventDefault()
+                $event.stopPropagation()
+                return _vm.onNext.apply(null, arguments)
+              },
             },
           },
-        },
-        [_c("i", { staticClass: "fas fa-chevron-right" })]
-      ),
-      _vm._v(" "),
-      _c("p", { staticClass: "total" }, [
-        _vm._v(_vm._s(_vm.currentPage) + " / " + _vm._s(_vm.totalPage)),
+          [_c("i", { staticClass: "fas fa-chevron-right" })]
+        ),
       ]),
     ]),
     _vm._v(" "),
@@ -14880,6 +15001,66 @@ var render = function () {
               [_vm._m(1), _c("span", [_vm._v("教材一覧へ")])]
             ),
           ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.items.length > 0,
+                  expression: "items.length > 0",
+                },
+              ],
+              staticClass: "form-contena",
+            },
+            [
+              _c("div", { staticClass: "form-box" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.mode,
+                      expression: "mode",
+                    },
+                  ],
+                  attrs: { type: "radio", id: "in", value: "入庫" },
+                  domProps: { checked: _vm._q(_vm.mode, "入庫") },
+                  on: {
+                    change: function ($event) {
+                      _vm.mode = "入庫"
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "in" } }, [_vm._v("入庫")]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-box" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.mode,
+                      expression: "mode",
+                    },
+                  ],
+                  attrs: { type: "radio", id: "out", value: "出庫" },
+                  domProps: { checked: _vm._q(_vm.mode, "出庫") },
+                  on: {
+                    change: function ($event) {
+                      _vm.mode = "出庫"
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "out" } }, [_vm._v("出庫")]),
+              ]),
+            ]
+          ),
           _vm._v(" "),
           _c(
             "li",

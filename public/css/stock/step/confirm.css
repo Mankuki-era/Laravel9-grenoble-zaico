@@ -2,22 +2,23 @@
   position: relative;
 }
 .stock-confirm .card-main {
-  margin-bottom: 20px;
+  margin-bottom: 20px !important;
 }
 .stock-confirm .card-main h1 {
-  font-size: 25px;
+  font-size: 20px;
   text-align: center;
   color: #333;
-  width: 150px;
-  margin: 50px auto;
+  width: 120px;
+  margin: 20px auto;
   border-bottom: 1px solid #666;
 }
 .stock-confirm .card-main .date {
   color: #333;
   border-bottom: 1px solid #666;
   margin-bottom: 10px;
-  width: 160px;
-  font-size: 15px;
+  margin-left: 15px;
+  width: 125px;
+  font-size: 13px;
   text-align: center;
 }
 .stock-confirm .card-main table th, .stock-confirm .card-main table td {
@@ -27,6 +28,67 @@
 }
 .stock-confirm .card-main table thead tr {
   background-color: #ddd;
+}
+.stock-confirm .card-main div.table div.thead div.tr .no, .stock-confirm .card-main div.table div.thead div.tr .item-info, .stock-confirm .card-main div.table div.thead div.tr .item-stocks, .stock-confirm .card-main div.table div.tbody div.tr .no, .stock-confirm .card-main div.table div.tbody div.tr .item-info, .stock-confirm .card-main div.table div.tbody div.tr .item-stocks {
+  border-right: 1px solid #ccc;
+}
+.stock-confirm .card-main div.table div.thead div.tr div.no, .stock-confirm .card-main div.table div.tbody div.tr div.no {
+  width: 40px;
+}
+.stock-confirm .card-main div.table div.thead div.tr div.item-info, .stock-confirm .card-main div.table div.tbody div.tr div.item-info {
+  flex: 1;
+}
+.stock-confirm .card-main div.table div.thead div.tr div.item-stocks, .stock-confirm .card-main div.table div.tbody div.tr div.item-stocks {
+  width: 70px;
+}
+.stock-confirm .card-main div.table div.thead div.tr div.item-amount, .stock-confirm .card-main div.table div.tbody div.tr div.item-amount {
+  width: 40px;
+}
+.stock-confirm .card-main div.table div.thead div.tr div {
+  font-size: 14px;
+}
+.stock-confirm .card-main div.table div.tbody div.tr div.no {
+  text-align: center;
+  line-height: 55px;
+}
+.stock-confirm .card-main div.table div.tbody div.tr div.item-info {
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+}
+.stock-confirm .card-main div.table div.tbody div.tr div.item-info div.first-row p {
+  height: 100%;
+  width: calc(100vw - 135px);
+  line-height: 33px;
+  color: #555;
+  font-size: 13px;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.stock-confirm .card-main div.table div.tbody div.tr div.item-info div.second-row {
+  display: flex;
+}
+.stock-confirm .card-main div.table div.tbody div.tr div.item-info div.second-row p {
+  color: #555;
+  line-height: 15px;
+  font-size: 12px;
+}
+.stock-confirm .card-main div.table div.tbody div.tr div.item-info div.second-row p:not(:first-of-type) {
+  margin-left: 15px;
+}
+.stock-confirm .card-main div.table div.tbody div.tr div.item-stocks p {
+  line-height: 55px;
+  color: #555;
+  font-size: 14px;
+  text-align: center;
+}
+.stock-confirm .card-main div.table div.tbody div.tr div.item-amount p {
+  line-height: 55px;
+  color: #555;
+  font-size: 14px;
+  text-align: center;
 }
 .stock-confirm .sub-loader {
   position: absolute;
@@ -92,4 +154,84 @@
 }
 .stock-confirm .sub-loader.none {
   display: none;
+}
+
+@media screen and (min-width: 481px) {
+  .stock-confirm .card-main {
+    margin-bottom: 20px !important;
+  }
+  .stock-confirm .card-main h1 {
+    font-size: 25px;
+    width: 150px;
+    margin: 50px auto;
+  }
+  .stock-confirm .card-main .date {
+    width: 160px;
+    font-size: 15px;
+  }
+  .stock-confirm .sub-loader {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background-color: #fff;
+    opacity: 0.8;
+    z-index: 1;
+  }
+  .stock-confirm .sub-loader .loading,
+.stock-confirm .sub-loader .loading::before,
+.stock-confirm .sub-loader .loading::after {
+    background: #e95884;
+    -webkit-animation: load1 1s infinite ease-in-out;
+    animation: load1 1s infinite ease-in-out;
+    width: 1em;
+    height: 4em;
+  }
+  .stock-confirm .sub-loader .loading {
+    color: #e95884;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    font-size: 10px;
+    transform: translateZ(0);
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+  }
+  .stock-confirm .sub-loader .loading::before,
+.stock-confirm .sub-loader .loading::after {
+    position: fixed;
+    top: 0;
+    content: "";
+  }
+  .stock-confirm .sub-loader .loading::before {
+    left: -1.5em;
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+  }
+  .stock-confirm .sub-loader .loading::after {
+    left: 1.5em;
+  }
+  @-webkit-keyframes load1 {
+    0%, 80%, 100% {
+      box-shadow: 0 0;
+      height: 4em;
+    }
+    40% {
+      box-shadow: 0 -2em;
+      height: 5em;
+    }
+  }
+  @keyframes load1 {
+    0%, 80%, 100% {
+      box-shadow: 0 0;
+      height: 4em;
+    }
+    40% {
+      box-shadow: 0 -2em;
+      height: 5em;
+    }
+  }
+  .stock-confirm .sub-loader.none {
+    display: none;
+  }
 }

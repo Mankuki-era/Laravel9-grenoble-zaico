@@ -70,13 +70,26 @@
       </div>
     </div>
     <div class="pagination">
-      <a href="#" class="prev" @click.prevent.stop="onPrev"><i class="fas fa-chevron-left"></i></a>
-      <a href="#" class="next" @click.prevent.stop="onNext"><i class="fas fa-chevron-right"></i></a>
-      <p class="total">{{ currentPage }} / {{ totalPage }}</p>
+      <div class="amount">{{ items.length }}件</div>
+      <div class="page-box">
+        <a href="#" class="prev" @click.prevent.stop="onPrev"><i class="fas fa-chevron-left"></i></a>
+        <p class="total">{{ currentPage }} / {{ totalPage }}</p>
+        <a href="#" class="next" @click.prevent.stop="onNext"><i class="fas fa-chevron-right"></i></a>
+      </div>
     </div>
     <div class="bottom-header">
       <ul class="link-box" v-show="this.$route.path !== '/login'">
         <li><a href="" @click.prevent.stop="backPage"><span><i class="fa-solid fa-circle-chevron-left"></i></span><span>教材一覧へ</span></a></li>
+        <div class="form-contena" v-show="items.length > 0">
+          <div class="form-box">
+            <input type="radio" id="in" value="入庫" v-model="mode">
+            <label for="in">入庫</label>
+          </div>
+          <div class="form-box">
+            <input type="radio" id="out" value="出庫" v-model="mode">
+            <label for="out">出庫</label>
+          </div>
+        </div>
         <li v-show="items.length > 0"><a href="" @click.prevent.stop="forwardPage"><span><i class="fa-solid fa-circle-chevron-right"></i></span><span>確認画面へ</span></a></li>
       </ul>
     </div>

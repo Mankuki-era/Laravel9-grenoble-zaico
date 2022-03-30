@@ -362,7 +362,8 @@ body {
     }
     main:not(.login) {
       .card {
-        height: calc(100vh - 150px);
+        height: calc(100vh - 200px);
+        padding-top: 50px;
         background-color: #fff;
         overflow: auto;
         h1.page-name {
@@ -375,6 +376,7 @@ body {
         .card-main {
           margin: 0;
           table {
+            display: none;
             border-collapse: collapse;
             width: 100%;
             border: 1px solid #ccc;
@@ -401,8 +403,23 @@ body {
               }
             }
           }
-          .table {
+          div.table {
+            display: block;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            .thead {
+              div.tr {
+                display: flex;
+                height: 55px;
+              }
+            }
             .tbody {
+              div.tr {
+                display: flex;
+                height: 55px;
+                border-top: 1px solid #ccc;
+                position: relative;
+              }
               .no-data {
                 position: fixed;
                 width: 100vw;
@@ -592,6 +609,12 @@ body {
           }
           .card-main {
             margin-top: 10px;
+            table {
+              display: table;
+            }
+            div.table {
+              display: none;
+            }
           }
           .pagination {
             position: initial;

@@ -43,9 +43,6 @@ main.log-index .card .card-header .right-box ul li a.second {
 main.log-index .card .card-header .right-box ul li a.second .reload-icon {
   margin-right: 5px;
 }
-main.log-index .card .card-main table {
-  display: none;
-}
 main.log-index .card .card-main table thead tr th.type {
   width: 45px;
 }
@@ -73,15 +70,8 @@ main.log-index .card .card-main table tbody tr td.action a .glass-icon {
   font-size: 11px;
   color: #fff;
 }
-main.log-index .card .card-main div.table {
-  display: block;
-}
-main.log-index .card .card-main div.table div.thead div.tr, main.log-index .card .card-main div.table div.tbody div.tr {
-  display: flex;
-  height: 50x;
-}
 main.log-index .card .card-main div.table div.thead div.tr div.type p, main.log-index .card .card-main div.table div.thead div.tr div.created_at p, main.log-index .card .card-main div.table div.thead div.tr div.user_name p, main.log-index .card .card-main div.table div.tbody div.tr div.type p, main.log-index .card .card-main div.table div.tbody div.tr div.created_at p, main.log-index .card .card-main div.table div.tbody div.tr div.user_name p {
-  line-height: 50px;
+  line-height: 55px;
   color: #555;
   font-size: 14px;
   padding: 0 10px;
@@ -102,21 +92,14 @@ main.log-index .card .card-main div.table div.thead div.tr {
 main.log-index .card .card-main div.table div.thead div.tr div.type, main.log-index .card .card-main div.table div.thead div.tr div.created_at {
   border-right: 1px solid #aaa;
 }
-main.log-index .card .card-main div.table div.tbody div.tr {
-  border-top: 1px solid #ccc;
-  position: relative;
-}
 main.log-index .card .card-main div.table div.tbody div.tr div.type, main.log-index .card .card-main div.table div.tbody div.tr div.created_at {
   border-right: 1px solid #bbb;
 }
 main.log-index .card .card-main div.table div.tbody div.tr div.action {
   position: absolute;
-  min-height: 50px;
+  min-height: 55px;
   min-width: 100vw;
   left: 0;
-}
-main.log-index .card .card-main div.table div.tbody div.tr:last-of-type {
-  border-bottom: 1px solid #ccc;
 }
 
 @media screen and (min-width: 481px) {
@@ -130,11 +113,5 @@ main.log-index .card .card-main div.table div.tbody div.tr:last-of-type {
   }
   main.log-index .card .card-header .right-box {
     display: block;
-  }
-  main.log-index .card .card-main table {
-    display: table;
-  }
-  main.log-index .card .card-main div.table {
-    display: none;
   }
 }

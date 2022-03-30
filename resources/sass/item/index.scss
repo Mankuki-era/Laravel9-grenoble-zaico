@@ -83,7 +83,6 @@ main.item-index {
     }
     .card-main {
       table {
-        display: none;
         thead {
           tr {
             th.favorite {
@@ -153,17 +152,12 @@ main.item-index {
         }
       }
       div.table {
-        display: block;
         div.tbody {
           div.tr {
-            display: flex;
-            height: 50px;
-            border-top: 1px solid #ccc;
-            position: relative;
             div.favorite {
               width: 40px;
               text-align: center;
-              line-height: 50px;
+              line-height: 55px;
               border-right: 1px solid #ccc;
               a {
                 font-size: 16px;
@@ -204,7 +198,7 @@ main.item-index {
                 display: flex;
                 p {
                   color: #555;
-                  line-height: 10px;
+                  line-height: 15px;
                   font-size: 12px;
                 }
                 p:not(:first-of-type){
@@ -216,7 +210,7 @@ main.item-index {
               width: 40px;
               border-right: 1px solid #ccc;
               p {
-                line-height: 50px;
+                line-height: 55px;
                 color: #555;
                 font-size: 18px;
                 text-align: center;
@@ -224,7 +218,7 @@ main.item-index {
             }
             div.action {
               position: absolute;
-              min-height: 50px;
+              min-height: 55px;
               min-width: calc(100vw - 90px);
               right: 40px;
             }
@@ -236,14 +230,11 @@ main.item-index {
                   display: block;
                   color: #555;
                   font-size: 16px;
-                  line-height: 50px;
+                  line-height: 55px;
                   text-align: center;
                 }
               }
             }
-          }
-          div.tr:last-of-type {
-            border-bottom: 1px solid #ccc;
           }
         }
       }
@@ -265,14 +256,6 @@ main.item-index {
       }
       .right-box {
         display: block;
-      }
-    }
-    .card-main {
-      table {
-        display: table;
-      }
-      div.table {
-        display: none;
       }
     }
   }

@@ -35,6 +35,9 @@ module.exports = {
         }
         this.fields.animationFlag = true;
       }, 300);
+      setTimeout(() => {
+        this.fields.animationFlag = false;
+      }, 2800);
     },
   }
 }
