@@ -363,7 +363,7 @@ body {
     main:not(.login) {
       .card {
         position: fixed;
-        height: calc(100vh - 450px);
+        height: 460px;
         background-color: #fff;
         overflow: auto;
         h1.page-name {
