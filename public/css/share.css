@@ -447,6 +447,17 @@ body .wrapper main:not(.login) .card .card-main table thead tr {
 body .wrapper main:not(.login) .card .card-main table tbody tr:not(:first-of-type) {
   border-top: 1px solid #dee2e6;
 }
+body .wrapper main:not(.login) .card .card-main .table .tbody .no-data {
+  position: fixed;
+  width: 100vw;
+  height: calc(100vh - 150px);
+  top: 50px;
+}
+body .wrapper main:not(.login) .card .card-main .table .tbody .no-data p {
+  text-align: center;
+  color: #555;
+  line-height: calc(100vh - 150px);
+}
 body .wrapper main:not(.login) .card .pagination {
   position: fixed;
   bottom: 50px;

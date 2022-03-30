@@ -7769,6 +7769,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   initData: function initData() {
     return {
@@ -7914,6 +7917,9 @@ var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
 //
 //
 //
@@ -12663,115 +12669,141 @@ var render = function () {
           _c(
             "div",
             { staticClass: "tbody" },
-            _vm._l(_vm.filterItems, function (item, index) {
-              return _c("div", { key: item.id, staticClass: "tr" }, [
-                _c("div", { staticClass: "favorite" }, [
-                  _c(
-                    "a",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: item.favorite === "0",
-                          expression: "item.favorite === '0'",
-                        },
-                      ],
-                      class: { auth: !_vm.adminFlag },
-                      attrs: { href: "" },
-                      on: {
-                        click: function ($event) {
-                          $event.preventDefault()
-                          $event.stopPropagation()
-                          return _vm.favoriteEvent(item.id, "1", index)
-                        },
-                      },
-                    },
-                    [_c("i", { staticClass: "far fa-star fa-lg star-icon" })]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: item.favorite === "1",
-                          expression: "item.favorite === '1'",
-                        },
-                      ],
-                      class: { auth: !_vm.adminFlag },
-                      attrs: { href: "" },
-                      on: {
-                        click: function ($event) {
-                          $event.preventDefault()
-                          $event.stopPropagation()
-                          return _vm.favoriteEvent(item.id, "0", index)
-                        },
-                      },
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-star fa-lg star-icon check",
-                      }),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "item-info" }, [
-                  _c("div", { staticClass: "first-row" }, [
-                    _c("p", [_vm._v(_vm._s(item.name))]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "second-row" }, [
-                    _c("p", [_vm._v("¥ " + _vm._s(_vm.formatNum(item.price)))]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(_vm.formatDate(item.updated_at)))]),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "item-stocks" }, [
-                  _c("p", [_vm._v(_vm._s(_vm.formatNum(item.stocks)))]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "item-destroy" }, [
-                  _c("li", [
+            [
+              _vm._l(_vm.filterItems, function (item, index) {
+                return _c("div", { key: item.id, staticClass: "tr" }, [
+                  _c("div", { staticClass: "favorite" }, [
                     _c(
                       "a",
                       {
-                        staticClass: "destroy",
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: item.favorite === "0",
+                            expression: "item.favorite === '0'",
+                          },
+                        ],
+                        class: { auth: !_vm.adminFlag },
                         attrs: { href: "" },
                         on: {
                           click: function ($event) {
                             $event.preventDefault()
                             $event.stopPropagation()
-                            return _vm.openModal("item-destroy", item.id, index)
+                            return _vm.favoriteEvent(item.id, "1", index)
+                          },
+                        },
+                      },
+                      [_c("i", { staticClass: "far fa-star fa-lg star-icon" })]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: item.favorite === "1",
+                            expression: "item.favorite === '1'",
+                          },
+                        ],
+                        class: { auth: !_vm.adminFlag },
+                        attrs: { href: "" },
+                        on: {
+                          click: function ($event) {
+                            $event.preventDefault()
+                            $event.stopPropagation()
+                            return _vm.favoriteEvent(item.id, "0", index)
                           },
                         },
                       },
                       [
                         _c("i", {
-                          staticClass: "fa-solid fa-trash-can trash-icon",
+                          staticClass: "fas fa-star fa-lg star-icon check",
                         }),
                       ]
                     ),
                   ]),
-                ]),
-                _vm._v(" "),
-                _c("div", {
-                  staticClass: "action",
-                  on: {
-                    click: function ($event) {
-                      $event.preventDefault()
-                      $event.stopPropagation()
-                      return _vm.openModal("item-update", item.id, index)
+                  _vm._v(" "),
+                  _c("div", { staticClass: "item-info" }, [
+                    _c("div", { staticClass: "first-row" }, [
+                      _c("p", [_vm._v(_vm._s(item.name))]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "second-row" }, [
+                      _c("p", [
+                        _vm._v("¥ " + _vm._s(_vm.formatNum(item.price))),
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(_vm._s(_vm.formatDate(item.updated_at))),
+                      ]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "item-stocks" }, [
+                    _c("p", [_vm._v(_vm._s(_vm.formatNum(item.stocks)))]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "item-destroy" }, [
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "destroy",
+                          attrs: { href: "" },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              $event.stopPropagation()
+                              return _vm.openModal(
+                                "item-destroy",
+                                item.id,
+                                index
+                              )
+                            },
+                          },
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa-solid fa-trash-can trash-icon",
+                          }),
+                        ]
+                      ),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", {
+                    staticClass: "action",
+                    on: {
+                      click: function ($event) {
+                        $event.preventDefault()
+                        $event.stopPropagation()
+                        return _vm.openModal("item-update", item.id, index)
+                      },
                     },
-                  },
-                }),
-              ])
-            }),
-            0
+                  }),
+                ])
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.items.length === 0,
+                      expression: "items.length === 0",
+                    },
+                  ],
+                  staticClass: "no-data",
+                },
+                [_c("p", [_vm._v("データはありません")])]
+              ),
+            ],
+            2
           ),
         ]),
       ]),
@@ -13107,33 +13139,51 @@ var render = function () {
           _c(
             "div",
             { staticClass: "tbody" },
-            _vm._l(_vm.filterLogs, function (log) {
-              return _c("div", { key: log.id, staticClass: "tr" }, [
-                _c("div", { staticClass: "type" }, [
-                  _c("p", [_vm._v(_vm._s(log.type))]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "created_at" }, [
-                  _c("p", [_vm._v(_vm._s(_vm.formatDate(log.created_at)))]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "user_name" }, [
-                  _c("p", [_vm._v(_vm._s(log.user_name))]),
-                ]),
-                _vm._v(" "),
-                _c("div", {
-                  staticClass: "action",
-                  on: {
-                    click: function ($event) {
-                      $event.preventDefault()
-                      $event.stopPropagation()
-                      return _vm.openModal("log-show", log.id, null)
+            [
+              _vm._l(_vm.filterLogs, function (log) {
+                return _c("div", { key: log.id, staticClass: "tr" }, [
+                  _c("div", { staticClass: "type" }, [
+                    _c("p", [_vm._v(_vm._s(log.type))]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "created_at" }, [
+                    _c("p", [_vm._v(_vm._s(_vm.formatDate(log.created_at)))]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "user_name" }, [
+                    _c("p", [_vm._v(_vm._s(log.user_name))]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", {
+                    staticClass: "action",
+                    on: {
+                      click: function ($event) {
+                        $event.preventDefault()
+                        $event.stopPropagation()
+                        return _vm.openModal("log-show", log.id, null)
+                      },
                     },
-                  },
-                }),
-              ])
-            }),
-            0
+                  }),
+                ])
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.logs.length === 0,
+                      expression: "logs.length === 0",
+                    },
+                  ],
+                  staticClass: "no-data",
+                },
+                [_c("p", [_vm._v("データはありません")])]
+              ),
+            ],
+            2
           ),
         ]),
       ]),

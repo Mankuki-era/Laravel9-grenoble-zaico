@@ -56,6 +56,9 @@
               </div>
               <div class="action" @click.prevent.stop="openModal('log-show', log.id, null)"></div>
             </div>
+            <div class="no-data" v-show="logs.length === 0">
+              <p>データはありません</p>
+            </div>
           </div>
         </div>
       </div>

@@ -401,6 +401,21 @@ body {
               }
             }
           }
+          .table {
+            .tbody {
+              .no-data {
+                position: fixed;
+                width: 100vw;
+                height: calc(100vh - 150px);
+                top: 50px;
+                p {
+                  text-align: center;
+                  color: #555;
+                  line-height: calc(100vh - 150px);
+                }
+              }
+            }
+          }
         }
         .pagination {
           position: fixed;

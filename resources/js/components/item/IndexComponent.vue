@@ -76,6 +76,9 @@
               </div>
               <div class="action" @click.prevent.stop="openModal('item-update', item.id, index)"></div>
             </div>
+            <div class="no-data" v-show="items.length === 0">
+              <p>データはありません</p>
+            </div>
           </div>
         </div>
       </div>
