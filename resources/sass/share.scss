@@ -362,8 +362,8 @@ body {
     }
     main:not(.login) {
       .card {
-        height: calc(100vh - 220px);
-        padding-top: 50px;
+        position: fixed;
+        height: calc(100vh - 150px);
         background-color: #fff;
         overflow: auto;
         h1.page-name {
@@ -597,6 +597,7 @@ body {
       }
       main:not(.login) {
         .card {
+          position: inherit;
           width: 800px;
           height: auto;
           margin: 50px auto 50px;
