@@ -451,7 +451,7 @@ body .wrapper main:not(.login) .card .card-main table tbody tr:not(:first-of-typ
 body .wrapper main:not(.login) .card .pagination {
   position: fixed;
   bottom: 50px;
-  height: 40px;
+  height: 50px;
   background-color: #007bff;
   width: 100%;
   justify-content: center;
@@ -464,23 +464,15 @@ body .wrapper main:not(.login) .card .pagination a {
   text-align: center;
   font-size: 13px;
   line-height: 30px;
-  border: solid #bbb;
-}
-body .wrapper main:not(.login) .card .pagination a:first-of-type {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-  border-width: 1px 1px 1px 1px;
-}
-body .wrapper main:not(.login) .card .pagination a:last-of-type {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-  border-width: 1px 1px 1px 0;
+  background-color: #fff;
+  color: #007bff;
+  border-radius: 3px;
 }
 body .wrapper main:not(.login) .card .pagination p {
   line-height: 30px;
   font-size: 14px;
-  color: #666;
-  margin-left: 13px;
+  color: #fff;
+  margin: 0 13px;
 }
 body .wrapper main:not(.login) .bottom-header {
   display: block;
@@ -588,6 +580,17 @@ body .wrapper footer {
   }
   body .wrapper main:not(.login) .card .card-main {
     margin-top: 10px;
+  }
+  body .wrapper main:not(.login) .card .pagination {
+    position: initial;
+    background-color: transparent;
+    margin: 15px 0;
+  }
+  body .wrapper main:not(.login) .card .pagination a {
+    border: 1px solid #bbb;
+  }
+  body .wrapper main:not(.login) .card .pagination p {
+    color: #666;
   }
   body .wrapper main:not(.login) .card.narrow {
     width: 500px;

@@ -407,7 +407,7 @@ body {
         .pagination {
           position: fixed;
           bottom: 50px;
-          height: 40px;
+          height: 50px;
           background-color: #007bff;
           width: 100%;
           justify-content: center;
@@ -420,23 +420,16 @@ body {
             text-align: center;
             font-size: 13px;
             line-height: 30px;
-            border: solid #bbb;
-          }
-          a:first-of-type {
-            border-top-left-radius: 3px;
-            border-bottom-left-radius: 3px;
-            border-width: 1px 1px 1px 1px;
-          }
-          a:last-of-type {
-            border-top-right-radius: 3px;
-            border-bottom-right-radius: 3px;
-            border-width: 1px 1px 1px 0;
+            // border: 1px solid #fff;
+            background-color: #fff;
+            color: #007bff;
+            border-radius: 3px;
           }
           p {
             line-height: 30px;
             font-size: 14px;
-            color: #666;
-            margin-left: 13px;
+            color: #fff;
+            margin: 0 13px;
           }
         }
       }
@@ -571,6 +564,17 @@ body {
           }
           .card-main {
             margin-top: 10px;
+          }
+          .pagination {
+            position: initial;
+            background-color: transparent;
+            margin: 15px 0;
+            a {
+              border: 1px solid #bbb;
+            }
+            p {
+              color: #666;
+            }
           }
         }
         .card.narrow {

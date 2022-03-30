@@ -12787,6 +12787,10 @@ var render = function () {
           [_c("i", { staticClass: "fas fa-chevron-left" })]
         ),
         _vm._v(" "),
+        _c("p", { staticClass: "total" }, [
+          _vm._v(_vm._s(_vm.currentPage) + " / " + _vm._s(_vm.totalPage)),
+        ]),
+        _vm._v(" "),
         _c(
           "a",
           {
@@ -12802,10 +12806,6 @@ var render = function () {
           },
           [_c("i", { staticClass: "fas fa-chevron-right" })]
         ),
-        _vm._v(" "),
-        _c("p", { staticClass: "total" }, [
-          _vm._v(_vm._s(_vm.currentPage) + " / " + _vm._s(_vm.totalPage)),
-        ]),
       ]),
     ]),
     _vm._v(" "),

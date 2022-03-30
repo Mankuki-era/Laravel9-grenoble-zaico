@@ -81,8 +81,8 @@
       </div>
       <div class="pagination">
         <a href="#" class="prev" @click.prevent.stop="onPrev"><i class="fas fa-chevron-left"></i></a>
-        <a href="#" class="next" @click.prevent.stop="onNext"><i class="fas fa-chevron-right"></i></a>
         <p class="total">{{ currentPage }} / {{ totalPage }}</p>
+        <a href="#" class="next" @click.prevent.stop="onNext"><i class="fas fa-chevron-right"></i></a>
       </div>
     </div>
     <div class="bottom-header">
