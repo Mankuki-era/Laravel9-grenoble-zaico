@@ -362,7 +362,8 @@ body {
     }
     main:not(.login) {
       .card {
-        height: 300px;
+        height: calc(var(--vh, 1vh) * 100 - 150px);
+        box-sizing: border-box;
         padding-top: 50px;
         background-color: #fff;
         overflow: auto;

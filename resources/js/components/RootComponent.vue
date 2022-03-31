@@ -13,6 +13,10 @@
 
 <script>
   export default {
+    mounted: function(){
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    },
     methods: {
       openModal: function(func, id, index){
         this.$refs.modalChild.openModal(func, id, index);

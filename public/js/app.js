@@ -7569,6 +7569,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mounted: function mounted() {
+    var vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', "".concat(vh, "px"));
+  },
   methods: {
     openModal: function openModal(func, id, index) {
       this.$refs.modalChild.openModal(func, id, index);
