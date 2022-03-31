@@ -7783,7 +7783,7 @@ __webpack_require__.r(__webpack_exports__);
       items: [],
       currentPage: 1,
       // 現在のページ番号
-      perPage: 10,
+      perPage: 20,
       // 1ページ毎の表示件数
       totalPage: 1,
       // 総ページ数,
@@ -8009,7 +8009,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       logs: [],
       currentPage: 1,
       // 現在のページ番号
-      perPage: 10,
+      perPage: 20,
       // 1ページ毎の表示件数
       totalPage: 1,
       // 総ページ数,
@@ -9292,6 +9292,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['type', 'data'],
   initData: function initData() {
@@ -9494,7 +9500,7 @@ __webpack_require__.r(__webpack_exports__);
       originItems: [],
       currentPage: 1,
       // 現在のページ番号
-      perPage: 10,
+      perPage: 20,
       // 1ページ毎の表示件数
       totalPage: 1,
       // 総ページ数,
@@ -14483,19 +14489,7 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "table" }, [
-        _c("div", { staticClass: "thead" }, [
-          _c("div", { staticClass: "tr" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2),
-            _vm._v(" "),
-            _c("div", { staticClass: "item-amount" }, [
-              _c("p", [_vm._v(_vm._s(_vm.type) + "数量")]),
-            ]),
-          ]),
-        ]),
+        _vm._m(0),
         _vm._v(" "),
         _c(
           "div",
@@ -14532,6 +14526,58 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "sub-loader", class: { none: _vm.noneFlag } }, [
       _c("div", { staticClass: "loading" }),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "bottom-header" }, [
+      _c(
+        "ul",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: this.$route.path !== "/login",
+              expression: "this.$route.path !== '/login'",
+            },
+          ],
+          staticClass: "link-box",
+        },
+        [
+          _c("li", [
+            _c(
+              "a",
+              {
+                attrs: { href: "" },
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    $event.stopPropagation()
+                    return _vm.backPage.apply(null, arguments)
+                  },
+                },
+              },
+              [_vm._m(1), _c("span", [_vm._v("入力画面へ")])]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c(
+              "a",
+              {
+                attrs: { href: "" },
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    $event.stopPropagation()
+                    return _vm.forwardPage.apply(null, arguments)
+                  },
+                },
+              },
+              [_vm._m(2), _c("span", [_vm._v("確定する")])]
+            ),
+          ]),
+        ]
+      ),
     ]),
     _vm._v(" "),
     _c("ul", { staticClass: "page-button" }, [
@@ -14578,20 +14624,34 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "no" }, [_c("p", [_vm._v("No.")])])
+    return _c("div", { staticClass: "thead" }, [
+      _c("div", { staticClass: "tr" }, [
+        _c("div", { staticClass: "no" }, [_c("p", [_vm._v("No.")])]),
+        _vm._v(" "),
+        _c("div", { staticClass: "item-info" }, [_c("p", [_vm._v("教材")])]),
+        _vm._v(" "),
+        _c("div", { staticClass: "item-stocks" }, [
+          _c("p", [_vm._v("在庫数")]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "item-amount" }, [_c("p", [_vm._v("数量")])]),
+      ]),
+    ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "item-info" }, [_c("p", [_vm._v("教材")])])
+    return _c("span", [
+      _c("i", { staticClass: "fa-solid fa-circle-chevron-left" }),
+    ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "item-stocks" }, [
-      _c("p", [_vm._v("在庫数")]),
+    return _c("span", [
+      _c("i", { staticClass: "fa-solid fa-circle-chevron-right" }),
     ])
   },
 ]

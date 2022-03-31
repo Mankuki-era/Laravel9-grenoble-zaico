@@ -29,7 +29,7 @@
             <div class="no"><p>No.</p></div>
             <div class="item-info"><p>教材</p></div>
             <div class="item-stocks"><p>在庫数</p></div>
-            <div class="item-amount"><p>{{ type }}数量</p></div>
+            <div class="item-amount"><p>数量</p></div>
           </div>
         </div>
         <div class="tbody">
@@ -57,6 +57,12 @@
     </div>
     <div class="sub-loader" v-bind:class="{none: noneFlag}">
       <div class="loading"></div>
+    </div>
+    <div class="bottom-header">
+      <ul class="link-box" v-show="this.$route.path !== '/login'">
+        <li><a href="" @click.prevent.stop="backPage"><span><i class="fa-solid fa-circle-chevron-left"></i></span><span>入力画面へ</span></a></li>
+        <li><a href="" @click.prevent.stop="forwardPage"><span><i class="fa-solid fa-circle-chevron-right"></i></span><span>確定する</span></a></li>
+      </ul>
     </div>
     <ul class="page-button">
       <li><a href="" class="second" @click.prevent.stop="backPage">入力画面に戻る</a></li>

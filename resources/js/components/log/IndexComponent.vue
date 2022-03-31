@@ -86,7 +86,7 @@
       return {
         logs: [],
         currentPage: 1, // 現在のページ番号
-        perPage: 10, // 1ページ毎の表示件数
+        perPage: 20, // 1ページ毎の表示件数
         totalPage: 1, // 総ページ数,
         adminFlag: false
       };

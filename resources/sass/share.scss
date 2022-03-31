@@ -127,7 +127,7 @@ body {
       height: 3rem;
       border-radius: 0.25rem;
       z-index: 7;
-      top: 40px;
+      top: 50px;
       left: 50%;
       transform: translateX(-50%);
       p {
@@ -364,8 +364,9 @@ body {
       overflow: hidden;
       .card {
         height: calc(var(--vh, 1vh) * 100 - 150px);
+        
         box-sizing: border-box;
-        padding-top: 50px;
+        padding-top: 60px;
         background-color: #fff;
         overflow: auto;
         h1.page-name {
@@ -598,8 +599,9 @@ body {
         margin-top: 50px;
       }
       main:not(.login) {
+        overflow: auto;
         .card {
-          position: inherit;
+          position: relative;
           width: 800px;
           height: auto;
           margin: 50px auto 50px;

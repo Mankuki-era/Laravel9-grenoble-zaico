@@ -34,17 +34,21 @@
     div.table {
       div.thead, div.tbody {
         div.tr {
-          .no, .item-info, .item-stocks {
-            border-right: 1px solid #ccc;
+          div {
+            font-size: 14px;
+            box-sizing: border-box;
           }
           div.no {
             width: 40px;
+            border-right: 1px solid #ccc;
           }
           div.item-info {
             flex: 1;
+            border-right: 1px solid #ccc;
           }
           div.item-stocks {
             width: 70px;
+            border-right: 1px solid #ccc;
           }
           div.item-amount {
             width: 40px;
@@ -54,24 +58,36 @@
       div.thead {
         div.tr {
           div {
-            font-size: 14px;
+            p {
+              line-height: 55px;
+              color: #555;
+              font-size: 13px;
+              padding: 0 0 0 8px;
+            }
           }
+          background-color: #eee;
+          font-weight: bold;
         }
       }
       div.tbody {
         div.tr {
           div.no {
-            text-align: center;
-            line-height: 55px;
+            p {
+              line-height: 55px;
+              color: #555;
+              font-size: 13px;
+              text-align: center;
+            }
           }
           div.item-info {
             display: flex;
             flex-direction: column;
-            padding-left: 15px;
             div.first-row {
               p {
                 height: 100%;
-                width: calc(100vw - 135px);
+                width: calc(100vw - 151px);
+                box-sizing: border-box;
+                padding-left: 10px;
                 line-height: 33px;
                 color: #555;
                 font-size: 13px;
@@ -86,10 +102,8 @@
               p {
                 color: #555;
                 line-height: 15px;
+                padding-left: 10px;
                 font-size: 12px;
-              }
-              p:not(:first-of-type){
-                margin-left: 15px;
               }
             }
           }
@@ -97,7 +111,7 @@
             p {
               line-height: 55px;
               color: #555;
-              font-size: 14px;
+              font-size: 13px;
               text-align: center;
             }
           }
@@ -105,7 +119,7 @@
             p {
               line-height: 55px;
               color: #555;
-              font-size: 14px;
+              font-size: 13px;
               text-align: center;
             }
           }

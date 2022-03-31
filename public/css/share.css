@@ -138,7 +138,7 @@ body .wrapper .message {
   height: 3rem;
   border-radius: 0.25rem;
   z-index: 7;
-  top: 40px;
+  top: 50px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -408,8 +408,6 @@ body .wrapper main {
   flex: 1;
   margin-top: 50px;
   width: 100vw;
-  height: calc(var(--vh, 1vh) * 100);
-  box-sizing: border-box;
 }
 body .wrapper main:not(.login) {
   overflow: hidden;
@@ -417,7 +415,7 @@ body .wrapper main:not(.login) {
 body .wrapper main:not(.login) .card {
   height: calc(var(--vh, 1vh) * 100 - 150px);
   box-sizing: border-box;
-  padding-top: 50px;
+  padding-top: 60px;
   background-color: #fff;
   overflow: auto;
 }
@@ -612,8 +610,11 @@ body .wrapper footer {
     flex: 1;
     margin-top: 50px;
   }
+  body .wrapper main:not(.login) {
+    overflow: auto;
+  }
   body .wrapper main:not(.login) .card {
-    position: inherit;
+    position: relative;
     width: 800px;
     height: auto;
     margin: 50px auto 50px;

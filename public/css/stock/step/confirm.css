@@ -29,36 +29,50 @@
 .stock-confirm .card-main table thead tr {
   background-color: #ddd;
 }
-.stock-confirm .card-main div.table div.thead div.tr .no, .stock-confirm .card-main div.table div.thead div.tr .item-info, .stock-confirm .card-main div.table div.thead div.tr .item-stocks, .stock-confirm .card-main div.table div.tbody div.tr .no, .stock-confirm .card-main div.table div.tbody div.tr .item-info, .stock-confirm .card-main div.table div.tbody div.tr .item-stocks {
-  border-right: 1px solid #ccc;
+.stock-confirm .card-main div.table div.thead div.tr div, .stock-confirm .card-main div.table div.tbody div.tr div {
+  font-size: 14px;
+  box-sizing: border-box;
 }
 .stock-confirm .card-main div.table div.thead div.tr div.no, .stock-confirm .card-main div.table div.tbody div.tr div.no {
   width: 40px;
+  border-right: 1px solid #ccc;
 }
 .stock-confirm .card-main div.table div.thead div.tr div.item-info, .stock-confirm .card-main div.table div.tbody div.tr div.item-info {
   flex: 1;
+  border-right: 1px solid #ccc;
 }
 .stock-confirm .card-main div.table div.thead div.tr div.item-stocks, .stock-confirm .card-main div.table div.tbody div.tr div.item-stocks {
   width: 70px;
+  border-right: 1px solid #ccc;
 }
 .stock-confirm .card-main div.table div.thead div.tr div.item-amount, .stock-confirm .card-main div.table div.tbody div.tr div.item-amount {
   width: 40px;
 }
-.stock-confirm .card-main div.table div.thead div.tr div {
-  font-size: 14px;
+.stock-confirm .card-main div.table div.thead div.tr {
+  background-color: #eee;
+  font-weight: bold;
 }
-.stock-confirm .card-main div.table div.tbody div.tr div.no {
-  text-align: center;
+.stock-confirm .card-main div.table div.thead div.tr div p {
   line-height: 55px;
+  color: #555;
+  font-size: 13px;
+  padding: 0 0 0 8px;
+}
+.stock-confirm .card-main div.table div.tbody div.tr div.no p {
+  line-height: 55px;
+  color: #555;
+  font-size: 13px;
+  text-align: center;
 }
 .stock-confirm .card-main div.table div.tbody div.tr div.item-info {
   display: flex;
   flex-direction: column;
-  padding-left: 15px;
 }
 .stock-confirm .card-main div.table div.tbody div.tr div.item-info div.first-row p {
   height: 100%;
-  width: calc(100vw - 135px);
+  width: calc(100vw - 151px);
+  box-sizing: border-box;
+  padding-left: 10px;
   line-height: 33px;
   color: #555;
   font-size: 13px;
@@ -73,21 +87,19 @@
 .stock-confirm .card-main div.table div.tbody div.tr div.item-info div.second-row p {
   color: #555;
   line-height: 15px;
+  padding-left: 10px;
   font-size: 12px;
-}
-.stock-confirm .card-main div.table div.tbody div.tr div.item-info div.second-row p:not(:first-of-type) {
-  margin-left: 15px;
 }
 .stock-confirm .card-main div.table div.tbody div.tr div.item-stocks p {
   line-height: 55px;
   color: #555;
-  font-size: 14px;
+  font-size: 13px;
   text-align: center;
 }
 .stock-confirm .card-main div.table div.tbody div.tr div.item-amount p {
   line-height: 55px;
   color: #555;
-  font-size: 14px;
+  font-size: 13px;
   text-align: center;
 }
 .stock-confirm .sub-loader {

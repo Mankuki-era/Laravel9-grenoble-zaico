@@ -186,7 +186,7 @@ __webpack_require__.r(__webpack_exports__);
       items: [],
       currentPage: 1,
       // 現在のページ番号
-      perPage: 10,
+      perPage: 20,
       // 1ページ毎の表示件数
       totalPage: 1,
       // 総ページ数,
@@ -412,7 +412,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       logs: [],
       currentPage: 1,
       // 現在のページ番号
-      perPage: 10,
+      perPage: 20,
       // 1ページ毎の表示件数
       totalPage: 1,
       // 総ページ数,
