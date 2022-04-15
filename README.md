@@ -11,13 +11,13 @@
 - PDF出力をできるようにしてデータ利用の幅を広くしました。
 
 ### デモ
-　[サイトはこちらから](http://murmuring-headland-13028.herokuapp.com/)
+　[サイトはこちらから](https://grenoble-zaico.herokuapp.com/login)
  
 ### アプリケーションで使っている技術
 - インフラ: heroku 
 - データベース: MySQL  5.7.26
 - 開発環境: MAMP 4.2.0
-- 言語: Laravel 9, Vue.js
+- 言語: Laravel 9, Vue.js, jQuery
 
 ### アプリケーションの機能
 - 認証機能
