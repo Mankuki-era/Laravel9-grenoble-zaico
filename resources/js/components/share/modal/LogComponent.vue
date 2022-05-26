@@ -1,11 +1,11 @@
 <template>
   <div class="log">
     <div class="card">
-      <li class="pdf-button"><a href="" @click.prevent.stop="downloadPDF()">PDF出力</a></li>
+      <li class="pdf-button" v-show="func === 'log-show'"><a href="" @click.prevent.stop="downloadPDF()">PDF出力</a></li>
       <div id="log-card" class="card-main">
         <h1>{{ type }}表</h1>
         <p class="date">{{ created_at }}</p>
-        <table>
+        <table v-show="func === 'log-show'">
           <thead>
             <tr>
               <th>No.</th>
@@ -26,7 +26,7 @@
               <td class="stocks">¥ {{ formatNum(item.price * item.amount) }}</td>
             </tr>
             <tr></tr>
-            <tr>
+            <tr class="sum-row">
               <td></td>
               <td></td>
               <td></td>
@@ -35,6 +35,27 @@
             </tr>
           </tbody>
         </table>
+        <table v-show="func === 'log-update'">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>教材名</th>
+              <th>価格</th>
+              <th>{{ type }}数量</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in data" :key="index">
+              <td>{{ index + 1 }}</td>
+              <td class="name">{{ item.name }}</td>
+              <td class="price">¥ {{ formatNum(item.price) }}</td>
+              <td class="amount"><input type="number" v-model="item.amount"></td>
+            </tr>
+          </tbody>
+        </table>
+        <ul v-show="func === 'log-update'">
+          <li><a href="" @click.prevent.stop="updateData">更新</a></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -97,7 +118,7 @@ tr:not(:last-of-type) td, tr:last-of-type td.last-sum {
 
 <script>
   export default {
-    props: ['id'],
+    props: ['id', 'func'],
     initData: function(){
       return {
         type: '',
@@ -161,7 +182,7 @@ tr:not(:last-of-type) td, tr:last-of-type td.last-sum {
           margin: 1,
           filename: `zaico_${this.created_at}.pdf`,
           image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 2}, 
+          html2canvas: { scale: 2},
           // jsPDF: { format: 'a2', orientation: 'portrait' },
           jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
         };
@@ -173,6 +194,13 @@ tr:not(:last-of-type) td, tr:last-of-type td.last-sum {
           
         });
       },
+      updateData: function(){
+        axios.put(`/api/log/${this.id}`,{
+          data: this.data
+        }).then((res) => {
+          this.$emit('close-modal');
+        });
+      }
     }
   }
 </script>

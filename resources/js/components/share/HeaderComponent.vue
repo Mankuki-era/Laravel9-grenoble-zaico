@@ -29,6 +29,7 @@
           { name: '教材', to: '/' , icon: '<i class="fa-solid fa-book icon"></i>', selected: false},
           { name: '入出庫', to: '/stock', icon: '<i class="fas fa-retweet icon"></i>', selected: false },
           { name: '履歴', to: '/log', icon: '<i class="fa-solid fa-database icon"></i>', selected: false },
+          { name: 'データ解析', to: '/analysis', icon: '<i class="fas fa-chart-line icon"></i>', selected: false },
         ],
         adminFlag: false
       };

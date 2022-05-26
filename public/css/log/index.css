@@ -26,7 +26,7 @@ main.log-index .card .card-header .right-box ul li a {
   font-size: 12px;
   text-align: center;
 }
-main.log-index .card .card-header .right-box ul li a .trash-icon {
+main.log-index .card .card-header .right-box ul li a .trash-icon, main.log-index .card .card-header .right-box ul li a .search-icon {
   margin-right: 3px;
 }
 main.log-index .card .card-header .right-box ul li a.first {
@@ -42,6 +42,9 @@ main.log-index .card .card-header .right-box ul li a.second {
 }
 main.log-index .card .card-header .right-box ul li a.second .reload-icon {
   margin-right: 5px;
+}
+main.log-index .card .card-header .right-box ul li:not(:first-of-type) {
+  margin-left: 10px;
 }
 main.log-index .card .card-main table thead tr th.type {
   width: 45px;
@@ -69,9 +72,16 @@ main.log-index .card .card-main table tbody tr td.action a {
   text-align: center;
   border-radius: 2px;
 }
-main.log-index .card .card-main table tbody tr td.action a .glass-icon {
+main.log-index .card .card-main table tbody tr td.action a .glass-icon, main.log-index .card .card-main table tbody tr td.action a .pen-icon {
   font-size: 11px;
   color: #fff;
+}
+main.log-index .card .card-main table tbody tr td.action a.edit {
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  background-color: #28a745;
+  border-right: 1px solid #fff;
+  margin-left: 5px;
 }
 main.log-index .card .card-main div.table div.thead div.tr div.type p, main.log-index .card .card-main div.table div.thead div.tr div.created_at p, main.log-index .card .card-main div.table div.thead div.tr div.user_name p, main.log-index .card .card-main div.table div.tbody div.tr div.type p, main.log-index .card .card-main div.table div.tbody div.tr div.created_at p, main.log-index .card .card-main div.table div.tbody div.tr div.user_name p {
   line-height: 55px;

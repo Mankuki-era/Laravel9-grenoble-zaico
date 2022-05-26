@@ -652,6 +652,7 @@ body .wrapper footer {
   }
   body .wrapper main:not(.login) .card.narrow {
     width: 500px;
+    padding: 40px 30px;
   }
   body .wrapper main:not(.login) .bottom-header {
     display: none;

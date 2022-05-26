@@ -190,8 +190,14 @@ return [
     |
     */
 
-    'aliases' => Facade::defaultAliases()->merge([
-        // ...
-    ])->toArray(),
+    'aliases' => [
+        'App' => Illuminate\Support\Facades\App::class,
+        'View' => Illuminate\Support\Facades\View::class,
+    ],
+
+    // 'aliases' => Facade::defaultAliases()->merge([
+    //     // ...
+    //     'PDF' => Barryvdh\DomPDF\Facade::class,
+    // ])->toArray(),
 
 ];

@@ -25,7 +25,7 @@
   text-align: center;
   color: #333;
   width: 150px;
-  margin: 0 auto 20px;
+  margin: 20px auto;
   border-bottom: 1px solid #666;
 }
 .log .card .card-main .date {
@@ -68,9 +68,40 @@
 .log .card .card-main table tbody tr td.price, .log .card .card-main table tbody tr td.stocks, .log .card .card-main table tbody tr td.action, .log .card .card-main table tbody tr td.amount {
   width: 50px;
 }
-.log .card .card-main table tbody tr:not(:last-of-type) td {
+.log .card .card-main table tbody tr td {
   border: 1px solid #444;
 }
-.log .card .card-main table tbody tr:last-of-type td.last-sum {
+.log .card .card-main table tbody tr td.amount input {
+  width: 50px;
+  text-align: center;
+  font-size: 13px;
+  border: 1px solid #bbb;
+  border-radius: 2px;
+  padding: 4px 2px 3px;
+}
+.log .card .card-main table tbody tr td.amount input::-webkit-inner-spin-button,
+.log .card .card-main table tbody tr td.amount input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  -moz-appearance: textfield;
+}
+.log .card .card-main table tbody tr.sum-row td {
+  border: none;
+}
+.log .card .card-main table tbody tr.sum-row td.last-sum {
   border: 1px solid #444;
+}
+.log .card .card-main ul {
+  margin-top: 20px;
+}
+.log .card .card-main ul li a {
+  display: block;
+  width: 80px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 2px;
+  font-size: 13px;
+  text-align: center;
+  padding: 7px 0;
+  margin: 0 0 0 auto;
 }

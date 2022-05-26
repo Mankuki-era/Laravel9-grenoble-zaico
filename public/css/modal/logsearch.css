@@ -1,0 +1,94 @@
+.log-search {
+  margin-bottom: 20px;
+}
+.log-search .card .pdf-button {
+  list-style: none;
+}
+.log-search .card .pdf-button a {
+  margin: 20px 20px 0 auto;
+  display: block;
+  width: 100px;
+  height: 40px;
+  color: #fff;
+  border-radius: 25px;
+  font-size: 13px;
+  text-align: center;
+  line-height: 40px;
+  background-color: red;
+}
+.log-search .card .card-main {
+  height: 480px;
+  overflow-y: auto;
+}
+.log-search .card .card-main h1 {
+  font-size: 25px;
+  text-align: center;
+  color: #333;
+  width: 150px;
+  margin: 0 auto 20px;
+  border-bottom: 1px solid #666;
+}
+.log-search .card .card-main .form .date-form {
+  text-align: center;
+}
+.log-search .card .card-main .form li {
+  list-style: none;
+}
+.log-search .card .card-main .form li a {
+  display: block;
+  margin: 15px auto;
+  width: 90px;
+  height: 100%;
+  border-radius: 2px;
+  font-size: 12px;
+  text-align: center;
+  background-color: #007bff;
+  color: #fff;
+  line-height: 35px;
+}
+.log-search .card .card-main .date {
+  color: #333;
+  border-bottom: 1px solid #666;
+  margin-bottom: 10px;
+  width: 230px;
+  font-size: 15px;
+  text-align: center;
+}
+.log-search .card .card-main table {
+  border-collapse: collapse;
+  width: 100%;
+  border: none;
+}
+.log-search .card .card-main table tr {
+  height: 30px;
+  text-align: left;
+}
+.log-search .card .card-main table td {
+  padding-right: 15px;
+  color: #555;
+}
+.log-search .card .card-main table th, .log-search .card .card-main table td {
+  padding-left: 15px;
+  line-height: 30px;
+  color: #333;
+}
+.log-search .card .card-main table thead tr {
+  font-size: 10px;
+  background-color: #ddd;
+}
+.log-search .card .card-main table thead tr th {
+  font-weight: normal;
+  border: 1px solid #444;
+}
+.log-search .card .card-main table tbody tr {
+  font-size: 10px;
+}
+.log-search .card .card-main table tbody tr td.price, .log-search .card .card-main table tbody tr td.stocks, .log-search .card .card-main table tbody tr td.action, .log-search .card .card-main table tbody tr td.amount {
+  width: 50px;
+}
+.log-search .card .card-main table tbody tr:not(:last-of-type) td {
+  border: 1px solid #444;
+}
+.log-search .card .card-main table tbody tr:last-of-type td.last-sum {
+  border: 1px solid #444;
+}

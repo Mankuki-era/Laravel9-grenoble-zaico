@@ -27,7 +27,7 @@ main.log-index {
               border-radius: 2px;
               font-size: 12px;
               text-align: center;
-              .trash-icon {
+              .trash-icon, .search-icon {
                 margin-right: 3px;
               }
             }
@@ -45,6 +45,9 @@ main.log-index {
                 margin-right: 5px;
               }
             }
+          }
+          li:not(:first-of-type){
+            margin-left: 10px;
           }
         }
       }
@@ -81,10 +84,17 @@ main.log-index {
                 line-height: 25px;
                 text-align: center;
                 border-radius: 2px;
-                .glass-icon {
+                .glass-icon, .pen-icon {
                   font-size: 11px;
                   color: #fff;
                 }
+              }
+              a.edit {
+                border-top-left-radius: 2px;
+                border-bottom-left-radius: 2px;
+                background-color: #28a745;
+                border-right: 1px solid #fff;
+                margin-left: 5px;
               }
             }
           }

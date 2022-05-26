@@ -9,6 +9,7 @@ import ItemIndex from './components/item/IndexComponent.vue';
 import Login from './components/auth/LoginComponent.vue';
 import StockIndex from './components/stock/IndexComponent.vue';
 import LogIndex from './components/log/IndexComponent.vue';
+import AnalysisIndex from './components/analysis/IndexComponent.vue';
 
 const routes = [
   {
@@ -50,6 +51,18 @@ const routes = [
     path: '/log',
     name: 'log_index',
     component: LogIndex,
+    beforeEnter: (to, from, next) => {
+      if(Vue.$cookies.isKey('auth')){
+        next();
+      }else{
+        next({ name: 'login' });
+      };
+    }
+  },
+  {
+    path: '/analysis',
+    name: 'analysis_index',
+    component: AnalysisIndex,
     beforeEnter: (to, from, next) => {
       if(Vue.$cookies.isKey('auth')){
         next();

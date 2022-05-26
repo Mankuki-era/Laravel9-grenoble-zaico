@@ -22,6 +22,7 @@
   <link href="{{ mix('css/auth/login.css') }}" rel="stylesheet">
   <link href="{{ asset('css/item/index.css') }}" rel="stylesheet">
   <link href="{{ asset('css/log/index.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/analysis/index.css') }}" rel="stylesheet">
   <link href="{{ asset('css/stock/index.css') }}" rel="stylesheet">
   <link href="{{ asset('css/stock/step/input.css') }}" rel="stylesheet">
   <link href="{{ asset('css/stock/step/confirm.css') }}" rel="stylesheet">

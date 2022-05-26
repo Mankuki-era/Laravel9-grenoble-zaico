@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class LogController extends Controller
 {
@@ -60,7 +61,11 @@ class LogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $log = Log::find($id);
+
+        $log->data = serialize($request->data);
+
+        $log->save();
     }
 
     /**
@@ -72,6 +77,35 @@ class LogController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function analysis(Request $request)
+    {
+        // error_log(print_r($request->from,true),"3","/Users/mankuki_era/Documents/debug.log");
+        $logs = Log::whereBetween("created_at", [$request->from, $request->to])->get();
+
+        $array = array();
+        foreach($logs as $log){
+            if($log->type === '出庫'){
+                $datas = unserialize($log->data);
+                foreach($datas as $data){
+                    if(array_key_exists($data['name'], $array)){
+                        $array[$data['name']]['amount'] += intval($data['amount']);
+                    }else{
+                        $array[$data['name']] = array('name' => $data['name'], 'amount' => intval($data['amount']));
+                    }
+                };
+            }
+        };
+
+        return array_values($array);
+
     }
 
     /**

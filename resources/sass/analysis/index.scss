@@ -1,0 +1,212 @@
+main.analysis-index {
+  .card {
+    .card-main {
+      .step-name {
+        margin: 0 0 35px;
+        padding: 0 20px;
+        color: #555;
+        font-size: 18px;
+        span {
+          font-size: 15px;
+          margin-left: 15px;
+        }
+        span.date {
+          font-weight: bold;
+          font-size: 16px;
+          border-bottom: 1px solid #333;
+        }
+      }
+      .form {
+        .date-form {
+          text-align: center;
+          margin-bottom: 35px;
+          input {
+            transform: scale(1.1);
+            margin: 0 15px;
+            color: #555;
+            padding: 7px 10px;
+            border: 1px solid #888;
+            border-radius: 4px;
+          }
+        }
+        li {
+          list-style: none;
+          a {
+            display: block;
+            margin: 15px auto;
+            width: 90px;
+            height: 100%;
+            border-radius: 2px;
+            font-size: 12px;
+            text-align: center;
+            background-color: #007bff;
+            color: #fff;
+            line-height: 35px;
+          }
+        }
+      }
+      table {
+        thead {
+          tr {
+            th.amount {
+              width: 60px;
+            }
+          }
+        }
+      }
+      div.table {
+        div.thead, div.tbody {
+          div.tr {
+            div.type, div.created_at, div.user_name {
+              p {
+                line-height: 55px;
+                color: #555;
+                font-size: 14px;
+                padding: 0 10px;
+              }
+            }
+            div.type{
+              width: 60px;
+            }
+            div.user_name {
+              width: 70px;
+            }
+            div.created_at {
+              flex: 1;
+            }
+          }
+        }
+        div.thead {
+          div.tr {
+            background-color: #eee;
+            font-weight: bold;
+            div.type, div.created_at {
+              border-right: 1px solid #aaa;
+            }
+          }
+        }
+        div.tbody {
+          div.tr {
+            div.type, div.created_at {
+              border-right: 1px solid #bbb;
+            }
+            div.action {
+              position: absolute;
+              min-height: 55px;
+              min-width: 100vw;
+              left: 0;
+            }
+          }
+        }
+      }
+    }
+    //ローディング
+    .sub-loader {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: #fff;
+      opacity: .7;
+      z-index: 1;
+      .loading,
+      .loading::before,
+      .loading::after {
+        background: #e95884;
+        -webkit-animation: load1 1s infinite ease-in-out;
+        animation: load1 1s infinite ease-in-out;
+        width: 1em;
+        height: 4em;
+      }
+      .loading {
+        color: #e95884;
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        font-size: 10px;
+        -webkit-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-animation-delay: -0.16s;
+        animation-delay: -0.16s;
+      }
+      .loading::before,
+      .loading::after {
+        position: fixed;
+        top: 0;
+        content: '';
+      }
+      .loading::before {
+        left: -1.5em;
+        -webkit-animation-delay: -0.32s;
+        animation-delay: -0.32s;
+      }
+      .loading::after {
+        left: 1.5em;
+      }
+      @-webkit-keyframes load1 {
+        0%,
+        80%,
+        100% {
+          box-shadow: 0 0;
+          height: 4em;
+        }
+        40% {
+          box-shadow: 0 -2em;
+          height: 5em;
+        }
+      }
+      @keyframes load1 {
+        0%,
+        80%,
+        100% {
+          box-shadow: 0 0;
+          height: 4em;
+        }
+        40% {
+          box-shadow: 0 -2em;
+          height: 5em;
+        }
+      }
+    }
+    .sub-loader.none {
+      display: none;
+    }
+    ul.page-button {
+      display: none;
+      justify-content: center;
+      li {
+        a {
+          display: block;
+          width: 150px;
+          height: 50px;
+          color: #fff;
+          border-radius: 25px;
+          font-size: 15px;
+          text-align: center;
+          line-height: 50px;
+        }
+        a.first {
+          background-color: #007bff;
+        }
+        a.second {
+          background-color: #aaa;
+        }
+      }
+      li:not(:first-of-type){
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 481px) {
+  main.analysis-index {
+    .card {
+      ul.page-button {
+        display: flex;
+      }
+    }
+  }
+}

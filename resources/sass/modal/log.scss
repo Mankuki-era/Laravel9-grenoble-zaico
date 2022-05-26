@@ -24,7 +24,7 @@
         text-align: center;
         color: #333;
         width: 150px;
-        margin: 0 auto 20px;
+        margin: 20px auto;
         border-bottom: 1px solid #666;
       }
       .date {
@@ -68,16 +68,49 @@
             td.price, td.stocks, td.action, td.amount {
               width: 50px;
             }
-          }
-          tr:not(:last-of-type) {
             td {
               border: 1px solid #444;
             }
+            td.amount {
+              input {
+                width: 50px;
+                text-align: center;
+                font-size: 13px;
+                border: 1px solid #bbb;
+                border-radius: 2px;
+                padding: 4px 2px 3px;
+              }
+              input::-webkit-inner-spin-button,
+              input::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+                -moz-appearance:textfield;
+              }
+            }
           }
-          tr:last-of-type {
+          tr.sum-row {
+            td {
+              border: none;
+            }
             td.last-sum {
               border: 1px solid #444;
             }
+          }
+        }
+      }
+      ul {
+        margin-top: 20px;
+        li {
+          a {
+            display: block;
+            width: 80px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 2px;
+            font-size: 13px;
+            text-align: center;
+            padding: 7px 0;
+            margin: 0 0 0 auto;
           }
         }
       }

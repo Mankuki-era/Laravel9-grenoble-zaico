@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="card-main">
-        <table>
+        <table id="table-data">
           <thead>
             <tr>
               <th class="favorite"></th>
