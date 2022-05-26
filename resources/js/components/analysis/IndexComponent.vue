@@ -118,14 +118,6 @@
             }, 1000);
           });
         }
-        
-        // if (date1.getTime() === date2.getTime()) {
-        //   console.log("同じ日付です");
-        // } else if (date1 > date2) {
-        //   console.log("日付1の方が先の日付です");
-        // } else if (date1 < date2) {
-        //   console.log("日付2の方が先の日付です");
-        // }
       },
       onPrev: function() {
         this.currentPage = Math.max(this.currentPage - 1, 1);
