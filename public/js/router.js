@@ -140,14 +140,7 @@ __webpack_require__.r(__webpack_exports__);
             _this.mode = 2;
           }, 1000);
         });
-      } // if (date1.getTime() === date2.getTime()) {
-      //   console.log("同じ日付です");
-      // } else if (date1 > date2) {
-      //   console.log("日付1の方が先の日付です");
-      // } else if (date1 < date2) {
-      //   console.log("日付2の方が先の日付です");
-      // }
-
+      }
     },
     onPrev: function onPrev() {
       this.currentPage = Math.max(this.currentPage - 1, 1);
@@ -2546,6 +2539,22 @@ var render = function () {
                             "fa-solid fa-magnifying-glass glass-icon",
                         }),
                       ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "edit",
+                        attrs: { href: "" },
+                        on: {
+                          click: function ($event) {
+                            $event.preventDefault()
+                            $event.stopPropagation()
+                            return _vm.openModal("log-update", log.id, null)
+                          },
+                        },
+                      },
+                      [_c("i", { staticClass: "fa-solid fa-pen pen-icon" })]
                     ),
                   ]),
                 ])

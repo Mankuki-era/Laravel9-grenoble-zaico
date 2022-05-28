@@ -81,7 +81,7 @@ main.log-index .card .card-main table tbody tr td.action a.edit {
   border-bottom-left-radius: 2px;
   background-color: #28a745;
   border-right: 1px solid #fff;
-  margin-left: 5px;
+  margin-left: 2px;
 }
 main.log-index .card .card-main div.table div.thead div.tr div.type p, main.log-index .card .card-main div.table div.thead div.tr div.created_at p, main.log-index .card .card-main div.table div.thead div.tr div.user_name p, main.log-index .card .card-main div.table div.tbody div.tr div.type p, main.log-index .card .card-main div.table div.tbody div.tr div.created_at p, main.log-index .card .card-main div.table div.tbody div.tr div.user_name p {
   line-height: 55px;

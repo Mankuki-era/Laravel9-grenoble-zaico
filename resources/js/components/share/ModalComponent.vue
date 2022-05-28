@@ -6,7 +6,7 @@
         <modal-item-component v-if="fields.type === 'item'" :id="fields.id" :index="fields.index" :func="fields.func" @data-reload="dataReload" @close-modal="closeModal" @message-event="messageEvent"></modal-item-component>
         <modal-import-component v-else-if="fields.type === 'import'" :func="fields.func" @data-reload="dataReload" @close-modal="closeModal" @message-event="messageEvent" @loading-event="loadingEvent"></modal-import-component>
         <modal-alert-component v-else-if="fields.type === 'alert'" :id="fields.id" :index="fields.index" :func="fields.func" @data-reload="dataReload" @close-modal="closeModal" @message-event="messageEvent"></modal-alert-component>
-        <modal-log-component v-else-if="fields.type === 'log'" :id="fields.id" :func="fields.func"></modal-log-component>
+        <modal-log-component v-else-if="fields.type === 'log'" :id="fields.id" :func="fields.func" @close-modal="closeModal" @message-event="messageEvent"></modal-log-component>
         <modal-login-component v-else-if="fields.type === 'login'" @close-modal="closeModal" @message-event="messageEvent" @header-event="headerEvent"></modal-login-component>
       </div>
       <div class="close-modal" @click="closeModal">×</div>

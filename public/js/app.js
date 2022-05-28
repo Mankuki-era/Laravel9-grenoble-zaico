@@ -7737,14 +7737,7 @@ __webpack_require__.r(__webpack_exports__);
             _this.mode = 2;
           }, 1000);
         });
-      } // if (date1.getTime() === date2.getTime()) {
-      //   console.log("同じ日付です");
-      // } else if (date1 > date2) {
-      //   console.log("日付1の方が先の日付です");
-      // } else if (date1 < date2) {
-      //   console.log("日付2の方が先の日付です");
-      // }
-
+      }
     },
     onPrev: function onPrev() {
       this.currentPage = Math.max(this.currentPage - 1, 1);
@@ -9084,6 +9077,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       type: '',
       data: [],
+      originData: [],
       created_at: '',
       sumPrice: 0
     };
@@ -9105,6 +9099,9 @@ __webpack_require__.r(__webpack_exports__);
         if (res.data) {
           _this.type = res.data.type;
           _this.data = res.data.data;
+          _this.originData = JSON.parse(JSON.stringify(_this.data));
+          ; // 元配列が参照されない複製
+
           _this.created_at = _this.formatDate(res.data.created_at);
 
           _this.data.forEach(function (val) {
@@ -9167,11 +9164,37 @@ __webpack_require__.r(__webpack_exports__);
     updateData: function updateData() {
       var _this2 = this;
 
-      axios.put("/api/log/".concat(this.id), {
-        data: this.data
-      }).then(function (res) {
-        _this2.$emit('close-modal');
+      var array = [];
+      this.data.forEach(function (val, index) {
+        if (val.amount !== _this2.originData[index].amount) {
+          if (_this2.type === '出庫') {
+            var changeStocks = _this2.originData[index].amount - val.amount;
+          } else if (_this2.type === '入庫') {
+            var changeStocks = val.amount - _this2.originData[index].amount;
+          }
+
+          ;
+          array.push({
+            'id': val.id,
+            'changeStocks': changeStocks
+          });
+        }
+
+        ;
       });
+
+      if (array.length > 0) {
+        axios.put("/api/log/".concat(this.id), {
+          data: this.data,
+          array: array
+        }).then(function (res) {
+          _this2.$emit('message-event', '数量を変更しました', true);
+
+          _this2.$emit('close-modal');
+        });
+      } else {
+        this.$emit('message-event', '数量が変更されていません', false);
+      }
     }
   }
 });
@@ -13725,6 +13748,22 @@ var render = function () {
                         }),
                       ]
                     ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "edit",
+                        attrs: { href: "" },
+                        on: {
+                          click: function ($event) {
+                            $event.preventDefault()
+                            $event.stopPropagation()
+                            return _vm.openModal("log-update", log.id, null)
+                          },
+                        },
+                      },
+                      [_c("i", { staticClass: "fa-solid fa-pen pen-icon" })]
+                    ),
                   ]),
                 ])
               }),
@@ -14286,6 +14325,10 @@ var render = function () {
                 : _vm.fields.type === "log"
                 ? _c("modal-log-component", {
                     attrs: { id: _vm.fields.id, func: _vm.fields.func },
+                    on: {
+                      "close-modal": _vm.closeModal,
+                      "message-event": _vm.messageEvent,
+                    },
                   })
                 : _vm.fields.type === "login"
                 ? _c("modal-login-component", {

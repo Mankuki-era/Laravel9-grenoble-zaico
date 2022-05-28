@@ -29,7 +29,7 @@
               <td class="user_name">{{ log.user_name }}</td>
               <td class="action">
                 <a href="" @click.prevent.stop="openModal('log-show', log.id, null)"><i class="fa-solid fa-magnifying-glass glass-icon"></i></a>
-                <!-- <a href="" class="edit" @click.prevent.stop="openModal('log-update', log.id, null)"><i class="fa-solid fa-pen pen-icon"></i></a> -->
+                <a href="" class="edit" @click.prevent.stop="openModal('log-update', log.id, null)"><i class="fa-solid fa-pen pen-icon"></i></a>
               </td>
             </tr>
             <tr v-show="logs.length === 0">

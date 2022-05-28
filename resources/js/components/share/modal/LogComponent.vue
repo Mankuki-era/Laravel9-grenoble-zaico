@@ -123,6 +123,7 @@ tr:not(:last-of-type) td, tr:last-of-type td.last-sum {
       return {
         type: '',
         data: [],
+        originData: [],
         created_at: '',
         sumPrice: 0
       };
@@ -142,6 +143,7 @@ tr:not(:last-of-type) td, tr:last-of-type td.last-sum {
           if(res.data){
             this.type = res.data.type;
             this.data = res.data.data;
+            this.originData = JSON.parse(JSON.stringify(this.data));;   // 元配列が参照されない複製
             this.created_at = this.formatDate(res.data.created_at);
             this.data.forEach(val => {
               this.sumPrice += val.price * Number(val.amount);
@@ -195,11 +197,28 @@ tr:not(:last-of-type) td, tr:last-of-type td.last-sum {
         });
       },
       updateData: function(){
-        axios.put(`/api/log/${this.id}`,{
-          data: this.data
-        }).then((res) => {
-          this.$emit('close-modal');
+        var array = [];
+        this.data.forEach((val, index) => {
+          if(val.amount !== this.originData[index].amount){
+            if(this.type === '出庫'){
+              var changeStocks = this.originData[index].amount - val.amount;
+            }else if(this.type === '入庫'){
+              var changeStocks = val.amount - this.originData[index].amount;
+            };
+            array.push({'id': val.id, 'changeStocks': changeStocks});
+          };
         });
+        if(array.length > 0){
+          axios.put(`/api/log/${this.id}`,{
+            data: this.data,
+            array: array
+          }).then((res) => {
+            this.$emit('message-event', '数量を変更しました', true);
+            this.$emit('close-modal');
+          });
+        }else{
+          this.$emit('message-event', '数量が変更されていません', false);
+        }
       }
     }
   }

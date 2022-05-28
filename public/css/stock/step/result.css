@@ -1,10 +1,12 @@
 .stock-result .card-main {
   text-align: center;
-  margin: 60px 0 20px;
 }
 .stock-result .card-main h1 {
   color: #333;
 }
 .stock-result .card-main p {
   color: #666;
+}
+.stock-result .page-button {
+  margin-top: 50px;
 }

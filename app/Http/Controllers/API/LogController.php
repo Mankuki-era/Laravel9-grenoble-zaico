@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Log;
+use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -32,10 +33,10 @@ class LogController extends Controller
 
         $log->type = $request->type;
         $log->data = serialize($request->data);
-
+        
         $log->save();
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -61,10 +62,16 @@ class LogController extends Controller
      */
     public function update(Request $request, $id)
     {
+        error_log(print_r($request->array,true),"3","/Users/mankuki_era/Documents/debug.log");
+
+        foreach($request->array as $val){
+            $item = Item::find($val['id']);
+            $item->stocks = $item->stocks + $val['changeStocks'];
+            $item->save();
+        };
+
         $log = Log::find($id);
-
         $log->data = serialize($request->data);
-
         $log->save();
     }
 
