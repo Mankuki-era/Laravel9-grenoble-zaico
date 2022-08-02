@@ -56,7 +56,7 @@
         datas: [],
         period: ['', ''],
         currentPage: 1, // 現在のページ番号
-        perPage: 20, // 1ページ毎の表示件数
+        perPage: 15, // 1ページ毎の表示件数
         totalPage: 1, // 総ページ数,
         adminFlag: false,
         mode: 1,
@@ -111,6 +111,8 @@
           }).then((res) => {
             if(res.data.length > 0){
               this.datas = res.data;
+              this.totalPage = Math.ceil(this.datas.length / this.perPage);
+              if(this.totalPage < this.currentPage) this.currentPage = this.totalPage;
             };
             setTimeout(() => {
               this.noneFlag = true;

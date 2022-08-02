@@ -95,7 +95,7 @@ class LogController extends Controller
     public function analysis(Request $request)
     {
         // error_log(print_r($request->from,true),"3","/Users/mankuki_era/Documents/debug.log");
-        $logs = Log::whereBetween("created_at", [$request->from, $request->to])->get();
+        $logs = Log::whereBetween("created_at", [$request->from, date('Y-m-d', strtotime('+1 day', strtotime($request->to)))])->get();
 
         $array = array();
         foreach($logs as $log){

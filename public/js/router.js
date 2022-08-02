@@ -70,7 +70,7 @@ __webpack_require__.r(__webpack_exports__);
       period: ['', ''],
       currentPage: 1,
       // 現在のページ番号
-      perPage: 20,
+      perPage: 15,
       // 1ページ毎の表示件数
       totalPage: 1,
       // 総ページ数,
@@ -132,6 +132,8 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (res) {
           if (res.data.length > 0) {
             _this.datas = res.data;
+            _this.totalPage = Math.ceil(_this.datas.length / _this.perPage);
+            if (_this.totalPage < _this.currentPage) _this.currentPage = _this.totalPage;
           }
 
           ;
