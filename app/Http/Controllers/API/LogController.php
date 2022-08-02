@@ -116,7 +116,7 @@ class LogController extends Controller
             $sort_keys[$key] = $value['id'];
         };
         
-        array_multisort($sort_keys, SORT_DESC, $array);
+        array_multisort($sort_keys, SORT_ASC, $array);
 
         return array_values($array);
 
