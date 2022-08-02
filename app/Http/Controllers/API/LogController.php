@@ -105,11 +105,18 @@ class LogController extends Controller
                     if(array_key_exists($data['name'], $array)){
                         $array[$data['name']]['amount'] += intval($data['amount']);
                     }else{
-                        $array[$data['name']] = array('name' => $data['name'], 'amount' => intval($data['amount']));
+                        $array[$data['name']] = array('id' => $data['id'], 'name' => $data['name'], 'amount' => intval($data['amount']));
                     }
                 };
             }
         };
+
+        // idでソートする
+        foreach($array as $key => $value) {
+            $sort_keys[$key] = $value['id'];
+        };
+        
+        array_multisort($sort_keys, SORT_DESC, $array);
 
         return array_values($array);
 
