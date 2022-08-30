@@ -14,6 +14,7 @@
               <li><a href="" @click.prevent.stop="openModal('item-import', null, null)"><i class="fa-solid fa-plus plus-icon"></i>一括追加</a></li>
               <li v-show="items.length > 0"><a href="" @click.prevent.stop="openModal('item-delete', null, null)"><i class="fa-solid fa-trash-can trash-icon"></i>一括削除</a></li>
             </ul>
+            <li><a href="" @click.prevent.stop="downloadPDF()" class="first" style="background-color: #dc3545;">PDF出力</a></li>
             <li><a href="" class="first" @click.prevent.stop="openModal('item-create', null, null)"><i class="fa-solid fa-plus plus-icon"></i>新規追加</a></li>
           </ul>
         </div>
@@ -81,6 +82,32 @@
             </div>
           </div>
         </div>
+        <div id="pdf-data">
+          <h1 class="pdf-h1">教材一覧</h1>
+          <table class="pdf-table">
+            <thead>
+              <tr class="pdf-table-tr">
+                <th class="no">No.</th>
+                <th class="name">教材名</th>
+                <th class="stocks">在庫数</th>
+                <th class="price">価格</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(item, index) in items" :key="item.id" class="pdf-table-tr">
+                <td class="pdf-table-td no">{{ index + 1 }}</td>
+                <td class="pdf-table-td">{{ item.name }}</td>
+                <td class="pdf-table-td" v-show="item.stocks !== null">{{ formatNum(item.stocks) }}</td>
+                <td class="pdf-table-td" v-show="item.stocks === null">ー</td>
+                <td class="pdf-table-td" v-show="item.price !== null">¥ {{ formatNum(item.price) }}</td>
+                <td class="pdf-table-td" v-show="item.price === null">ー</td>
+              </tr>
+              <tr v-show="items.length === 0">
+                <td colspan="6" class="no-data">データはありません</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="pagination">
         <div class="amount">{{ items.length }}件</div>
@@ -100,6 +127,36 @@
     </div>
   </main>
 </template>
+
+<style scoped>
+#pdf-data {
+  display: none;
+}
+
+.pdf-h1 {
+  text-align: center; 
+  font-size: 25px;
+  color: #333;
+}
+
+.pdf-table {
+  margin: 0 auto;
+}
+
+.pdf-table-tr {
+  border-bottom: 1px solid #555;
+  height: 35px;
+  color: #333;
+}
+
+.pdf-table-td {
+  vertical-align: middle;
+}
+
+.no {
+  padding-right: 40px;
+}
+</style>
 
 <script>
   export default {
@@ -149,6 +206,25 @@
             if(this.totalPage < this.currentPage) this.currentPage = this.totalPage;
           };
           this.$emit('loading-event', false);
+        });
+      },
+      downloadPDF: function(){
+        const element = document.getElementById('pdf-data').innerHTML;
+        const option = {
+          margin: 0.5,
+          filename: `教材一覧.pdf`,
+          // image: { type: 'jpeg', quality: 0.98 },
+          // html2canvas: { scale: 2},
+           pagebreak: {avoid: 'tr'},
+          // jsPDF: { format: 'a2', orientation: 'portrait' },
+          jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+        };
+
+        html2pdf().from(element).set(option).save().then(() => {
+          
+        })
+        .catch((e) => {
+          
         });
       },
       favoriteEvent: function(id, favorite, index){
