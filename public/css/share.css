@@ -254,6 +254,11 @@ body .wrapper .modal-area .modal-contena.narrow {
 body .wrapper .modal-area .modal-contena.wide {
   max-width: 800px;
 }
+body .wrapper .modal-area .modal-contena.semiwide {
+  max-width: 700px;
+  height: 85vh;
+  top: calc(50% + 25px);
+}
 body .wrapper .modal-area.show {
   display: block;
   -webkit-animation: fadeIn 0.3s forwards;

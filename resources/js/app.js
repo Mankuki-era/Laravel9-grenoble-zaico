@@ -35,6 +35,7 @@ Vue.component('loading-component', require('./components/share/LoadingComponent.
 Vue.component('modal-component', require('./components/share/ModalComponent.vue').default);
 Vue.component('modal-item-component', require('./components/share/modal/ItemComponent.vue').default);
 Vue.component('modal-import-component', require('./components/share/modal/ImportComponent.vue').default);
+Vue.component('modal-update-component', require('./components/share/modal/UpdateComponent.vue').default);
 Vue.component('modal-alert-component', require('./components/share/modal/AlertComponent.vue').default);
 Vue.component('modal-log-component', require('./components/share/modal/LogComponent.vue').default);
 Vue.component('modal-login-component', require('./components/share/modal/LoginComponent.vue').default);

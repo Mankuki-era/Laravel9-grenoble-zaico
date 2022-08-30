@@ -32,6 +32,7 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/stock/step/result.scss', 'public/css/stock/step')
     .sass('resources/sass/modal/item.scss', 'public/css/modal')
     .sass('resources/sass/modal/import.scss', 'public/css/modal')
+    .sass('resources/sass/modal/update.scss', 'public/css/modal')
     .sass('resources/sass/modal/alert.scss', 'public/css/modal')
     .sass('resources/sass/modal/log.scss', 'public/css/modal')
     .sass('resources/sass/modal/login.scss', 'public/css/modal');

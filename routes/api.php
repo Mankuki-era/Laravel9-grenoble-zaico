@@ -22,6 +22,7 @@ use App\Http\Controllers\API\InfoController;
 // });
 
 Route::post('/import', [ItemController::class, 'import']);
+Route::post('/update', [ItemController::class, 'allupdate']);
 Route::apiResource('item', ItemController::class);
 Route::apiResource('log', LogController::class);
 Route::apiResource('info', InfoController::class);

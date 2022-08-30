@@ -1,10 +1,11 @@
 <template>
   <section class="modal-area" :class="{show: fields.showFlag, hide: fields.hideFlag}">
     <div class="modal-mask" @click="closeModal"></div>
-    <div class="modal-contena" :class="{ narrow: this.fields.type === 'alert' || this.fields.type === 'login', wide: this.fields.type === 'log' }">
+    <div class="modal-contena" :class="{ narrow: this.fields.type === 'alert' || this.fields.type === 'login', wide: this.fields.type === 'log', semiwide: this.fields.type === 'update' }">
       <div class="modal-box">
         <modal-item-component v-if="fields.type === 'item'" :id="fields.id" :index="fields.index" :func="fields.func" @data-reload="dataReload" @close-modal="closeModal" @message-event="messageEvent"></modal-item-component>
         <modal-import-component v-else-if="fields.type === 'import'" :func="fields.func" @data-reload="dataReload" @close-modal="closeModal" @message-event="messageEvent" @loading-event="loadingEvent"></modal-import-component>
+        <modal-update-component v-else-if="fields.type === 'update'" :func="fields.func" @data-reload="dataReload" @close-modal="closeModal" @message-event="messageEvent" @loading-event="loadingEvent"></modal-update-component>
         <modal-alert-component v-else-if="fields.type === 'alert'" :id="fields.id" :index="fields.index" :func="fields.func" @data-reload="dataReload" @close-modal="closeModal" @message-event="messageEvent"></modal-alert-component>
         <modal-log-component v-else-if="fields.type === 'log'" :id="fields.id" :func="fields.func" @close-modal="closeModal" @message-event="messageEvent"></modal-log-component>
         <modal-login-component v-else-if="fields.type === 'login'" @close-modal="closeModal" @message-event="messageEvent" @header-event="headerEvent"></modal-login-component>
@@ -45,6 +46,8 @@ module.exports = {
         this.fields.type = 'item';
       }else if(func === 'item-import'){
         this.fields.type = 'import';
+      }else if(func === 'item-allupdate'){
+        this.fields.type = 'update';
       }else if(func === 'item-destroy' || func === 'item-delete'){
         this.fields.type = 'alert';
       }else if(func === 'log-show'){

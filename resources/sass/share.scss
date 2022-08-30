@@ -227,6 +227,11 @@ body {
       .modal-contena.wide {
         max-width: 800px;
       }
+      .modal-contena.semiwide {
+        max-width: 700px;
+        height: 85vh;
+        top: calc(50% + 50px/2);
+      }
     }
     .modal-area.show {
       display: block;

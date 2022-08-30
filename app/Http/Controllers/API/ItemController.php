@@ -60,6 +60,25 @@ class ItemController extends Controller
     }
 
     /**
+     * Import a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function allupdate(Request $request)
+    {
+        // error_log(print_r($request->data[0]['教材名'],true),"3","/Users/mankuki_era/Documents/debug.log");
+
+        foreach($request->data as $data){
+            $item = Item::find($data['id']);
+    
+            $item->stocks = isset($data['stocks']) ? $data['stocks'] : null;
+    
+            $item->save();
+        }
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id

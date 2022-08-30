@@ -15,6 +15,7 @@
               <li v-show="items.length > 0"><a href="" @click.prevent.stop="openModal('item-delete', null, null)"><i class="fa-solid fa-trash-can trash-icon"></i>一括削除</a></li>
             </ul>
             <li><a href="" @click.prevent.stop="downloadPDF()" class="first" style="background-color: #dc3545;">PDF出力</a></li>
+            <li><a href="" class="first" @click.prevent.stop="openModal('item-allupdate', null, null)" style="background-color: #28a745;"><i class="fa-solid fa-pen plus-icon"></i>一括編集</a></li>
             <li><a href="" class="first" @click.prevent.stop="openModal('item-create', null, null)"><i class="fa-solid fa-plus plus-icon"></i>新規追加</a></li>
           </ul>
         </div>
@@ -284,6 +285,9 @@
         }else if(func === 'item-import'){
           this.getItems();
           this.$emit('message-event', '教材情報を一括登録しました', true);
+        }else if(func === 'item-allupdate'){
+          this.getItems();
+          this.$emit('message-event', '教材情報を一括編集しました', true);
         }else if(func === 'item-reload'){
           this.getItems();
           this.$emit('message-event', '教材情報を再読込みしました', true);

@@ -29,6 +29,7 @@
   <link href="{{ asset('css/stock/step/result.css') }}" rel="stylesheet">
   <link href="{{ asset('css/modal/item.css') }}" rel="stylesheet">
   <link href="{{ asset('css/modal/import.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/modal/update.css') }}" rel="stylesheet">
   <link href="{{ asset('css/modal/alert.css') }}" rel="stylesheet">
   <link href="{{ asset('css/modal/log.css') }}" rel="stylesheet">
   <link href="{{ asset('css/modal/login.css') }}" rel="stylesheet">
