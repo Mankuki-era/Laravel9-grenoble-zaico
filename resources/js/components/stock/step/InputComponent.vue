@@ -4,6 +4,7 @@
       <div class="form-contena" v-show="items.length > 0">
         <div class="date-form">
           <input type="date" name="" id="" v-model="logDate">
+          <i class="fa-solid fa-calendar-days calender-icon"></i>
         </div>
         <div class="type-form">
           <div class="form-box">

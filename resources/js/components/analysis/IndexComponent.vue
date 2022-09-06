@@ -1,15 +1,17 @@
 <template>
   <main class="analysis-index">
     <div class="card narrow">
-      <h1 class="page-name">データ解析</h1>
+      <h1 class="page-name">集計</h1>
       <div class="card-main">
-        <p class="step-name" v-if="mode === 1">■ STEP１ <br><span>出庫数の解析を行う期間を選択してください</span></p>
+        <p class="step-name" v-if="mode === 1">■ STEP１ <br><span>出庫数の集計を行う期間を選択してください</span></p>
         <p class="step-name" v-if="mode === 2">■ STEP２ <br><span class="date">{{ period[0] }} 〜 {{ period[1] }}</span></p>
         <div class="form" v-if="mode === 1">
           <div class="date-form">
             <input type="date" name="" id="" v-model="period[0]">
+            <i class="fa-solid fa-calendar-days calender-icon part1"></i>
             <span>〜</span>
             <input type="date" name="" id="" v-model="period[1]">
+            <i class="fa-solid fa-calendar-days calender-icon part2"></i>
           </div>
         </div>
         <table v-if="mode === 2">
@@ -42,7 +44,7 @@
         </div>
       </div>
       <ul class="page-button">
-        <li><a href="" v-show="mode === 1" :class="{disabled: period[0] === '' || period[1] === ''}" class="first" @click.prevent.stop="startAnalysis">解析開始</a></li>
+        <li><a href="" v-show="mode === 1" :class="{disabled: period[0] === '' || period[1] === ''}" class="first" @click.prevent.stop="startAnalysis">集計開始</a></li>
         <li><a href="" v-show="mode === 2" class="second" @click.prevent.stop="backPage">戻る</a></li>
       </ul>
     </div>

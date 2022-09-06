@@ -7660,6 +7660,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   initData: function initData() {
     return {
@@ -8252,7 +8254,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       log_length: 0,
       currentPage: 1,
       // 現在のページ番号
-      perPage: 7,
+      perPage: 9,
       // 1ページ毎の表示日数
       totalPage: 1,
       // 総ページ数,
@@ -8434,7 +8436,7 @@ __webpack_require__.r(__webpack_exports__);
         icon: '<i class="fa-solid fa-database icon"></i>',
         selected: false
       }, {
-        name: 'データ解析',
+        name: '集計',
         to: '/analysis',
         icon: '<i class="fas fa-chart-line icon"></i>',
         selected: false
@@ -9942,6 +9944,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
 //
 //
 //
@@ -13069,14 +13072,14 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("main", { staticClass: "analysis-index" }, [
     _c("div", { staticClass: "card narrow" }, [
-      _c("h1", { staticClass: "page-name" }, [_vm._v("データ解析")]),
+      _c("h1", { staticClass: "page-name" }, [_vm._v("集計")]),
       _vm._v(" "),
       _c("div", { staticClass: "card-main" }, [
         _vm.mode === 1
           ? _c("p", { staticClass: "step-name" }, [
               _vm._v("■ STEP１ "),
               _c("br"),
-              _c("span", [_vm._v("出庫数の解析を行う期間を選択してください")]),
+              _c("span", [_vm._v("出庫数の集計を行う期間を選択してください")]),
             ])
           : _vm._e(),
         _vm._v(" "),
@@ -13114,6 +13117,10 @@ var render = function () {
                   },
                 }),
                 _vm._v(" "),
+                _c("i", {
+                  staticClass: "fa-solid fa-calendar-days calender-icon part1",
+                }),
+                _vm._v(" "),
                 _c("span", [_vm._v("〜")]),
                 _vm._v(" "),
                 _c("input", {
@@ -13135,6 +13142,10 @@ var render = function () {
                       _vm.$set(_vm.period, 1, $event.target.value)
                     },
                   },
+                }),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "fa-solid fa-calendar-days calender-icon part2",
                 }),
               ]),
             ])
@@ -13260,7 +13271,7 @@ var render = function () {
                 },
               },
             },
-            [_vm._v("解析開始")]
+            [_vm._v("集計開始")]
           ),
         ]),
         _vm._v(" "),
@@ -14396,7 +14407,33 @@ var render = function () {
       _vm._v(" "),
       _c("div", { staticClass: "card-main" }, [
         _c("table", [
-          _vm._m(0),
+          _c("thead", [
+            _c("tr", [
+              _c("th", { staticClass: "date" }, [_vm._v("日付")]),
+              _vm._v(" "),
+              _c("th", { staticClass: "time" }, [_vm._v("時間")]),
+              _vm._v(" "),
+              _c("th", { staticClass: "type" }, [_vm._v("種別")]),
+              _vm._v(" "),
+              _c("th", { staticClass: "user_name" }, [_vm._v("対応者")]),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.adminFlag,
+                      expression: "adminFlag",
+                    },
+                  ],
+                  staticClass: "action",
+                },
+                [_vm._v("操作")]
+              ),
+            ]),
+          ]),
           _vm._v(" "),
           _c(
             "tbody",
@@ -14445,43 +14482,57 @@ var render = function () {
                       _vm._v(_vm._s(log.user_name)),
                     ]),
                     _vm._v(" "),
-                    _c("td", { staticClass: "action" }, [
-                      _c(
-                        "a",
-                        {
-                          attrs: { href: "" },
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              $event.stopPropagation()
-                              return _vm.openModal("log-show", log.id, null)
+                    _c(
+                      "td",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.adminFlag,
+                            expression: "adminFlag",
+                          },
+                        ],
+                        staticClass: "action",
+                      },
+                      [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "" },
+                            on: {
+                              click: function ($event) {
+                                $event.preventDefault()
+                                $event.stopPropagation()
+                                return _vm.openModal("log-show", log.id, null)
+                              },
                             },
                           },
-                        },
-                        [
-                          _c("i", {
-                            staticClass:
-                              "fa-solid fa-magnifying-glass glass-icon",
-                          }),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "edit",
-                          attrs: { href: "" },
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              $event.stopPropagation()
-                              return _vm.openModal("log-update", log.id, null)
+                          [
+                            _c("i", {
+                              staticClass:
+                                "fa-solid fa-magnifying-glass glass-icon",
+                            }),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "edit",
+                            attrs: { href: "" },
+                            on: {
+                              click: function ($event) {
+                                $event.preventDefault()
+                                $event.stopPropagation()
+                                return _vm.openModal("log-update", log.id, null)
+                              },
                             },
                           },
-                        },
-                        [_c("i", { staticClass: "fa-solid fa-pen pen-icon" })]
-                      ),
-                    ]),
+                          [_c("i", { staticClass: "fa-solid fa-pen pen-icon" })]
+                        ),
+                      ]
+                    ),
                   ])
                 })
               }),
@@ -14512,7 +14563,7 @@ var render = function () {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "table" }, [
-          _vm._m(1),
+          _vm._m(0),
           _vm._v(" "),
           _c(
             "div",
@@ -14640,7 +14691,7 @@ var render = function () {
                   },
                 },
               },
-              [_vm._m(2), _c("span", [_vm._v("再読込み")])]
+              [_vm._m(1), _c("span", [_vm._v("再読込み")])]
             ),
           ]),
           _vm._v(" "),
@@ -14670,7 +14721,7 @@ var render = function () {
                     },
                   },
                 },
-                [_vm._m(3), _c("span", [_vm._v("一括削除")])]
+                [_vm._m(2), _c("span", [_vm._v("一括削除")])]
               ),
             ]
           ),
@@ -14680,24 +14731,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { staticClass: "date" }, [_vm._v("日付")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "time" }, [_vm._v("時間")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "type" }, [_vm._v("種別")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "user_name" }, [_vm._v("対応者")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "action" }, [_vm._v("操作")]),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -15695,7 +15728,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "modal-login" }, [
-    _c("h1", { staticClass: "modal-name" }, [_vm._v("Basic認証")]),
+    _c("h1", { staticClass: "modal-name" }, [_vm._v("管理者ログイン")]),
     _vm._v(" "),
     _c("form", [
       _c("div", { staticClass: "form-group" }, [
@@ -16353,6 +16386,8 @@ var render = function () {
                 },
               },
             }),
+            _vm._v(" "),
+            _c("i", { staticClass: "fa-solid fa-calendar-days calender-icon" }),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "type-form" }, [

@@ -1,6 +1,6 @@
 <template>
   <div class="modal-login">
-    <h1 class="modal-name">Basic認証</h1>
+    <h1 class="modal-name">管理者ログイン</h1>
     <form>
       <div class="form-group">
         <label for="password">パスワード</label>
