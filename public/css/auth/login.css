@@ -1,5 +1,5 @@
 main.login .card {
-  height: calc(var(--vh, 1vh) * 100 - 50px);
+  height: calc(var(--vh, 1vh) * 100 - 260px);
   padding: 25px 0 10px;
 }
 main.login .card h1.page-name {
