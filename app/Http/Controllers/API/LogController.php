@@ -30,9 +30,9 @@ class LogController extends Controller
     public function store(Request $request)
     {
         $log = new Log;
-
         $log->type = $request->type;
         $log->data = serialize($request->data);
+        $log->created_at = strtotime($request->date);
         
         $log->save();
     }
@@ -62,7 +62,7 @@ class LogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        error_log(print_r($request->array,true),"3","/Users/mankuki_era/Documents/debug.log");
+        // error_log(print_r($request->array,true),"3","/Users/mankuki_era/Documents/debug.log");
 
         foreach($request->array as $val){
             $item = Item::find($val['id']);
@@ -120,6 +120,86 @@ class LogController extends Controller
 
         return array_values($array);
 
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function arrange()
+    {
+        $logs = Log::orderBy('created_at', 'asc')->get();
+
+        $datestr1 = ""; // 日付
+        $array = [];
+        foreach($logs as $log){
+            $datestr2 = substr($log->created_at, 0, 10);
+            // error_log(print_r($datestr2,true),"3","/Users/mankuki_era/Documents/debug.log");
+            if($datestr1 != $datestr2){
+
+                // データ更新および削除処理
+                if($array != []){
+                    foreach($array as $array_data){
+                        if(count($array_data['id']) > 1){
+                            $update_id = array_pop($array_data['id']);
+                            // データ削除
+                            foreach($array_data['id'] as $id) {
+                                $delete_log = Log::find($id);
+                                $delete_log->delete();
+                            }
+                            // データ更新
+                            $update_log = Log::find($update_id);
+                            $update_log->data = serialize($array_data['data']);
+                            $update_log->save();
+                        }
+                    }
+                }
+
+                $datestr1 = $datestr2;
+                $array = [array('data'=>[], 'id'=>[]), array('data'=>[], 'id'=>[])];  // [入庫データ, 出庫データ];
+            };
+
+            if($log->type === '入庫'){
+                $index = 0;
+            }elseif($log->type ===  '出庫'){
+                $index = 1;
+            };
+
+            $id_array = array_column($array[$index]['data'], 'id');
+
+            foreach(unserialize($log->data) as $data){
+                $key = array_search($data['id'], $id_array);
+                if($key === false){
+                    array_push($array[$index]['data'], $data);
+                }else{
+                    $array[$index]['data'][$key]['amount'] += $data['amount'];
+                }
+            }
+
+            array_push($array[$index]['id'], $log->id);
+
+        };
+
+        // データ更新および削除処理
+        foreach($array as $array_data){
+            if(count($array_data['id']) > 1){
+                $update_id = array_pop($array_data['id']);
+                // データ削除
+                foreach($array_data['id'] as $id){
+                    $delete_log = Log::find($id);
+                    $delete_log->delete();
+                }
+                // データ更新
+                $update_log = Log::find($update_id);
+                $update_log->data = serialize($array_data['data']);
+                $update_log->save();
+            }
+        }
+
+        // error_log(print_r($array,true),"3","/Users/mankuki_era/Documents/debug.log");
+        
     }
 
     /**

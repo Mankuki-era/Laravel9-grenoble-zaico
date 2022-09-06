@@ -6,7 +6,7 @@
       <p>詳細は履歴に登録されているためご確認ください。</p>
     </div>
     <ul class="page-button">
-      <li><a href="" class="first" @click.prevent.stop="topPage">教材一覧へ</a></li>
+      <li><a href="" class="first" @click.prevent.stop="topPage">TOPへ</a></li>
     </ul>
   </div>
 </template>
@@ -26,8 +26,8 @@
         Object.assign(this.$data, this.$options.initData());
       },
       topPage: function(){
-        this.$router.push({
-          path: '/'
+        this.$router.go({
+          path: '/stock'
         });
         this.$emit('header-event');
       },

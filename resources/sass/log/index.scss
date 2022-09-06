@@ -56,11 +56,14 @@ main.log-index {
       table {
         thead {
           tr {
+            th.date {
+              width: 130px;
+            }
+            th.time {
+              width: 50px;
+            }
             th.type {
               width: 45px;
-            }
-            th.created_at {
-              width: 170px;
             }
             th.user_name {
               width: 50px;
@@ -72,6 +75,19 @@ main.log-index {
         }
         tbody {
           tr {
+            td {
+              span.type {
+                padding: 3px 7px 4px 7px;
+                border-radius: 2px;
+                color: #fff;
+              }
+              span.in {
+                background-color: #007bff;
+              }
+              span.out {
+                background-color: #dc3545;
+              }
+            }
             td.action {
               display: flex;
               height: 35px;

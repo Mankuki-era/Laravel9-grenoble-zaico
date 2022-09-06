@@ -25,6 +25,7 @@ module.exports = {
     return this.$options.initData();
   },
   mounted: function(){
+    document.getElementById("password").focus();
     this.getInfo();
   },
   methods: {

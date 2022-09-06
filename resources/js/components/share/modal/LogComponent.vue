@@ -12,7 +12,6 @@
               <th>教材名</th>
               <th>価格</th>
               <th>{{ type }}数量</th>
-              <th>在庫数</th>
               <th>合計金額</th>
             </tr>
           </thead>
@@ -22,7 +21,6 @@
               <td class="name">{{ item.name }}</td>
               <td class="price">¥ {{ formatNum(item.price) }}</td>
               <td class="amount">{{ item.amount }}</td>
-              <td class="stocks">{{ stockString(index) }}</td>
               <td class="stocks">¥ {{ formatNum(item.price * item.amount) }}</td>
             </tr>
             <tr></tr>
@@ -30,7 +28,7 @@
               <td></td>
               <td></td>
               <td></td>
-              <td colspan="2" class="last-sum">最終合計金額</td>
+              <td colspan="1" class="last-sum">総計</td>
               <td class="last-sum">¥ {{ formatNum(sumPrice) }}</td>
             </tr>
           </tbody>
@@ -157,7 +155,7 @@ tr:not(:last-of-type) td, tr:last-of-type td.last-sum {
           if (num.length === 1){
             num = "0" + num;
           }
-          return num;     
+          return num;
         };
         var date = new Date(dd);
         var y = date.getFullYear();
@@ -171,13 +169,13 @@ tr:not(:last-of-type) td, tr:last-of-type td.last-sum {
       formatNum: function(num){
         return num.toLocaleString();
       },
-      stockString(index){
-        if(this.type === '入庫'){
-          return `${ this.formatNum(this.data[index].stocks - Number(this.data[index].amount)) } → ${ this.formatNum(this.data[index].stocks) }`;
-        }else if(this.type === '出庫'){
-          return `${ this.formatNum(this.data[index].stocks + Number(this.data[index].amount)) } → ${ this.formatNum(this.data[index].stocks) }`;
-        }
-      },
+      // stockString(index){
+      //   if(this.type === '入庫'){
+      //     return `${ this.formatNum(this.data[index].stocks - Number(this.data[index].amount)) } → ${ this.formatNum(this.data[index].stocks) }`;
+      //   }else if(this.type === '出庫'){
+      //     return `${ this.formatNum(this.data[index].stocks + Number(this.data[index].amount)) } → ${ this.formatNum(this.data[index].stocks) }`;
+      //   }
+      // },
       downloadPDF: function(){
         const element = document.getElementById('log-card');
         const option = {

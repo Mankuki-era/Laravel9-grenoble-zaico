@@ -644,14 +644,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   initData: function initData() {
     return {
       logs: [],
+      log_length: 0,
       currentPage: 1,
       // 現在のページ番号
-      perPage: 20,
-      // 1ページ毎の表示件数
+      perPage: 7,
+      // 1ページ毎の表示日数
       totalPage: 1,
       // 総ページ数,
       adminFlag: false
@@ -666,26 +671,51 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.adminFlag = this.$cookies.get('auth') === 'admin';
-    this.getLogs();
+    this.$emit('loading-event', true);
+    axios.get('/api/arrange').then(function (res) {
+      _this.getLogs();
+    });
   },
   methods: (_methods = {
     resetData: function resetData() {
       Object.assign(this.$data, this.$options.initData());
     },
     getLogs: function getLogs() {
-      var _this = this;
+      var _this2 = this;
 
-      this.$emit('loading-event', true);
       axios.get('/api/log').then(function (res) {
         if (res.data.length > 0) {
-          _this.logs = res.data;
-          _this.totalPage = Math.ceil(_this.logs.length / _this.perPage);
+          // this.logs = res.data;
+          var datestr1 = "";
+          var array = [];
+          _this2.logs = [];
+          _this2.log_length = res.data.length;
+          res.data.forEach(function (log) {
+            var datestr2 = log.created_at.substr(0, 10);
+
+            if (datestr1 !== datestr2) {
+              if (array.length > 0) {
+                _this2.logs.push(array);
+              }
+
+              array = [];
+              datestr1 = datestr2;
+            }
+
+            array.push(log);
+          });
+
+          _this2.logs.push(array);
+
+          _this2.totalPage = Math.ceil(_this2.logs.length / _this2.perPage);
         }
 
         ;
 
-        _this.$emit('loading-event', false);
+        _this2.$emit('loading-event', false);
       });
     },
     openModal: function openModal(func, id, index) {
@@ -724,6 +754,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.resetData();
       this.$emit('message-event', '履歴データを削除しました', true);
     } else if (func === 'log-reload') {
+      this.$emit('loading-event', true);
       this.getLogs();
       this.$emit('message-event', '履歴情報を再読込みしました', true);
     }
@@ -795,7 +826,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       type: '出庫',
       items: [],
-      data: []
+      data: [],
+      date: ""
     };
   },
   data: function data() {
@@ -805,12 +837,13 @@ __webpack_require__.r(__webpack_exports__);
     resetData: function resetData() {
       Object.assign(this.$data, this.$options.initData());
     },
-    confirmPage: function confirmPage(type, items, data) {
+    confirmPage: function confirmPage(type, items, data, date) {
       var _this = this;
 
       this.type = type;
       this.items = items;
       this.data = data;
+      this.date = date;
       this.animation = {
         bar01: 'go',
         bar02: ''
@@ -3120,7 +3153,7 @@ var render = function () {
       _c("div", { staticClass: "card-header" }, [
         _c("div", { staticClass: "left-box" }, [
           _c("p", { staticClass: "amount" }, [
-            _vm._v(_vm._s(_vm.logs.length) + "件"),
+            _vm._v(_vm._s(_vm.log_length) + "件"),
           ]),
         ]),
         _vm._v(" "),
@@ -3186,56 +3219,89 @@ var render = function () {
           _c(
             "tbody",
             [
-              _vm._l(_vm.filterLogs, function (log) {
-                return _c("tr", { key: log.id }, [
-                  _c("td", { staticClass: "type" }, [_vm._v(_vm._s(log.type))]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "created_at" }, [
-                    _vm._v(_vm._s(_vm.formatDate(log.created_at))),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "user_name" }, [
-                    _vm._v(_vm._s(log.user_name)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "action" }, [
-                    _c(
-                      "a",
-                      {
-                        attrs: { href: "" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            $event.stopPropagation()
-                            return _vm.openModal("log-show", log.id, null)
+              _vm._l(_vm.filterLogs, function (logs) {
+                return _vm._l(logs, function (log, index) {
+                  return _c("tr", { key: log.id }, [
+                    index === 0
+                      ? _c(
+                          "td",
+                          {
+                            staticClass: "date",
+                            attrs: { rowspan: logs.length },
                           },
-                        },
-                      },
-                      [
-                        _c("i", {
-                          staticClass:
-                            "fa-solid fa-magnifying-glass glass-icon",
-                        }),
-                      ]
-                    ),
+                          [
+                            _vm._v(
+                              _vm._s(
+                                _vm.formatDate(log.created_at).substr(0, 11)
+                              )
+                            ),
+                          ]
+                        )
+                      : _vm._e(),
                     _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "edit",
-                        attrs: { href: "" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            $event.stopPropagation()
-                            return _vm.openModal("log-update", log.id, null)
+                    _c("td", { staticClass: "time" }, [
+                      _vm._v(
+                        _vm._s(_vm.formatDate(log.created_at).substr(11, 6))
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "type" }, [
+                      _c(
+                        "span",
+                        {
+                          staticClass: "type",
+                          class: {
+                            in: log.type === "入庫",
+                            out: log.type === "出庫",
                           },
                         },
-                      },
-                      [_c("i", { staticClass: "fa-solid fa-pen pen-icon" })]
-                    ),
-                  ]),
-                ])
+                        [_vm._v(_vm._s(log.type))]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "user_name" }, [
+                      _vm._v(_vm._s(log.user_name)),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "action" }, [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "" },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              $event.stopPropagation()
+                              return _vm.openModal("log-show", log.id, null)
+                            },
+                          },
+                        },
+                        [
+                          _c("i", {
+                            staticClass:
+                              "fa-solid fa-magnifying-glass glass-icon",
+                          }),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "edit",
+                          attrs: { href: "" },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              $event.stopPropagation()
+                              return _vm.openModal("log-update", log.id, null)
+                            },
+                          },
+                        },
+                        [_c("i", { staticClass: "fa-solid fa-pen pen-icon" })]
+                      ),
+                    ]),
+                  ])
+                })
               }),
               _vm._v(" "),
               _c(
@@ -3320,7 +3386,7 @@ var render = function () {
       _vm._v(" "),
       _c("div", { staticClass: "pagination" }, [
         _c("div", { staticClass: "amount" }, [
-          _vm._v(_vm._s(_vm.logs.length) + "件"),
+          _vm._v(_vm._s(_vm.log_length) + "件"),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "page-box" }, [
@@ -3438,9 +3504,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", { staticClass: "type" }, [_vm._v("種別")]),
+        _c("th", { staticClass: "date" }, [_vm._v("日付")]),
         _vm._v(" "),
-        _c("th", { staticClass: "created_at" }, [_vm._v("日時")]),
+        _c("th", { staticClass: "time" }, [_vm._v("時間")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "type" }, [_vm._v("種別")]),
         _vm._v(" "),
         _c("th", { staticClass: "user_name" }, [_vm._v("対応者")]),
         _vm._v(" "),
@@ -3589,7 +3657,7 @@ var render = function () {
         _vm._v(" "),
         _vm.step.input === "current"
           ? _c("stock-input-component", {
-              attrs: { type: _vm.type, data: _vm.items },
+              attrs: { type: _vm.type, data: _vm.items, date: _vm.date },
               on: {
                 "forward-page": _vm.confirmPage,
                 "message-event": _vm.messageEvent,
@@ -3599,7 +3667,7 @@ var render = function () {
             })
           : _vm.step.confirm === "current"
           ? _c("stock-confirm-component", {
-              attrs: { type: _vm.type, data: _vm.data },
+              attrs: { type: _vm.type, data: _vm.data, date: _vm.date },
               on: {
                 "forward-page": _vm.resultPage,
                 "back-page": _vm.inputPage,

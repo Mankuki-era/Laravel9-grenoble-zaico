@@ -2,7 +2,7 @@
   <div class="stock-confirm">
     <div class="card-main">
       <h1>{{ type }}表</h1>
-      <p class="date">{{ getUpdatedAt() }}</p>
+      <p class="date">{{ formatDate(date) }}</p>
       <table>
         <thead>
           <tr>
@@ -73,7 +73,7 @@
 
 <script>
   export default {
-    props: ['type', 'data'],
+    props: ['type', 'data', 'date'],
     initData: function(){
       return {
         itemData: [],
@@ -99,8 +99,22 @@
       resetData: function(){
         Object.assign(this.$data, this.$options.initData());
       },
-      getUpdatedAt: function(){
-        var toDoubleDigits = function(num){
+      formatDate: function(dd){ // 2021-02-07
+        var toDoubleDigits = function(num) {
+          num += "";
+          if (num.length === 1){
+            num = "0" + num;
+          }
+          return num;     
+        };
+        var date = new Date(dd);
+        var y = date.getFullYear();
+        var m = toDoubleDigits(date.getMonth() + 1);
+        var d = toDoubleDigits(date.getDate());
+        return `${y}年${m}月${d}日`;
+      },
+      getHmis: function(){ // 10:20:00
+        var toDoubleDigits = function(num) {
           num += "";
           if (num.length === 1){
             num = "0" + num;
@@ -108,10 +122,10 @@
           return num;     
         };
         var date = new Date();
-        var y = date.getFullYear();
-        var m = toDoubleDigits(date.getMonth() + 1);
-        var d = toDoubleDigits(date.getDate());
-        return `${y}年${m}月${d}日`;
+        var h = toDoubleDigits(date.getHours());
+        var mi = toDoubleDigits(date.getMinutes());
+        var s = toDoubleDigits(date.getSeconds());
+        return `${h}:${mi}:${s}`;
       },
       formatNum: function(num){
         return num.toLocaleString();
@@ -132,6 +146,7 @@
           data: this.itemData
         }).then((res) => {
           axios.post('/api/log',{
+            date: `${this.date} ${this.getHmis()}`,
             type: this.type,
             data: this.itemData
           }).then((res) => {

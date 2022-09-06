@@ -14,7 +14,7 @@
           </li>
         </template>
         <li class="router-link">
-          <a @click.prevent.stop="logoutEvent"><span><i class="fa-solid fa-power-off power-icon"></i></span><span>ログアウト</span></a>
+          <a href="" @click.prevent.stop="logoutEvent"><span><i class="fa-solid fa-power-off power-icon"></i></span><span>ログアウト</span></a>
         </li>
       </ul>
     </div>

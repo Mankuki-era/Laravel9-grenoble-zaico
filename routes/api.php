@@ -31,3 +31,4 @@ Route::post('/item/delete', [ItemController::class, 'delete']);
 Route::post('/item/stock', [ItemController::class, 'stock']);
 Route::post('/log/delete', [LogController::class, 'delete']);
 Route::get('/analysis', [LogController::class, 'analysis']);
+Route::get('/arrange', [LogController::class, 'arrange']);

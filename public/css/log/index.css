@@ -46,17 +46,31 @@ main.log-index .card .card-header .right-box ul li a.second .reload-icon {
 main.log-index .card .card-header .right-box ul li:not(:first-of-type) {
   margin-left: 10px;
 }
+main.log-index .card .card-main table thead tr th.date {
+  width: 130px;
+}
+main.log-index .card .card-main table thead tr th.time {
+  width: 50px;
+}
 main.log-index .card .card-main table thead tr th.type {
   width: 45px;
-}
-main.log-index .card .card-main table thead tr th.created_at {
-  width: 170px;
 }
 main.log-index .card .card-main table thead tr th.user_name {
   width: 50px;
 }
 main.log-index .card .card-main table thead tr th.action {
   width: 35px;
+}
+main.log-index .card .card-main table tbody tr td span.type {
+  padding: 3px 7px 4px 7px;
+  border-radius: 2px;
+  color: #fff;
+}
+main.log-index .card .card-main table tbody tr td span.in {
+  background-color: #007bff;
+}
+main.log-index .card .card-main table tbody tr td span.out {
+  background-color: #dc3545;
 }
 main.log-index .card .card-main table tbody tr td.action {
   display: flex;

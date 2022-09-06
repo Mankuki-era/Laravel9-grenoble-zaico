@@ -2,13 +2,18 @@
   <div class="stock-input">
     <div class="card-header">
       <div class="form-contena" v-show="items.length > 0">
-        <div class="form-box">
-          <input type="radio" id="in" value="入庫" v-model="mode">
-          <label for="in">入庫</label>
+        <div class="date-form">
+          <input type="date" name="" id="" v-model="logDate">
         </div>
-        <div class="form-box">
-          <input type="radio" id="out" value="出庫" v-model="mode">
-          <label for="out">出庫</label>
+        <div class="type-form">
+          <div class="form-box">
+            <input type="radio" id="in" value="入庫" v-model="mode">
+            <label for="in">入庫</label>
+          </div>
+          <div class="form-box">
+            <input type="radio" id="out" value="出庫" v-model="mode">
+            <label for="out">出庫</label>
+          </div>
         </div>
       </div>
     </div>
@@ -102,11 +107,12 @@
 
 <script>
   export default {
-    props: ['type', 'data'],
+    props: ['type', 'data', 'date'],
     initData: function(){
       return {
         items: [],
         originItems: [],
+        logDate: "",
         currentPage: 1, // 現在のページ番号
         perPage: 20, // 1ページ毎の表示件数
         totalPage: 1, // 総ページ数,
@@ -129,10 +135,29 @@
         this.items = this.data;
         this.totalPage = Math.ceil(this.items.length / this.perPage);
       }
+      if(this.date === ""){
+        this.logDate = this.getDate();
+      }else{
+        this.logDate = this.date;
+      }
     },
     methods: {
       resetData: function(){
         Object.assign(this.$data, this.$options.initData());
+      },
+      getDate: function(){
+        var toDoubleDigits = function(num) {
+          num += "";
+          if (num.length === 1){
+            num = "0" + num;
+          }
+          return num;     
+        };
+        var date = new Date();
+        var y = date.getFullYear();
+        var m = toDoubleDigits(date.getMonth() + 1);
+        var d = toDoubleDigits(date.getDate());
+        return `${y}-${m}-${d}`;
       },
       getItems: function(){
         this.$emit('loading-event', true);
@@ -203,7 +228,7 @@
           }else if(errType === 'type02'){
             this.$emit('message-event', '数量が在庫数を超過しています', false);
           }else{
-            this.$emit('forward-page', this.mode, this.items, this.selectItems());
+            this.$emit('forward-page', this.mode, this.items, this.selectItems(), this.logDate);
           } 
         }else{
           this.$emit('message-event', '数量を入力してください', false);

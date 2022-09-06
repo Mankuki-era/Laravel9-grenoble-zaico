@@ -8241,14 +8241,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   initData: function initData() {
     return {
       logs: [],
+      log_length: 0,
       currentPage: 1,
       // 現在のページ番号
-      perPage: 20,
-      // 1ページ毎の表示件数
+      perPage: 7,
+      // 1ページ毎の表示日数
       totalPage: 1,
       // 総ページ数,
       adminFlag: false
@@ -8263,26 +8268,51 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.adminFlag = this.$cookies.get('auth') === 'admin';
-    this.getLogs();
+    this.$emit('loading-event', true);
+    axios.get('/api/arrange').then(function (res) {
+      _this.getLogs();
+    });
   },
   methods: (_methods = {
     resetData: function resetData() {
       Object.assign(this.$data, this.$options.initData());
     },
     getLogs: function getLogs() {
-      var _this = this;
+      var _this2 = this;
 
-      this.$emit('loading-event', true);
       axios.get('/api/log').then(function (res) {
         if (res.data.length > 0) {
-          _this.logs = res.data;
-          _this.totalPage = Math.ceil(_this.logs.length / _this.perPage);
+          // this.logs = res.data;
+          var datestr1 = "";
+          var array = [];
+          _this2.logs = [];
+          _this2.log_length = res.data.length;
+          res.data.forEach(function (log) {
+            var datestr2 = log.created_at.substr(0, 10);
+
+            if (datestr1 !== datestr2) {
+              if (array.length > 0) {
+                _this2.logs.push(array);
+              }
+
+              array = [];
+              datestr1 = datestr2;
+            }
+
+            array.push(log);
+          });
+
+          _this2.logs.push(array);
+
+          _this2.totalPage = Math.ceil(_this2.logs.length / _this2.perPage);
         }
 
         ;
 
-        _this.$emit('loading-event', false);
+        _this2.$emit('loading-event', false);
       });
     },
     openModal: function openModal(func, id, index) {
@@ -8321,6 +8351,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.resetData();
       this.$emit('message-event', '履歴データを削除しました', true);
     } else if (func === 'log-reload') {
+      this.$emit('loading-event', true);
       this.getLogs();
       this.$emit('message-event', '履歴情報を再読込みしました', true);
     }
@@ -9154,8 +9185,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['id', 'func'],
   initData: function initData() {
@@ -9218,13 +9247,13 @@ __webpack_require__.r(__webpack_exports__);
     formatNum: function formatNum(num) {
       return num.toLocaleString();
     },
-    stockString: function stockString(index) {
-      if (this.type === '入庫') {
-        return "".concat(this.formatNum(this.data[index].stocks - Number(this.data[index].amount)), " \u2192 ").concat(this.formatNum(this.data[index].stocks));
-      } else if (this.type === '出庫') {
-        return "".concat(this.formatNum(this.data[index].stocks + Number(this.data[index].amount)), " \u2192 ").concat(this.formatNum(this.data[index].stocks));
-      }
-    },
+    // stockString(index){
+    //   if(this.type === '入庫'){
+    //     return `${ this.formatNum(this.data[index].stocks - Number(this.data[index].amount)) } → ${ this.formatNum(this.data[index].stocks) }`;
+    //   }else if(this.type === '出庫'){
+    //     return `${ this.formatNum(this.data[index].stocks + Number(this.data[index].amount)) } → ${ this.formatNum(this.data[index].stocks) }`;
+    //   }
+    // },
     downloadPDF: function downloadPDF() {
       var element = document.getElementById('log-card');
       var option = {
@@ -9318,6 +9347,7 @@ module.exports = {
     return this.$options.initData();
   },
   mounted: function mounted() {
+    document.getElementById("password").focus();
     this.getInfo();
   },
   methods: {
@@ -9607,7 +9637,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       type: '出庫',
       items: [],
-      data: []
+      data: [],
+      date: ""
     };
   },
   data: function data() {
@@ -9617,12 +9648,13 @@ __webpack_require__.r(__webpack_exports__);
     resetData: function resetData() {
       Object.assign(this.$data, this.$options.initData());
     },
-    confirmPage: function confirmPage(type, items, data) {
+    confirmPage: function confirmPage(type, items, data, date) {
       var _this = this;
 
       this.type = type;
       this.items = items;
       this.data = data;
+      this.date = date;
       this.animation = {
         bar01: 'go',
         bar02: ''
@@ -9799,7 +9831,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['type', 'data'],
+  props: ['type', 'data', 'date'],
   initData: function initData() {
     return {
       itemData: [],
@@ -9827,7 +9859,26 @@ __webpack_require__.r(__webpack_exports__);
     resetData: function resetData() {
       Object.assign(this.$data, this.$options.initData());
     },
-    getUpdatedAt: function getUpdatedAt() {
+    formatDate: function formatDate(dd) {
+      // 2021-02-07
+      var toDoubleDigits = function toDoubleDigits(num) {
+        num += "";
+
+        if (num.length === 1) {
+          num = "0" + num;
+        }
+
+        return num;
+      };
+
+      var date = new Date(dd);
+      var y = date.getFullYear();
+      var m = toDoubleDigits(date.getMonth() + 1);
+      var d = toDoubleDigits(date.getDate());
+      return "".concat(y, "\u5E74").concat(m, "\u6708").concat(d, "\u65E5");
+    },
+    getHmis: function getHmis() {
+      // 10:20:00
       var toDoubleDigits = function toDoubleDigits(num) {
         num += "";
 
@@ -9839,10 +9890,10 @@ __webpack_require__.r(__webpack_exports__);
       };
 
       var date = new Date();
-      var y = date.getFullYear();
-      var m = toDoubleDigits(date.getMonth() + 1);
-      var d = toDoubleDigits(date.getDate());
-      return "".concat(y, "\u5E74").concat(m, "\u6708").concat(d, "\u65E5");
+      var h = toDoubleDigits(date.getHours());
+      var mi = toDoubleDigits(date.getMinutes());
+      var s = toDoubleDigits(date.getSeconds());
+      return "".concat(h, ":").concat(mi, ":").concat(s);
     },
     formatNum: function formatNum(num) {
       return num.toLocaleString();
@@ -9865,6 +9916,7 @@ __webpack_require__.r(__webpack_exports__);
         data: this.itemData
       }).then(function (res) {
         axios.post('/api/log', {
+          date: "".concat(_this2.date, " ").concat(_this2.getHmis()),
           type: _this2.type,
           data: _this2.itemData
         }).then(function (res) {
@@ -9992,12 +10044,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['type', 'data'],
+  props: ['type', 'data', 'date'],
   initData: function initData() {
     return {
       items: [],
       originItems: [],
+      logDate: "",
       currentPage: 1,
       // 現在のページ番号
       perPage: 20,
@@ -10024,10 +10082,33 @@ __webpack_require__.r(__webpack_exports__);
       this.items = this.data;
       this.totalPage = Math.ceil(this.items.length / this.perPage);
     }
+
+    if (this.date === "") {
+      this.logDate = this.getDate();
+    } else {
+      this.logDate = this.date;
+    }
   },
   methods: {
     resetData: function resetData() {
       Object.assign(this.$data, this.$options.initData());
+    },
+    getDate: function getDate() {
+      var toDoubleDigits = function toDoubleDigits(num) {
+        num += "";
+
+        if (num.length === 1) {
+          num = "0" + num;
+        }
+
+        return num;
+      };
+
+      var date = new Date();
+      var y = date.getFullYear();
+      var m = toDoubleDigits(date.getMonth() + 1);
+      var d = toDoubleDigits(date.getDate());
+      return "".concat(y, "-").concat(m, "-").concat(d);
     },
     getItems: function getItems() {
       var _this = this;
@@ -10113,7 +10194,7 @@ __webpack_require__.r(__webpack_exports__);
         } else if (errType === 'type02') {
           this.$emit('message-event', '数量が在庫数を超過しています', false);
         } else {
-          this.$emit('forward-page', this.mode, this.items, this.selectItems());
+          this.$emit('forward-page', this.mode, this.items, this.selectItems(), this.logDate);
         }
       } else {
         this.$emit('message-event', '数量を入力してください', false);
@@ -10166,8 +10247,8 @@ __webpack_require__.r(__webpack_exports__);
       Object.assign(this.$data, this.$options.initData());
     },
     topPage: function topPage() {
-      this.$router.push({
-        path: '/'
+      this.$router.go({
+        path: '/stock'
       });
       this.$emit('header-event');
     }
@@ -14254,7 +14335,7 @@ var render = function () {
       _c("div", { staticClass: "card-header" }, [
         _c("div", { staticClass: "left-box" }, [
           _c("p", { staticClass: "amount" }, [
-            _vm._v(_vm._s(_vm.logs.length) + "件"),
+            _vm._v(_vm._s(_vm.log_length) + "件"),
           ]),
         ]),
         _vm._v(" "),
@@ -14320,56 +14401,89 @@ var render = function () {
           _c(
             "tbody",
             [
-              _vm._l(_vm.filterLogs, function (log) {
-                return _c("tr", { key: log.id }, [
-                  _c("td", { staticClass: "type" }, [_vm._v(_vm._s(log.type))]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "created_at" }, [
-                    _vm._v(_vm._s(_vm.formatDate(log.created_at))),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "user_name" }, [
-                    _vm._v(_vm._s(log.user_name)),
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "action" }, [
-                    _c(
-                      "a",
-                      {
-                        attrs: { href: "" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            $event.stopPropagation()
-                            return _vm.openModal("log-show", log.id, null)
+              _vm._l(_vm.filterLogs, function (logs) {
+                return _vm._l(logs, function (log, index) {
+                  return _c("tr", { key: log.id }, [
+                    index === 0
+                      ? _c(
+                          "td",
+                          {
+                            staticClass: "date",
+                            attrs: { rowspan: logs.length },
                           },
-                        },
-                      },
-                      [
-                        _c("i", {
-                          staticClass:
-                            "fa-solid fa-magnifying-glass glass-icon",
-                        }),
-                      ]
-                    ),
+                          [
+                            _vm._v(
+                              _vm._s(
+                                _vm.formatDate(log.created_at).substr(0, 11)
+                              )
+                            ),
+                          ]
+                        )
+                      : _vm._e(),
                     _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "edit",
-                        attrs: { href: "" },
-                        on: {
-                          click: function ($event) {
-                            $event.preventDefault()
-                            $event.stopPropagation()
-                            return _vm.openModal("log-update", log.id, null)
+                    _c("td", { staticClass: "time" }, [
+                      _vm._v(
+                        _vm._s(_vm.formatDate(log.created_at).substr(11, 6))
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "type" }, [
+                      _c(
+                        "span",
+                        {
+                          staticClass: "type",
+                          class: {
+                            in: log.type === "入庫",
+                            out: log.type === "出庫",
                           },
                         },
-                      },
-                      [_c("i", { staticClass: "fa-solid fa-pen pen-icon" })]
-                    ),
-                  ]),
-                ])
+                        [_vm._v(_vm._s(log.type))]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "user_name" }, [
+                      _vm._v(_vm._s(log.user_name)),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "action" }, [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "" },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              $event.stopPropagation()
+                              return _vm.openModal("log-show", log.id, null)
+                            },
+                          },
+                        },
+                        [
+                          _c("i", {
+                            staticClass:
+                              "fa-solid fa-magnifying-glass glass-icon",
+                          }),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "edit",
+                          attrs: { href: "" },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              $event.stopPropagation()
+                              return _vm.openModal("log-update", log.id, null)
+                            },
+                          },
+                        },
+                        [_c("i", { staticClass: "fa-solid fa-pen pen-icon" })]
+                      ),
+                    ]),
+                  ])
+                })
               }),
               _vm._v(" "),
               _c(
@@ -14454,7 +14568,7 @@ var render = function () {
       _vm._v(" "),
       _c("div", { staticClass: "pagination" }, [
         _c("div", { staticClass: "amount" }, [
-          _vm._v(_vm._s(_vm.logs.length) + "件"),
+          _vm._v(_vm._s(_vm.log_length) + "件"),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "page-box" }, [
@@ -14572,9 +14686,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", { staticClass: "type" }, [_vm._v("種別")]),
+        _c("th", { staticClass: "date" }, [_vm._v("日付")]),
         _vm._v(" "),
-        _c("th", { staticClass: "created_at" }, [_vm._v("日時")]),
+        _c("th", { staticClass: "time" }, [_vm._v("時間")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "type" }, [_vm._v("種別")]),
         _vm._v(" "),
         _c("th", { staticClass: "user_name" }, [_vm._v("対応者")]),
         _vm._v(" "),
@@ -14733,6 +14849,7 @@ var render = function () {
             _c(
               "a",
               {
+                attrs: { href: "" },
                 on: {
                   click: function ($event) {
                     $event.preventDefault()
@@ -15395,8 +15512,6 @@ var render = function () {
                 _vm._v(" "),
                 _c("th", [_vm._v(_vm._s(_vm.type) + "数量")]),
                 _vm._v(" "),
-                _c("th", [_vm._v("在庫数")]),
-                _vm._v(" "),
                 _c("th", [_vm._v("合計金額")]),
               ]),
             ]),
@@ -15421,10 +15536,6 @@ var render = function () {
                     ]),
                     _vm._v(" "),
                     _c("td", { staticClass: "stocks" }, [
-                      _vm._v(_vm._s(_vm.stockString(index))),
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "stocks" }, [
                       _vm._v(
                         "¥ " + _vm._s(_vm.formatNum(item.price * item.amount))
                       ),
@@ -15443,8 +15554,8 @@ var render = function () {
                   _vm._v(" "),
                   _c(
                     "td",
-                    { staticClass: "last-sum", attrs: { colspan: "2" } },
-                    [_vm._v("最終合計金額")]
+                    { staticClass: "last-sum", attrs: { colspan: "1" } },
+                    [_vm._v("総計")]
                   ),
                   _vm._v(" "),
                   _c("td", { staticClass: "last-sum" }, [
@@ -15919,7 +16030,7 @@ var render = function () {
         _vm._v(" "),
         _vm.step.input === "current"
           ? _c("stock-input-component", {
-              attrs: { type: _vm.type, data: _vm.items },
+              attrs: { type: _vm.type, data: _vm.items, date: _vm.date },
               on: {
                 "forward-page": _vm.confirmPage,
                 "message-event": _vm.messageEvent,
@@ -15929,7 +16040,7 @@ var render = function () {
             })
           : _vm.step.confirm === "current"
           ? _c("stock-confirm-component", {
-              attrs: { type: _vm.type, data: _vm.data },
+              attrs: { type: _vm.type, data: _vm.data, date: _vm.date },
               on: {
                 "forward-page": _vm.resultPage,
                 "back-page": _vm.inputPage,
@@ -15972,7 +16083,9 @@ var render = function () {
     _c("div", { staticClass: "card-main" }, [
       _c("h1", [_vm._v(_vm._s(_vm.type) + "表")]),
       _vm._v(" "),
-      _c("p", { staticClass: "date" }, [_vm._v(_vm._s(_vm.getUpdatedAt()))]),
+      _c("p", { staticClass: "date" }, [
+        _vm._v(_vm._s(_vm.formatDate(_vm.date))),
+      ]),
       _vm._v(" "),
       _c("table", [
         _c("thead", [
@@ -16219,48 +16332,73 @@ var render = function () {
           staticClass: "form-contena",
         },
         [
-          _c("div", { staticClass: "form-box" }, [
+          _c("div", { staticClass: "date-form" }, [
             _c("input", {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.mode,
-                  expression: "mode",
+                  value: _vm.logDate,
+                  expression: "logDate",
                 },
               ],
-              attrs: { type: "radio", id: "in", value: "入庫" },
-              domProps: { checked: _vm._q(_vm.mode, "入庫") },
+              attrs: { type: "date", name: "", id: "" },
+              domProps: { value: _vm.logDate },
               on: {
-                change: function ($event) {
-                  _vm.mode = "入庫"
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.logDate = $event.target.value
                 },
               },
             }),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "in" } }, [_vm._v("入庫")]),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "form-box" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.mode,
-                  expression: "mode",
+          _c("div", { staticClass: "type-form" }, [
+            _c("div", { staticClass: "form-box" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.mode,
+                    expression: "mode",
+                  },
+                ],
+                attrs: { type: "radio", id: "in", value: "入庫" },
+                domProps: { checked: _vm._q(_vm.mode, "入庫") },
+                on: {
+                  change: function ($event) {
+                    _vm.mode = "入庫"
+                  },
                 },
-              ],
-              attrs: { type: "radio", id: "out", value: "出庫" },
-              domProps: { checked: _vm._q(_vm.mode, "出庫") },
-              on: {
-                change: function ($event) {
-                  _vm.mode = "出庫"
-                },
-              },
-            }),
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "in" } }, [_vm._v("入庫")]),
+            ]),
             _vm._v(" "),
-            _c("label", { attrs: { for: "out" } }, [_vm._v("出庫")]),
+            _c("div", { staticClass: "form-box" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.mode,
+                    expression: "mode",
+                  },
+                ],
+                attrs: { type: "radio", id: "out", value: "出庫" },
+                domProps: { checked: _vm._q(_vm.mode, "出庫") },
+                on: {
+                  change: function ($event) {
+                    _vm.mode = "出庫"
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "out" } }, [_vm._v("出庫")]),
+            ]),
           ]),
         ]
       ),
@@ -16813,7 +16951,7 @@ var render = function () {
               },
             },
           },
-          [_vm._v("教材一覧へ")]
+          [_vm._v("TOPへ")]
         ),
       ]),
     ]),
