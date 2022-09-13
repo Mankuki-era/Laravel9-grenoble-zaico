@@ -20,7 +20,7 @@
               <th class="time">時間</th>
               <th class="type">種別</th>
               <th class="user_name">対応者</th>
-              <th class="action" v-show="adminFlag">操作</th>
+              <th class="action">操作</th>
             </tr>
           </thead>
           <tbody>
@@ -30,9 +30,9 @@
                 <td class="time">{{ formatDate(log.created_at).substr(11,6) }}</td>
                 <td class="type"><span class="type" v-bind:class="{in: log.type === '入庫', out: log.type === '出庫'}">{{ log.type }}</span></td>
                 <td class="user_name">{{ log.user_name }}</td>
-                <td class="action" v-show="adminFlag">
+                <td class="action">
                   <a href="" @click.prevent.stop="openModal('log-show', log.id, null)"><i class="fa-solid fa-magnifying-glass glass-icon"></i></a>
-                  <a href="" class="edit" @click.prevent.stop="openModal('log-update', log.id, null)"><i class="fa-solid fa-pen pen-icon"></i></a>
+                  <a href="" class="edit" @click.prevent.stop="openModal('log-update', log.id, null)"><i class="fa-solid fa-pen pen-icon"  v-show="adminFlag"></i></a>
                 </td>
               </tr>
             </template>
