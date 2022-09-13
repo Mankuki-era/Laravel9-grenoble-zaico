@@ -14480,6 +14480,14 @@ var render = function () {
                       _c(
                         "a",
                         {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.adminFlag,
+                              expression: "adminFlag",
+                            },
+                          ],
                           staticClass: "edit",
                           attrs: { href: "" },
                           on: {
@@ -14490,19 +14498,7 @@ var render = function () {
                             },
                           },
                         },
-                        [
-                          _c("i", {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: _vm.adminFlag,
-                                expression: "adminFlag",
-                              },
-                            ],
-                            staticClass: "fa-solid fa-pen pen-icon",
-                          }),
-                        ]
+                        [_c("i", { staticClass: "fa-solid fa-pen pen-icon" })]
                       ),
                     ]),
                   ])
