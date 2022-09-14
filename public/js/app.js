@@ -13458,50 +13458,102 @@ var render = function () {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "right-box" }, [
-          _c(
-            "ul",
-            {
-              directives: [
+          _c("ul", { staticClass: "link-box" }, [
+            _c("li", [
+              _c(
+                "a",
                 {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.adminFlag,
-                  expression: "adminFlag",
+                  staticClass: "second",
+                  attrs: { href: "" },
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      $event.stopPropagation()
+                      return _vm.dataReload("item-reload", null, null)
+                    },
+                  },
                 },
-              ],
-              staticClass: "link-box",
-            },
-            [
-              _c("li", [
+                [
+                  _c("i", {
+                    staticClass: "fa-solid fa-arrow-rotate-right reload-icon",
+                  }),
+                  _vm._v("再読込"),
+                ]
+              ),
+            ]),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.adminFlag,
+                    expression: "adminFlag",
+                  },
+                ],
+              },
+              [
                 _c(
                   "a",
                   {
-                    staticClass: "second",
-                    attrs: { href: "" },
-                    on: {
-                      click: function ($event) {
-                        $event.preventDefault()
-                        $event.stopPropagation()
-                        return _vm.dataReload("item-reload", null, null)
+                    staticClass: "select-link second",
+                    attrs: { href: "javascript:void(0)" },
+                  },
+                  [_vm._v("その他")]
+                ),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "ul",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.adminFlag,
+                    expression: "adminFlag",
+                  },
+                ],
+                staticClass: "select-menu",
+                attrs: { id: "select_menu" },
+              },
+              [
+                _c("li", [
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "" },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          $event.stopPropagation()
+                          return _vm.openModal("item-import", null, null)
+                        },
                       },
                     },
+                    [
+                      _c("i", { staticClass: "fa-solid fa-plus plus-icon" }),
+                      _vm._v("一括追加"),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.items.length > 0,
+                        expression: "items.length > 0",
+                      },
+                    ],
                   },
                   [
-                    _c("i", {
-                      staticClass: "fa-solid fa-arrow-rotate-right reload-icon",
-                    }),
-                    _vm._v("再読込"),
-                  ]
-                ),
-              ]),
-              _vm._v(" "),
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "ul",
-                { staticClass: "select-menu", attrs: { id: "select_menu" } },
-                [
-                  _c("li", [
                     _c(
                       "a",
                       {
@@ -13510,74 +13562,54 @@ var render = function () {
                           click: function ($event) {
                             $event.preventDefault()
                             $event.stopPropagation()
-                            return _vm.openModal("item-import", null, null)
+                            return _vm.openModal("item-delete", null, null)
                           },
                         },
                       },
                       [
-                        _c("i", { staticClass: "fa-solid fa-plus plus-icon" }),
-                        _vm._v("一括追加"),
+                        _c("i", {
+                          staticClass: "fa-solid fa-trash-can trash-icon",
+                        }),
+                        _vm._v("一括削除"),
                       ]
                     ),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.items.length > 0,
-                          expression: "items.length > 0",
-                        },
-                      ],
-                    },
-                    [
-                      _c(
-                        "a",
-                        {
-                          attrs: { href: "" },
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              $event.stopPropagation()
-                              return _vm.openModal("item-delete", null, null)
-                            },
-                          },
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "fa-solid fa-trash-can trash-icon",
-                          }),
-                          _vm._v("一括削除"),
-                        ]
-                      ),
-                    ]
-                  ),
-                ]
-              ),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "first",
-                    staticStyle: { "background-color": "#dc3545" },
-                    attrs: { href: "" },
-                    on: {
-                      click: function ($event) {
-                        $event.preventDefault()
-                        $event.stopPropagation()
-                        return _vm.downloadPDF()
-                      },
+                  ]
+                ),
+              ]
+            ),
+            _vm._v(" "),
+            _c("li", [
+              _c(
+                "a",
+                {
+                  staticClass: "first",
+                  staticStyle: { "background-color": "#dc3545" },
+                  attrs: { href: "" },
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      $event.stopPropagation()
+                      return _vm.downloadPDF()
                     },
                   },
-                  [_vm._v("PDF出力")]
-                ),
-              ]),
-              _vm._v(" "),
-              _c("li", [
+                },
+                [_vm._v("PDF出力")]
+              ),
+            ]),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.adminFlag,
+                    expression: "adminFlag",
+                  },
+                ],
+              },
+              [
                 _c(
                   "a",
                   {
@@ -13597,9 +13629,22 @@ var render = function () {
                     _vm._v("一括編集"),
                   ]
                 ),
-              ]),
-              _vm._v(" "),
-              _c("li", [
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.adminFlag,
+                    expression: "adminFlag",
+                  },
+                ],
+              },
+              [
                 _c(
                   "a",
                   {
@@ -13618,9 +13663,9 @@ var render = function () {
                     _vm._v("新規追加"),
                   ]
                 ),
-              ]),
-            ]
-          ),
+              ]
+            ),
+          ]),
         ]),
       ]),
       _vm._v(" "),
@@ -14020,7 +14065,7 @@ var render = function () {
           _c("h1", { staticClass: "pdf-h1" }, [_vm._v("教材一覧")]),
           _vm._v(" "),
           _c("table", { staticClass: "pdf-table" }, [
-            _vm._m(1),
+            _vm._m(0),
             _vm._v(" "),
             _c(
               "tbody",
@@ -14206,7 +14251,7 @@ var render = function () {
                   },
                 },
               },
-              [_vm._m(2), _c("span", [_vm._v("再読込み")])]
+              [_vm._m(1), _c("span", [_vm._v("再読込み")])]
             ),
           ]),
           _vm._v(" "),
@@ -14224,7 +14269,7 @@ var render = function () {
                   },
                 },
               },
-              [_vm._m(3), _c("span", [_vm._v("新規追加")])]
+              [_vm._m(2), _c("span", [_vm._v("新規追加")])]
             ),
           ]),
           _vm._v(" "),
@@ -14253,7 +14298,7 @@ var render = function () {
                     },
                   },
                 },
-                [_vm._m(4), _c("span", [_vm._v("一括削除")])]
+                [_vm._m(3), _c("span", [_vm._v("一括削除")])]
               ),
             ]
           ),
@@ -14263,21 +14308,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c(
-        "a",
-        {
-          staticClass: "select-link second",
-          attrs: { href: "javascript:void(0)" },
-        },
-        [_vm._v("その他")]
-      ),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

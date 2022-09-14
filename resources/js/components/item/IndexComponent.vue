@@ -7,16 +7,16 @@
           <p class="amount">{{ items.length }}件</p>
         </div>
         <div class="right-box">
-          <ul class="link-box" v-show="adminFlag">
+          <ul class="link-box">
             <li><a href="" @click.prevent.stop="dataReload('item-reload',null,null)" class="second"><i class="fa-solid fa-arrow-rotate-right reload-icon"></i>再読込</a></li>
-            <li><a href="javascript:void(0)" class="select-link second">その他</a></li>
-            <ul class="select-menu" id="select_menu">
+            <li v-show="adminFlag"><a href="javascript:void(0)" class="select-link second">その他</a></li>
+            <ul class="select-menu" id="select_menu" v-show="adminFlag">
               <li><a href="" @click.prevent.stop="openModal('item-import', null, null)"><i class="fa-solid fa-plus plus-icon"></i>一括追加</a></li>
               <li v-show="items.length > 0"><a href="" @click.prevent.stop="openModal('item-delete', null, null)"><i class="fa-solid fa-trash-can trash-icon"></i>一括削除</a></li>
             </ul>
             <li><a href="" @click.prevent.stop="downloadPDF()" class="first" style="background-color: #dc3545;">PDF出力</a></li>
-            <li><a href="" class="first" @click.prevent.stop="openModal('item-allupdate', null, null)" style="background-color: #28a745;"><i class="fa-solid fa-pen plus-icon"></i>一括編集</a></li>
-            <li><a href="" class="first" @click.prevent.stop="openModal('item-create', null, null)"><i class="fa-solid fa-plus plus-icon"></i>新規追加</a></li>
+            <li v-show="adminFlag"><a href="" class="first" @click.prevent.stop="openModal('item-allupdate', null, null)" style="background-color: #28a745;"><i class="fa-solid fa-pen plus-icon"></i>一括編集</a></li>
+            <li v-show="adminFlag"><a href="" class="first" @click.prevent.stop="openModal('item-create', null, null)"><i class="fa-solid fa-plus plus-icon"></i>新規追加</a></li>
           </ul>
         </div>
       </div>
