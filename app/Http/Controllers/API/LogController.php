@@ -132,8 +132,11 @@ class LogController extends Controller
     {
         $logs = Log::orderBy('created_at', 'asc')->get();
 
+        // error_log(print_r($logs,true),"3","/Users/mankuki_era/Documents/debug.log");
+
         $datestr1 = ""; // 日付
         $array = [];
+        $count = 0;
         foreach($logs as $log){
             $datestr2 = substr($log->created_at, 0, 10);
             // error_log(print_r($datestr2,true),"3","/Users/mankuki_era/Documents/debug.log");
@@ -159,14 +162,16 @@ class LogController extends Controller
 
                 $datestr1 = $datestr2;
                 $array = [array('data'=>[], 'id'=>[]), array('data'=>[], 'id'=>[])];  // [入庫データ, 出庫データ];
-            };
 
+            };
+            // error_log(print_r(unserialize($log->data),true),"3","/Users/mankuki_era/Documents/debug.log");
+            
             if($log->type === '入庫'){
                 $index = 0;
             }elseif($log->type ===  '出庫'){
                 $index = 1;
             };
-
+            
             $id_array = array_column($array[$index]['data'], 'id');
 
             foreach(unserialize($log->data) as $data){
@@ -177,7 +182,7 @@ class LogController extends Controller
                     $array[$index]['data'][$key]['amount'] += $data['amount'];
                 }
             }
-
+            
             array_push($array[$index]['id'], $log->id);
 
         };
@@ -197,8 +202,6 @@ class LogController extends Controller
                 $update_log->save();
             }
         }
-
-        // error_log(print_r($array,true),"3","/Users/mankuki_era/Documents/debug.log");
         
     }
 
